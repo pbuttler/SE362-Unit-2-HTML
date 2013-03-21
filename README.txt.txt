@@ -1,2 +1,2 @@
-authors: Danielle Neuberger,Luke Coy,Isioma Nmodum,
+authors: Danielle Neuberger,Luke Coy,Isioma Nnodum,
 Peter Buttler,Nicholas Weller
