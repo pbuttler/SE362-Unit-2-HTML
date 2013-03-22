@@ -32,7 +32,7 @@ public class App {
         this.setCommands();
         
         this._editor = new Editor();
-        this._gui = new GUI();
+        this._gui = new GUI(_newFieldCommand, _openFileCommand, _saveFileCommand, _closeFileCommand, _switchFileCommand, _exitAppCommand);
         
     }
     
