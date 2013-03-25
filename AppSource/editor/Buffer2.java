@@ -8,13 +8,13 @@ import java.util.Observer;
 *
 * @author Isioma, Peter
 */
-public abstract class Buffer implements Observer {
+public abstract class Buffer2 implements Observer {
     
   private ArrayList<Object> Contents;
 	private String ContentsString;
 	
    
-    public Buffer(String systemPath, String bufferContents) {
+    public Buffer2(String systemPath, String bufferContents) {
         
     }
     
