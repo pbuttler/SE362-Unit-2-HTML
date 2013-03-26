@@ -8,6 +8,7 @@ import java.util.HashMap;
 import app.App;
 import editor.Buffer;
 import editor.Editor;
+import gui.htmleditor.testGUI;
 
 /**
  *
@@ -24,7 +25,7 @@ public class CloseTabCommand extends Command {
     public void execute(Object source, HashMap<String, Object> arguments) {
         
         Editor editor = this._app.getEditor();
-        GUI gui = this._app.getGUI();
+        testGUI gui = this._app.getGUI();
         
         // retrieve the file name (used to reference the file buffer in the editor)
         String closedTabIdentifier = (String) arguments.get("tabIdentifier");

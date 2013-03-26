@@ -1,41 +1,69 @@
-package pkg5seconds.editor;
+package editor;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Editor {
     
+	private Buffer _activeBuffer;
+	private ArrayList<Buffer> _bufferList;
+	
     
     public Editor() {
         
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    	// Constructs Editor
+        
     }
     
     public Buffer getActiveBuffer() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    	
+    	// returns the active buffer as an object
+    	
+        return _activeBuffer;
     }
-    public Buffer setActiveBuffer(String currentBuffer) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    
+    public Buffer setActiveBuffer(Buffer currentBuffer) {
+        
+    	// Given a buffer object, sets the active buffer
+    	
+    	_activeBuffer = currentBuffer;
+        
+        return _activeBuffer;
     }
     
     public void closeBuffer(String bufferIdentifier) {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    	
+    	// VALIDATED
+    	// close a buffer based on its identifier
 
     }
 
     public Buffer createBuffer(String fileName, String fileContents) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+    	// Create a new buffer with a given fileName and contents
+    	// VALIDATED
+    	
+    	Buffer newBuffer = new Buffer(fileName, fileContents);
+    	_bufferList.add(newBuffer);
+		
+    	return newBuffer;
     }
 
     public Buffer getBuffer(String bufferIdentifier) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+    	//Returns a buffer based on identifier
+    	
+    	return null;
     }
 
     public void saveBuffer(String bufferIdentifier) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+    	// Saves a buffer's status to its attached file
+    	// VALIDATED
+    	
     }
     
     public void destroy() {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    	
     }
 }

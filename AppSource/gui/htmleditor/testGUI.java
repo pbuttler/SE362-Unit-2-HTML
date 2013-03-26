@@ -685,4 +685,20 @@ public class testGUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem newFileMenuItem;
     private javax.swing.JTabbedPane tabs;
     // End of variables declaration//GEN-END:variables
+
+    public String getActiveTabIdentifier() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void destroy() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void unregisterBufferObserver() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void registerBufferObserver(editor.Buffer activeBuffer) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

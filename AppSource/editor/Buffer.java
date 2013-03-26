@@ -1,38 +1,48 @@
-package pkg5seconds.editor;
+ package editor;
 
+import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
 /**
- *
- * @author Isioma
- */
-public abstract class Buffer implements Observer {
+*
+* @author Isioma, Peter
+*/
+public class Buffer implements Observer {
     
+	private ArrayList<Object> Contents;
+	private String ContentsString;
+	
    
     public Buffer(String systemPath, String bufferContents) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+    	// Constructor for Buffer
+    	
     }
     
     public String getContents() {
-        
-       throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       
+    	// returns the buffer's contents as a String
+    	
+    	return ContentsString;
         
     }
     
     public void setBufferContents(String bufferContents) {
         
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        // Sets the buffer string and the content array
         
     }
     
     public void validateBufferContents() {
-    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    	
+    	// Uses validate method to match constructs 
+    	
     }
 
     @Override
     public void update(Observable o, Object arg) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    	
     }
     
 }
