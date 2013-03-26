@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package htmleditor;
+package gui.htmleditor;
 
 import java.util.*;
 import javax.swing.*;
