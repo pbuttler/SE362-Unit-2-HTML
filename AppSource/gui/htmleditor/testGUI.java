@@ -5,6 +5,12 @@
 
 package gui.htmleditor;
 
+import commands.CloseTabCommand;
+import commands.ExitAppCommand;
+import commands.NewFileCommand;
+import commands.OpenFileCommand;
+import commands.SaveFileCommand;
+import commands.SwitchTabCommand;
 import java.util.*;
 import javax.swing.*;
 
@@ -20,8 +26,13 @@ public class testGUI extends javax.swing.JFrame {
      * Creates new form testGUI
      */
     public testGUI() {
-        this.currBuff = new Buffer(currentTab,"");
+        
         initComponents();
+        
+    }
+
+    public testGUI(NewFileCommand _newFieldCommand, OpenFileCommand _openFileCommand, SaveFileCommand _saveFileCommand, CloseTabCommand _closeFileCommand, SwitchTabCommand _switchFileCommand, ExitAppCommand _exitAppCommand) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
@@ -416,9 +427,6 @@ public class testGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private Buffer currBuff;
-    private int currentTab;
-    private JTextArea currentTextArea;
     private String selectedText;
     
     private void PasteMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PasteMenuItemActionPerformed
@@ -426,7 +434,9 @@ public class testGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_PasteMenuItemActionPerformed
 
     private void SaveMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveMenuItemActionPerformed
-        currBuff.updateContents(jTextArea1.getText());
+        int index = tabs.getSelectedIndex();
+        JTextArea x = (JTextArea)tabs.getComponentAt(index);
+        buffers.get(index).updateContents(jTextArea1.getText());
         //have Buffer notify editor that it's contents have changed
     }//GEN-LAST:event_SaveMenuItemActionPerformed
 
@@ -439,8 +449,8 @@ public class testGUI extends javax.swing.JFrame {
         JTextArea textArea = new JTextArea();
         JScrollPane scrollPane = new JScrollPane();
         scrollPane.setViewportView(textArea);
+        
         tabs.add("New Buffer", scrollPane);
-        currentTextArea = textArea;
     }//GEN-LAST:event_newFileMenuItemActionPerformed
 
     private void jTextArea1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextArea1KeyTyped
@@ -458,9 +468,8 @@ public class testGUI extends javax.swing.JFrame {
 
     private void tabsComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_tabsComponentAdded
         //executes whenever a new tab is created
-        Buffer tabBuff = new Buffer(buffers.size()+1, "");
+        Buffer tabBuff = new Buffer(buffers.size(), "");
         buffers.add(tabBuff);
-        currentTab = tabs.getSelectedIndex();
     }//GEN-LAST:event_tabsComponentAdded
 
     private void TableMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TableMenuItemActionPerformed
@@ -469,13 +478,13 @@ public class testGUI extends javax.swing.JFrame {
 
     private void AutoWordWrapMenuCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AutoWordWrapMenuCheckBoxActionPerformed
         // TODO add your handling code here:
+        int index = tabs.getSelectedIndex();
+        JTextArea x = (JTextArea)tabs.getComponentAt(index);
         if (AutoWordWrapMenuCheckBox.isSelected()){
-            currentTextArea.setLineWrap(true);
-            //jTextArea1.setWrapStyleWord(true);
+            x.setWrapStyleWord(true);
         }
         else{
-            currentTextArea.setLineWrap(false);
-           // jTextArea1.setWrapStyleWord(false);
+            x.setWrapStyleWord(false);
         }
     }//GEN-LAST:event_AutoWordWrapMenuCheckBoxActionPerformed
 

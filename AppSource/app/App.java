@@ -2,13 +2,14 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package pkg5seconds.app;
+package app;
 
 import javax.swing.JFrame;
-import pkg5seconds.commands.CommandFactory;
-import pkg5seconds.editor.Buffer;
-import pkg5seconds.editor.Editor;
-import pkg5seconds.gui.GUI;
+import commands.CommandFactory;
+import editor.Buffer;
+import editor.Editor;
+import gui.htmleditor.testGUI;
+
 
 /**
  *
@@ -16,15 +17,15 @@ import pkg5seconds.gui.GUI;
  */
 public class App {
     
-    private pkg5seconds.commands.NewFileCommand _newFieldCommand;
-    private pkg5seconds.commands.OpenFileCommand _openFileCommand;
-    private pkg5seconds.commands.SaveFileCommand _saveFileCommand;
-    private pkg5seconds.commands.CloseTabCommand _closeFileCommand;
-    private pkg5seconds.commands.SwitchTabCommand _switchFileCommand;
-    private pkg5seconds.commands.ExitAppCommand _exitAppCommand;
+    private commands.NewFileCommand _newFieldCommand;
+    private commands.OpenFileCommand _openFileCommand;
+    private commands.SaveFileCommand _saveFileCommand;
+    private commands.CloseTabCommand _closeFileCommand;
+    private commands.SwitchTabCommand _switchFileCommand;
+    private commands.ExitAppCommand _exitAppCommand;
     
-    private pkg5seconds.editor.Editor _editor;
-    private pkg5seconds.gui.GUI _gui;
+    private editor.Editor _editor;
+    private testGUI _gui;
     
     
     public App() {
@@ -32,7 +33,7 @@ public class App {
         this.setCommands();
         
         this._editor = new Editor();
-        this._gui = new GUI(_newFieldCommand, _openFileCommand, _saveFileCommand, _closeFileCommand, _switchFileCommand, _exitAppCommand);
+        this._gui = new testGUI(_newFieldCommand, _openFileCommand, _saveFileCommand, _closeFileCommand, _switchFileCommand, _exitAppCommand);
         
     }
     
@@ -40,7 +41,7 @@ public class App {
         return this._editor;
     }
     
-    public GUI getGUI() {
+    public testGUI getGUI() {
         return this._gui;
     }
     

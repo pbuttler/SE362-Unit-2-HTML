@@ -2,13 +2,13 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package pkg5seconds.commands;
+package commands;
 
 import java.util.HashMap;
-import pkg5seconds.app.App;
-import pkg5seconds.editor.Buffer;
-import pkg5seconds.editor.Editor;
-import pkg5seconds.gui.GUI;
+import app.App;
+import editor.Buffer;
+import editor.Editor;
+import gui.GUI;
 
 /**
  *

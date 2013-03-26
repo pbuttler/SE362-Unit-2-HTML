@@ -4,7 +4,7 @@
  */
 
 
-import pkg5seconds.app.App;
+import app.App;
 
 /**
  *
