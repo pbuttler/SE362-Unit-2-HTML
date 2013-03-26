@@ -312,6 +312,7 @@ public class testGUI extends javax.swing.JFrame {
 
         jMenu1.setText("Header");
 
+        h1Header.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_1, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         h1Header.setText("<h1>");
         h1Header.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
