@@ -33,7 +33,9 @@ public class App {
         this.setCommands();
         
         this._editor = new Editor();
-        this._gui = new testGUI(_newFieldCommand, _openFileCommand, _saveFileCommand, _closeFileCommand, _switchFileCommand, _exitAppCommand);
+        //this._gui = new testGUI(_newFieldCommand, _openFileCommand, _saveFileCommand, _closeFileCommand, _switchFileCommand, _exitAppCommand);
+        this._gui = new testGUI();
+        this._gui.instantiate();
         
     }
     

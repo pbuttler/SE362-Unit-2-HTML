@@ -89,6 +89,7 @@ public class testGUI extends javax.swing.JFrame {
         PictureMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new java.awt.BorderLayout());
 
         tabs.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         tabs.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -136,9 +137,10 @@ public class testGUI extends javax.swing.JFrame {
 
         getContentPane().add(jPanel3, java.awt.BorderLayout.CENTER);
 
+        FileMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/icons/Actions-document-new-icon.png"))); // NOI18N
         FileMenu.setText("File");
 
-        newFileMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Actions-document-new-icon.png"))); // NOI18N
+        newFileMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/icons/Actions-document-new-icon.png"))); // NOI18N
         newFileMenuItem.setText("New");
         newFileMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -147,7 +149,7 @@ public class testGUI extends javax.swing.JFrame {
         });
         FileMenu.add(newFileMenuItem);
 
-        OpenMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Folder-Open-icon.png"))); // NOI18N
+        OpenMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/icons/Folder-Open-icon.png"))); // NOI18N
         OpenMenuItem.setText("Open");
         OpenMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -156,7 +158,7 @@ public class testGUI extends javax.swing.JFrame {
         });
         FileMenu.add(OpenMenuItem);
 
-        SaveMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Save-icon.png"))); // NOI18N
+        SaveMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/icons/Save-icon.png"))); // NOI18N
         SaveMenuItem.setText("Save");
         SaveMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -165,7 +167,7 @@ public class testGUI extends javax.swing.JFrame {
         });
         FileMenu.add(SaveMenuItem);
 
-        SaveAsMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Save-as-icon.png"))); // NOI18N
+        SaveAsMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/icons/Save-as-icon.png"))); // NOI18N
         SaveAsMenuItem.setText("Save As");
         SaveAsMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -179,7 +181,7 @@ public class testGUI extends javax.swing.JFrame {
         EditMenu.setText("Edit");
 
         CutMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.CTRL_MASK));
-        CutMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Actions-edit-cut-icon.png"))); // NOI18N
+        CutMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/icons/Actions-edit-cut-icon.png"))); // NOI18N
         CutMenuItem.setText("Cut");
         CutMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -189,7 +191,7 @@ public class testGUI extends javax.swing.JFrame {
         EditMenu.add(CutMenuItem);
 
         CopyMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
-        CopyMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Actions-edit-copy-icon.png"))); // NOI18N
+        CopyMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/icons/Actions-edit-copy-icon.png"))); // NOI18N
         CopyMenuItem.setText("Copy");
         CopyMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -199,7 +201,7 @@ public class testGUI extends javax.swing.JFrame {
         EditMenu.add(CopyMenuItem);
 
         PasteMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.CTRL_MASK));
-        PasteMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/paste-icon.png"))); // NOI18N
+        PasteMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/icons/paste-icon.png"))); // NOI18N
         PasteMenuItem.setText("Paste");
         PasteMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -220,7 +222,7 @@ public class testGUI extends javax.swing.JFrame {
         });
         ViewMenu.add(ViewAsWebpageMenuItem);
 
-        ZoomToMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Zoom-In-icon.png"))); // NOI18N
+        ZoomToMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/icons/Zoom-In-icon.png"))); // NOI18N
         ZoomToMenu.setText("Zoom To..");
 
         FiftyPercentZoom.setText("50%");
@@ -614,7 +616,7 @@ public class testGUI extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void instantiate() {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.

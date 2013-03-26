@@ -18,6 +18,6 @@ public class HTMLEditor {
         System.out.println("Hello! Danielle!");
         testGUI g = new testGUI();
         String[] s = new String[0];
-        g.main(s);        
+        g.instantiate();        
     }
 }
