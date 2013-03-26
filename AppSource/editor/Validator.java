@@ -24,7 +24,6 @@ public class Validator {
 		    if (c == '<'){
 		    	mark = i;
 		    	
-		    	
 		    	// save currentSting to the Contents array
 		    	
 		    	currentString = "";
