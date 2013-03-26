@@ -5,12 +5,15 @@
 
 package gui.htmleditor;
 
+import app.Commander;
 import commands.CloseTabCommand;
 import commands.ExitAppCommand;
 import commands.NewFileCommand;
 import commands.OpenFileCommand;
 import commands.SaveFileCommand;
 import commands.SwitchTabCommand;
+import common.ObservableBuffer;
+import java.awt.Component;
 import java.util.*;
 import javax.swing.*;
 
@@ -19,9 +22,9 @@ import javax.swing.*;
  * @author ldc1108 (Luke Coy), drn5447 (Danielle Neuberger)
  */
 public class testGUI extends javax.swing.JFrame {
-
-    ArrayList<Buffer> buffers = new ArrayList<>();
     
+    private ArrayList<ObservableBuffer> buffers;
+    private Commander _dave; 
     /**
      * Creates new form testGUI
      */
@@ -29,10 +32,13 @@ public class testGUI extends javax.swing.JFrame {
         
         initComponents();
         
+        buffers = new ArrayList<ObservableBuffer>();
+        
     }
 
-    public testGUI(NewFileCommand _newFieldCommand, OpenFileCommand _openFileCommand, SaveFileCommand _saveFileCommand, CloseTabCommand _closeFileCommand, SwitchTabCommand _switchFileCommand, ExitAppCommand _exitAppCommand) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public testGUI(Commander dave) {
+        this();
+        this._dave = dave;
     }
 
     /**
@@ -441,10 +447,14 @@ public class testGUI extends javax.swing.JFrame {
         JTextArea x = (JTextArea)tabs.getComponentAt(index);
         buffers.get(index).updateContents(jTextArea1.getText());
         //have Buffer notify editor that it's contents have changed
+        if (null != this._dave)
+            this._dave.getSaveFileCommand().execute(this, null);
     }//GEN-LAST:event_SaveMenuItemActionPerformed
 
     private void OpenMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OpenMenuItemActionPerformed
-        // TODO add your handling code here:
+        
+        if (null != this._dave)
+            this._dave.getOpenFileCommand().execute(this, null);
     }//GEN-LAST:event_OpenMenuItemActionPerformed
 
     private void newFileMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newFileMenuItemActionPerformed
@@ -454,6 +464,11 @@ public class testGUI extends javax.swing.JFrame {
         scrollPane.setViewportView(textArea);
         
         tabs.add("New Buffer", scrollPane);
+        
+        if (null != this._dave)
+        this._dave.getNewFileCommand().execute(this, null);
+        
+        
     }//GEN-LAST:event_newFileMenuItemActionPerformed
 
     private void jTextArea1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextArea1KeyTyped
@@ -466,13 +481,20 @@ public class testGUI extends javax.swing.JFrame {
         // get observers: addObserver()
 
         
+        int tabIndex = this.tabs.getSelectedIndex();
+        String title = this.tabs.getTitleAt(tabIndex);
+        
+        ObservableBuffer buffer = this.buffers.get(tabIndex);
+        buffer.notifyObservers();
         
     }//GEN-LAST:event_jTextArea1KeyTyped
 
     private void tabsComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_tabsComponentAdded
         //executes whenever a new tab is created
-        Buffer tabBuff = new Buffer(buffers.size(), "");
+        ObservableBuffer tabBuff = new ObservableBuffer(buffers.size(), "");
         buffers.add(tabBuff);
+        
+        
     }//GEN-LAST:event_tabsComponentAdded
 
     private void TableMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TableMenuItemActionPerformed
@@ -493,7 +515,9 @@ public class testGUI extends javax.swing.JFrame {
 
     private void tabsComponentRemoved(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_tabsComponentRemoved
        //TODO: save stuff to buffer
-       //have buffer pass it's stuff to the editor      
+       //have buffer pass it's stuff to the editor 
+        if (null != this._dave)
+        this._dave.getCloseTabCommand().execute(this, null);
     }//GEN-LAST:event_tabsComponentRemoved
 
     private void tabsStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_tabsStateChanged
@@ -514,6 +538,8 @@ public class testGUI extends javax.swing.JFrame {
 
     private void SaveAsMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveAsMenuItemActionPerformed
         // TODO add your handling code here:
+        if (null != this._dave)
+        this._dave.getSaveFileCommand().execute(this, null);
     }//GEN-LAST:event_SaveAsMenuItemActionPerformed
 
     private void ViewAsWebpageMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewAsWebpageMenuItemActionPerformed
@@ -690,7 +716,9 @@ public class testGUI extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     public String getActiveTabIdentifier() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        int currentTab = this.tabs.getSelectedIndex();
+        String title = this.tabs.getTitleAt(currentTab);
+        return title;
     }
 
     public void destroy() {
@@ -698,10 +726,20 @@ public class testGUI extends javax.swing.JFrame {
     }
 
     public void unregisterBufferObserver() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        int currentTab = this.tabs.getSelectedIndex();
+        
+        ObservableBuffer obsBuffer = this.buffers.get(currentTab);
+        
+        obsBuffer.deleteObservers();
+        
     }
 
-    public void registerBufferObserver(editor.Buffer activeBuffer) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void registerBufferObserver(Observer activeBuffer) {
+        int currentTab = this.tabs.getSelectedIndex();
+        
+        ObservableBuffer obsBuffer = this.buffers.get(currentTab);
+        
+        obsBuffer.addObserver(activeBuffer);
     }
 }

@@ -6,7 +6,7 @@ package commands;
 
 import java.util.HashMap;
 import app.App;
-import editor.Buffer;
+import common.BufferObserver;
 import editor.Editor;
 import gui.htmleditor.testGUI;
 
@@ -37,8 +37,8 @@ public class SwitchTabCommand extends Command {
         
         // TODO put this code in one place (method name switch bufferObserver)
         this._app.unregisterBufferObserver();
-        Buffer activeBuffer = editor.getBuffer(currentTabIdentifier);
-        this._app.registerBufferObserver(activeBuffer);
+        BufferObserver activeBufferObserver = editor.getBufferObserver(currentTabIdentifier);
+        this._app.registerBufferObserver(activeBufferObserver);
         
     }
 

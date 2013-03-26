@@ -7,7 +7,8 @@ package commands;
 import java.io.File;
 import java.util.HashMap;
 import app.App;
-import editor.Buffer;
+import common.BufferObserver;
+
 import editor.Editor;
 
 /**
@@ -37,11 +38,11 @@ public class OpenFileCommand extends Command {
         File file = (File) arguments.get("file");
         String fileContents = (String) arguments.get("fileContents");
         
-        Buffer activeBuffer = editor.createBuffer(fileName,fileContents);
+        BufferObserver activeBufferObserver = editor.createBufferObserver(fileName,fileContents);
         
         this._app.unregisterBufferObserver();
         
-        this._app.registerBufferObserver(activeBuffer);
+        this._app.registerBufferObserver(activeBufferObserver);
         
         
         

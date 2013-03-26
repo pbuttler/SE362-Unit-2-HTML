@@ -1,12 +1,13 @@
 package editor;
 
+import common.BufferObserver;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Editor {
     
-	private Buffer _activeBuffer;
-	private ArrayList<Buffer> _bufferList;
+	private BufferObserver _activeBufferObserver;
+	private ArrayList<BufferObserver> _bufferList;
 	
     
     public Editor() {
@@ -15,48 +16,48 @@ public class Editor {
         
     }
     
-    public Buffer getActiveBuffer() {
+    public BufferObserver getActiveBufferObserver() {
     	
     	// returns the active buffer as an object
     	
-        return _activeBuffer;
+        return _activeBufferObserver;
     }
     
-    public Buffer setActiveBuffer(Buffer currentBuffer) {
+    public BufferObserver setActiveBufferObserver(BufferObserver currentBufferObserver) {
         
     	// Given a buffer object, sets the active buffer
     	
-    	_activeBuffer = currentBuffer;
+    	_activeBufferObserver = currentBufferObserver;
         
-        return _activeBuffer;
+        return _activeBufferObserver;
     }
     
-    public void closeBuffer(String bufferIdentifier) {
+    public void closeBufferObserver(String bufferIdentifier) {
     	
     	// VALIDATED
     	// close a buffer based on its identifier
 
     }
 
-    public Buffer createBuffer(String fileName, String fileContents) {
+    public BufferObserver createBufferObserver(String fileName, String fileContents) {
         
     	// Create a new buffer with a given fileName and contents
     	// VALIDATED
     	
-    	Buffer newBuffer = new Buffer(fileName, fileContents);
-    	_bufferList.add(newBuffer);
+    	BufferObserver newBufferObserver = new BufferObserver(fileName, fileContents);
+    	_bufferList.add(newBufferObserver);
 		
-    	return newBuffer;
+    	return newBufferObserver;
     }
 
-    public Buffer getBuffer(String bufferIdentifier) {
+    public BufferObserver getBufferObserver(String bufferIdentifier) {
         
     	//Returns a buffer based on identifier
     	
     	return null;
     }
 
-    public void saveBuffer(String bufferIdentifier) {
+    public void saveBufferObserver(String bufferIdentifier) {
         
     	// Saves a buffer's status to its attached file
     	// VALIDATED

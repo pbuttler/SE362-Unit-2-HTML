@@ -8,7 +8,7 @@ package commands;
 
 import java.util.HashMap;
 import app.App;
-import editor.Buffer;
+import common.BufferObserver;
 import editor.Editor;
 
 
@@ -37,7 +37,7 @@ public class NewFileCommand extends Command {
         String fileName = "";
         String fileContents = "";
         
-        Buffer activeBuffer = editor.createBuffer(fileName, fileContents);
+        BufferObserver activeBuffer = editor.createBufferObserver(fileName, fileContents);
         
         this._app.unregisterBufferObserver();
         

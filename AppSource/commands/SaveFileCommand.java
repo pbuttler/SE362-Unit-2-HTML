@@ -25,7 +25,7 @@ public class SaveFileCommand extends Command {
        
        String tabIdentifier = (String) arguments.get("tabIdentifier");
        
-       editor.saveBuffer(tabIdentifier);
+       editor.saveBufferObserver(tabIdentifier);
        
    }
     

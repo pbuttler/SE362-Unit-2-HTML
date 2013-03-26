@@ -6,7 +6,7 @@ package app;
 
 import javax.swing.JFrame;
 import commands.CommandFactory;
-import editor.Buffer;
+import common.BufferObserver;
 import editor.Editor;
 import gui.htmleditor.testGUI;
 
@@ -17,24 +17,18 @@ import gui.htmleditor.testGUI;
  */
 public class App {
     
-    private commands.NewFileCommand _newFieldCommand;
-    private commands.OpenFileCommand _openFileCommand;
-    private commands.SaveFileCommand _saveFileCommand;
-    private commands.CloseTabCommand _closeFileCommand;
-    private commands.SwitchTabCommand _switchFileCommand;
-    private commands.ExitAppCommand _exitAppCommand;
-    
     private editor.Editor _editor;
     private testGUI _gui;
-    
+    private Commander _dave;
     
     public App() {
-    
-        this.setCommands();
         
         this._editor = new Editor();
-        //this._gui = new testGUI(_newFieldCommand, _openFileCommand, _saveFileCommand, _closeFileCommand, _switchFileCommand, _exitAppCommand);
-        this._gui = new testGUI();
+        
+        this._dave = new Commander(this);
+        
+        this._gui = new testGUI(this._dave);
+        
         this._gui.instantiate();
         
     }
@@ -47,14 +41,7 @@ public class App {
         return this._gui;
     }
     
-    private void setCommands() {
-        this._closeFileCommand = CommandFactory.getCloseTabCommand(this);
-        this._exitAppCommand = CommandFactory.getExitAppCommand(this);
-        this._newFieldCommand = CommandFactory.getNewFileCommand(this);
-        this._openFileCommand = CommandFactory.getOpenFileCommand(this);
-        this._saveFileCommand = CommandFactory.getSaveFileCommand(this);
-        this._switchFileCommand = CommandFactory.getSwitchTabCommand(this);
-    }
+    
     
     public void destroy() {
         
@@ -72,7 +59,7 @@ public class App {
         this._gui.unregisterBufferObserver();
     }
 
-    public void registerBufferObserver(Buffer activeBuffer) {
+    public void registerBufferObserver(BufferObserver activeBuffer) {
         this._gui.registerBufferObserver(activeBuffer);
     }
     
