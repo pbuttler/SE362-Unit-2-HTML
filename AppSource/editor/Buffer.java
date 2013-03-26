@@ -12,7 +12,7 @@ public class Buffer implements Observer {
     
 	private ArrayList<Object> Contents;
 	private String ContentsString;
-        private  String filename;
+        private String filename;
 	
    
     public Buffer(String systemPath, String bufferContents) {
@@ -39,6 +39,10 @@ public class Buffer implements Observer {
     	
     	// Uses validate method to match constructs 
     	
+    }
+    
+    public void saveBuffer() {
+        
     }
 
     @Override
