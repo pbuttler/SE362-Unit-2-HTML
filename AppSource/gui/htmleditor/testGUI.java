@@ -840,7 +840,7 @@ public class testGUI extends javax.swing.JFrame {
     }
     
     private String createTableElement(int numRows, int numCols) {
-        String textToInsert = "\n<table>\n";
+        String textToInsert = "\n<table>";
         int currRow = 0;
         int currCol;
 
@@ -865,14 +865,14 @@ public class testGUI extends javax.swing.JFrame {
 
             textToInsert += rowsToInsert;
 
-            textToInsert += "\n</tr>\n";
+            textToInsert += "\n</tr>";
 
             //jTextArea1.insert("</tr>", jTextArea1.getCaretPosition());
 
             currRow++;
         }
 
-        textToInsert += "</table>\n";
+        textToInsert += "\n</table>\n";
 
         // jTextArea1.insert("</table>", jTextArea1.getCaretPosition());
 
