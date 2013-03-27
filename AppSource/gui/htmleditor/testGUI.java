@@ -512,7 +512,7 @@ public class testGUI extends javax.swing.JFrame {
 
         String sizeofTable = JOptionPane.showInputDialog(this,
                 "How many rows and columns are there? Enter the two numbers separated by"
-                + "a space. ", null);
+                + " a space. ", null);
 
         String tableRowsCols[] = (sizeofTable.split(","));
         int numRows = Integer.parseInt(tableRowsCols[0]);
