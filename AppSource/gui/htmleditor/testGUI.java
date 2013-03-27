@@ -499,7 +499,26 @@ public class testGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_tabsComponentAdded
 
     private void TableMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TableMenuItemActionPerformed
-        // TODO add your handling code here:
+        String sizeofTable = JOptionPane.showInputDialog(this,
+                "How many rows and columns are there? Enter the two numbers separated by"
+                + "a space. ",null);
+        jTextArea1.insert("<table>", jTextArea1.getCaretPosition());
+        String tableRowsCols[] = (sizeofTable.split(","));
+        int numRows = Integer.parseInt(tableRowsCols[0]);
+        int numCols = Integer.parseInt(tableRowsCols[1]);
+        int currRow = 0;
+        int currCol;
+        while (currRow<numRows){
+            jTextArea1.insert("<tr>\n", jTextArea1.getCaretPosition());
+            currCol=0;
+            while (currCol<numCols){
+                jTextArea1.insert("<td>     </td>", jTextArea1.getCaretPosition());
+                currCol++;
+            }
+            jTextArea1.insert("</tr>", jTextArea1.getCaretPosition());
+            currRow++;
+        }
+        jTextArea1.insert("</table>", jTextArea1.getCaretPosition());
     }//GEN-LAST:event_TableMenuItemActionPerformed
 
     private void AutoWordWrapMenuCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AutoWordWrapMenuCheckBoxActionPerformed
@@ -586,6 +605,7 @@ public class testGUI extends javax.swing.JFrame {
         int currNum = 0;
         while (currNum<numOfListItems){
             jTextArea1.insert("<li>   </li>\n", jTextArea1.getCaretPosition());
+            currNum++;
         }
         jTextArea1.insert("</ul>", jTextArea1.getCaretPosition());
     }//GEN-LAST:event_ListMenuItemActionPerformed
