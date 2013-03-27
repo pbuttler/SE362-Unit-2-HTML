@@ -439,6 +439,7 @@ public class testGUI extends javax.swing.JFrame {
     private String selectedText;
     
     private void PasteMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PasteMenuItemActionPerformed
+        
         jTextArea1.insert(selectedText, jTextArea1.getCaretPosition());
     }//GEN-LAST:event_PasteMenuItemActionPerformed
 
@@ -579,7 +580,14 @@ public class testGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_IndentEntireBufferMenuItemActionPerformed
 
     private void ListMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListMenuItemActionPerformed
-        // TODO add your handling code here:
+        int numOfListItems = Integer.parseInt(JOptionPane.showInputDialog(this,
+                "How many list items are there?",null));
+        jTextArea1.insert("<ul>\n     ", jTextArea1.getCaretPosition());
+        int currNum = 0;
+        while (currNum<numOfListItems){
+            jTextArea1.insert("<li>   </li>\n", jTextArea1.getCaretPosition());
+        }
+        jTextArea1.insert("</ul>", jTextArea1.getCaretPosition());
     }//GEN-LAST:event_ListMenuItemActionPerformed
 
     private void BoldMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BoldMenuItemActionPerformed
