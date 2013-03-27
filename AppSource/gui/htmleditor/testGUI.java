@@ -18,6 +18,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.*;
 import javax.swing.*;
+import java.awt.*;
 import utils.Utilities;
 
 /**
@@ -582,14 +583,23 @@ public class testGUI extends javax.swing.JFrame {
 
     private void FiftyPercentZoomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FiftyPercentZoomActionPerformed
         // TODO add your handling code here:
+        int f = this.getFont().getStyle();
+        Font newFont = new Font("", f, 15);
+        this.getCurrentTab().textArea.setFont(newFont);
     }//GEN-LAST:event_FiftyPercentZoomActionPerformed
 
     private void OneHundredPercentZoomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OneHundredPercentZoomActionPerformed
         // TODO add your handling code here:
+        int f = this.getFont().getStyle();
+        Font newFont = new Font("", f, 20);
+        this.getCurrentTab().textArea.setFont(newFont);
     }//GEN-LAST:event_OneHundredPercentZoomActionPerformed
 
     private void TwoHundredPercentZoomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TwoHundredPercentZoomActionPerformed
         // TODO add your handling code here:
+        int f = this.getFont().getStyle();
+        Font newFont = new Font("", f, 30);
+        this.getCurrentTab().textArea.setFont(newFont);
     }//GEN-LAST:event_TwoHundredPercentZoomActionPerformed
 
     private void AutoIndentMenuCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AutoIndentMenuCheckBoxActionPerformed
@@ -814,7 +824,7 @@ public class testGUI extends javax.swing.JFrame {
         String textToInsert = "\n<ul>\n";
 
         for (int i = 0; i < numberOfItems; i++) {
-            textToInsert += "<li></li>\n";
+            textToInsert += "\t<li></li>\n";
         }
 
         textToInsert += "</ul>\n";
@@ -834,7 +844,7 @@ public class testGUI extends javax.swing.JFrame {
 
         currCol = 0;
         while (currCol < numCols) {
-            rowsToInsert += "<td></td>\n";
+            rowsToInsert += "\t<td></td>\n";
 
             //jTextArea1.insert("<td>     </td>", jTextArea1.getCaretPosition());
 
