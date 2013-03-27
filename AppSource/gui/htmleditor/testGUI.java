@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package gui.htmleditor;
 
 import app.Commander;
@@ -14,31 +13,39 @@ import commands.SaveFileCommand;
 import commands.SwitchTabCommand;
 import common.ObservableBuffer;
 import java.awt.Component;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.*;
 import javax.swing.*;
+import utils.Utilities;
 
 /**
  *
- * @author ldc1108 (Luke Coy), drn5447 (Danielle Neuberger)
+ * @author ldc1108 (Luke Coy), drn5447 (Danielle Neuberger), iun4534 (Isioma
+ * Nnodum)
  */
 public class testGUI extends javax.swing.JFrame {
-    
-    private ArrayList<ObservableBuffer> buffers;
-    private Commander _dave; 
+
+    private Commander _dave;
+
     /**
      * Creates new form testGUI
      */
     public testGUI() {
-        
+
+
         initComponents();
+        this.addBlankTab();
         
-        buffers = new ArrayList<ObservableBuffer>();
-        
+
     }
 
     public testGUI(Commander dave) {
         this();
         this._dave = dave;
+        
+        
     }
 
     /**
@@ -52,8 +59,6 @@ public class testGUI extends javax.swing.JFrame {
 
         jPanel3 = new javax.swing.JPanel();
         tabs = new javax.swing.JTabbedPane();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
         jMenuBar1 = new javax.swing.JMenuBar();
         FileMenu = new javax.swing.JMenu();
         newFileMenuItem = new javax.swing.JMenuItem();
@@ -95,7 +100,6 @@ public class testGUI extends javax.swing.JFrame {
         PictureMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new java.awt.BorderLayout());
 
         tabs.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         tabs.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -116,19 +120,6 @@ public class testGUI extends javax.swing.JFrame {
                 tabsFocusGained(evt);
             }
         });
-
-        jTextArea1.setColumns(20);
-        jTextArea1.setLineWrap(true);
-        jTextArea1.setRows(5);
-        jTextArea1.setWrapStyleWord(true);
-        jTextArea1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextArea1KeyTyped(evt);
-            }
-        });
-        jScrollPane1.setViewportView(jTextArea1);
-
-        tabs.addTab("File1", jScrollPane1);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -435,109 +426,127 @@ public class testGUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private String selectedText;
     
+    private String selectedText;
+
     private void PasteMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PasteMenuItemActionPerformed
-        
-        jTextArea1.insert(selectedText, jTextArea1.getCaretPosition());
+
+        this.getCurrentTab().insertContent(selectedText);
+
     }//GEN-LAST:event_PasteMenuItemActionPerformed
 
     private void SaveMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveMenuItemActionPerformed
-        int index = tabs.getSelectedIndex();
-        JTextArea x = (JTextArea)tabs.getComponentAt(index);
-        buffers.get(index).updateContents(jTextArea1.getText());
+
+
+
         //have Buffer notify editor that it's contents have changed
-        if (null != this._dave)
-            this._dave.getSaveFileCommand().execute(this, null);
+        if (null != this._dave) {
+            HashMap<String, Object> arguments = new HashMap<String, Object>();
+            arguments.put("tabIdentifier", this.getCurrentTab().getTabName());
+            this._dave.getSaveFileCommand().execute(this, arguments);
+        }
     }//GEN-LAST:event_SaveMenuItemActionPerformed
 
     private void OpenMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OpenMenuItemActionPerformed
+
+        JFileChooser fileChooser = new JFileChooser();
+
+        int returnValue = fileChooser.showOpenDialog(this);
+
+        if (returnValue == JFileChooser.APPROVE_OPTION) {
+
+            File file = fileChooser.getSelectedFile();
+
+            try {
+
+                String fileName = file.getName();
+
+                String[] lines = Utilities.readFileToArray(file);
+
+                this.addTab(fileName, lines);
+                
+                // finally, forwared this event to the rest of the application
+                if (null != this._dave) {
+                    HashMap<String, Object> arguments = new HashMap<String, Object>();
+                    arguments.put("fileName", fileName);            
+                    arguments.put("fileContents",lines);
+                    arguments.put("file",  file);
+
+                    this._dave.getOpenFileCommand().execute(this, arguments);
+                }
+
+            } catch (IOException ioe) {
+
+                ioe.printStackTrace();
+            }
+
+        } else {
+            // Do nothing, the action was canceled
+        }
+
         
-        if (null != this._dave)
-            this._dave.getOpenFileCommand().execute(this, null);
+
     }//GEN-LAST:event_OpenMenuItemActionPerformed
 
     private void newFileMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newFileMenuItemActionPerformed
-        // TODO add your handling code here:
-        JTextArea textArea = new JTextArea();
-        JScrollPane scrollPane = new JScrollPane();
-        scrollPane.setViewportView(textArea);
-        
-        tabs.add("New Buffer", scrollPane);
-        
-        if (null != this._dave)
-        this._dave.getNewFileCommand().execute(this, null);
-        
-        
+        this.addBlankTab();
+//        this.addBuffer(contents);
+
+        // finally, forwared this event to the rest of the application
+        if (null != this._dave) {
+            this.invokeNewFileCommand();
+        }
+
     }//GEN-LAST:event_newFileMenuItemActionPerformed
-
-    private void jTextArea1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextArea1KeyTyped
-        // TODO add your handling code here:
-       //currentTextArea = this area
-        // get the observable buffer
-        //  update(string) on the bufffer
-        //      -> w/i update do the stuff below
-        
-        // get observers: addObserver()
-
-        
-        int tabIndex = this.tabs.getSelectedIndex();
-        String title = this.tabs.getTitleAt(tabIndex);
-        
-        ObservableBuffer buffer = this.buffers.get(tabIndex);
-        buffer.notifyObservers();
-        
-    }//GEN-LAST:event_jTextArea1KeyTyped
 
     private void tabsComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_tabsComponentAdded
         //executes whenever a new tab is created
-        ObservableBuffer tabBuff = new ObservableBuffer(buffers.size(), "");
-        buffers.add(tabBuff);
-        
-        
+        // let's not do this here see addTab
+//        ObservableBuffer tabBuff = new ObservableBuffer(buffers.size(), "");
+//        buffers.add(tabBuff);
     }//GEN-LAST:event_tabsComponentAdded
 
     private void TableMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TableMenuItemActionPerformed
+
+        // NOTE: This may become problematic. Please review
+
         String sizeofTable = JOptionPane.showInputDialog(this,
                 "How many rows and columns are there? Enter the two numbers separated by"
-                + "a space. ",null);
-        jTextArea1.insert("<table>", jTextArea1.getCaretPosition());
+                + "a space. ", null);
+
         String tableRowsCols[] = (sizeofTable.split(","));
         int numRows = Integer.parseInt(tableRowsCols[0]);
         int numCols = Integer.parseInt(tableRowsCols[1]);
-        int currRow = 0;
-        int currCol;
-        while (currRow<numRows){
-            jTextArea1.insert("<tr>\n", jTextArea1.getCaretPosition());
-            currCol=0;
-            while (currCol<numCols){
-                jTextArea1.insert("<td>     </td>", jTextArea1.getCaretPosition());
-                currCol++;
-            }
-            jTextArea1.insert("</tr>", jTextArea1.getCaretPosition());
-            currRow++;
-        }
-        jTextArea1.insert("</table>", jTextArea1.getCaretPosition());
+
+        String textToInsert = this.createTableElement(numRows, numCols);
+
+        this.insertContent(textToInsert);
+
+
     }//GEN-LAST:event_TableMenuItemActionPerformed
 
+    
     private void AutoWordWrapMenuCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AutoWordWrapMenuCheckBoxActionPerformed
         // TODO add your handling code here:
         int index = tabs.getSelectedIndex();
-        JTextArea x = (JTextArea)tabs.getComponentAt(index);
-        if (AutoWordWrapMenuCheckBox.isSelected()){
+
+        // NOTE: this does not return a JTextArea, it returns a JTabArea
+        JTextArea x = (JTextArea) tabs.getComponentAt(index);
+        if (AutoWordWrapMenuCheckBox.isSelected()) {
             x.setWrapStyleWord(true);
-        }
-        else{
+        } else {
             x.setWrapStyleWord(false);
         }
     }//GEN-LAST:event_AutoWordWrapMenuCheckBoxActionPerformed
 
     private void tabsComponentRemoved(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_tabsComponentRemoved
-       //TODO: save stuff to buffer
-       //have buffer pass it's stuff to the editor 
-        if (null != this._dave)
-        this._dave.getCloseTabCommand().execute(this, null);
+        //TODO: save stuff to buffer
+        //have buffer pass it's stuff to the editor 
+        if (null != this._dave) {
+            HashMap<String, Object> arguments = new HashMap<String, Object>();
+            arguments.put("tabIdentifier", this.getCurrentTab().getTabName());
+            this._dave.getCloseTabCommand().execute(this, null);
+        }
     }//GEN-LAST:event_tabsComponentRemoved
 
     private void tabsStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_tabsStateChanged
@@ -545,21 +554,26 @@ public class testGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_tabsStateChanged
 
     private void CopyMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CopyMenuItemActionPerformed
+        JTextArea jTextArea1 = this.getCurrentTab().textArea;
         selectedText = jTextArea1.getSelectedText();
     }//GEN-LAST:event_CopyMenuItemActionPerformed
 
     private void CutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CutMenuItemActionPerformed
+        JTextArea jTextArea1 = this.getCurrentTab().textArea;
         selectedText = jTextArea1.getSelectedText();
         int start = jTextArea1.getSelectionStart();
         int end = jTextArea1.getSelectionEnd();
-        jTextArea1.replaceRange("", start, end);   
-       // jTextArea1.setText(jTextArea1.getText().replace(jTextArea1.getSelectedText(),""));
+        jTextArea1.replaceRange("", start, end);
+        // jTextArea1.setText(jTextArea1.getText().replace(jTextArea1.getSelectedText(),""));
     }//GEN-LAST:event_CutMenuItemActionPerformed
 
     private void SaveAsMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveAsMenuItemActionPerformed
         // TODO add your handling code here:
-        if (null != this._dave)
-        this._dave.getSaveFileCommand().execute(this, null);
+        if (null != this._dave) {
+            HashMap<String, Object> arguments = new HashMap<String, Object>();
+            arguments.put("tabIdentifier", this.getCurrentTab().getTabName());
+            this._dave.getSaveFileCommand().execute(this, null);
+        }
     }//GEN-LAST:event_SaveAsMenuItemActionPerformed
 
     private void ViewAsWebpageMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewAsWebpageMenuItemActionPerformed
@@ -600,35 +614,40 @@ public class testGUI extends javax.swing.JFrame {
 
     private void ListMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListMenuItemActionPerformed
         int numOfListItems = Integer.parseInt(JOptionPane.showInputDialog(this,
-                "How many list items are there?",null));
-        jTextArea1.insert("<ul>\n     ", jTextArea1.getCaretPosition());
-        int currNum = 0;
-        while (currNum<numOfListItems){
-            jTextArea1.insert("<li>   </li>\n", jTextArea1.getCaretPosition());
-            currNum++;
-        }
-        jTextArea1.insert("</ul>", jTextArea1.getCaretPosition());
+                "How many list items are there?", null));
+
+        // read the number of items
+        String textToInsert = this.createUnorderedListElement(numOfListItems);
+
+        this.insertContent(textToInsert);
+
     }//GEN-LAST:event_ListMenuItemActionPerformed
+
+    
 
     private void BoldMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BoldMenuItemActionPerformed
         // TODO add your handling code here:
-       // int pos = currentTextArea.getCaretPosition();
-        jTextArea1.insert("<b>\n     \n</b>", jTextArea1.getCaretPosition());
+        // int pos = currentTextArea.getCaretPosition();
+        this.insertSimpleElement("b");
+        
     }//GEN-LAST:event_BoldMenuItemActionPerformed
 
     private void ItalicMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItalicMenuItemActionPerformed
         // int pos = currentTextArea.getCaretPosition();
-        jTextArea1.insert("<i>\n     \n</i>", jTextArea1.getCaretPosition());
+        this.insertSimpleElement("i");
+        
     }//GEN-LAST:event_ItalicMenuItemActionPerformed
 
     private void UnderlineMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UnderlineMenuItemActionPerformed
         // int pos = currentTextArea.getCaretPosition();
-        jTextArea1.insert("<u>\n     \n</u>", jTextArea1.getCaretPosition());
+        this.insertSimpleElement("u");
+        
     }//GEN-LAST:event_UnderlineMenuItemActionPerformed
 
     private void ParagraphMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ParagraphMenuItemActionPerformed
         // int pos = currentTextArea.getCaretPosition();
-        jTextArea1.insert("<p>\n     \n</p>", jTextArea1.getCaretPosition());
+        String textToInsert = this.createSimpleElement("p");
+        this.insertContent(textToInsert);
     }//GEN-LAST:event_ParagraphMenuItemActionPerformed
 
     private void PictureMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PictureMenuItemActionPerformed
@@ -641,62 +660,34 @@ public class testGUI extends javax.swing.JFrame {
 
     private void h3HeaderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_h3HeaderActionPerformed
         // int pos = currentTextArea.getCaretPosition();
-        jTextArea1.insert("<h3>\n     \n</h3>", jTextArea1.getCaretPosition());
+        this.inserthxHeaderElement(3);
     }//GEN-LAST:event_h3HeaderActionPerformed
 
     private void h1HeaderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_h1HeaderActionPerformed
-       // int pos = currentTextArea.getCaretPosition();
-        jTextArea1.insert("<h1>\n     \n</h1>", jTextArea1.getCaretPosition());
+        // int pos = currentTextArea.getCaretPosition();
+        this.inserthxHeaderElement(1);
     }//GEN-LAST:event_h1HeaderActionPerformed
 
     private void h2HeaderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_h2HeaderActionPerformed
         // int pos = currentTextArea.getCaretPosition();
-        jTextArea1.insert("<h2>\n     \n</h2>", jTextArea1.getCaretPosition());
+        this.inserthxHeaderElement(2);
     }//GEN-LAST:event_h2HeaderActionPerformed
 
     private void h4HeaderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_h4HeaderActionPerformed
         // int pos = currentTextArea.getCaretPosition();
-        jTextArea1.insert("<h4>\n     \n</h4>", jTextArea1.getCaretPosition());
+        this.inserthxHeaderElement(4);
     }//GEN-LAST:event_h4HeaderActionPerformed
 
     private void h5HeaderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_h5HeaderActionPerformed
         // int pos = currentTextArea.getCaretPosition();
-        jTextArea1.insert("<h5>\n     \n</h5>", jTextArea1.getCaretPosition());
+        this.inserthxHeaderElement(5);
     }//GEN-LAST:event_h5HeaderActionPerformed
 
     private void h6HeaderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_h6HeaderActionPerformed
         // int pos = currentTextArea.getCaretPosition();
-        jTextArea1.insert("<h6>\n     \n</h6>", jTextArea1.getCaretPosition());
+        this.inserthxHeaderElement(6);
     }//GEN-LAST:event_h6HeaderActionPerformed
-    /**
-     * @param args the command line arguments
-     */
-    public static void instantiate() {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            javax.swing.UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(testGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(testGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(testGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(testGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new testGUI().setVisible(true);
-            }
-        });
-    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBoxMenuItem AutoIndentMenuCheckBox;
     private javax.swing.JCheckBoxMenuItem AutoWordWrapMenuCheckBox;
@@ -737,8 +728,6 @@ public class testGUI extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JMenuItem newFileMenuItem;
     private javax.swing.JTabbedPane tabs;
     // End of variables declaration//GEN-END:variables
@@ -749,25 +738,172 @@ public class testGUI extends javax.swing.JFrame {
         return title;
     }
 
+    public ObservableBuffer getActiveBuffer() {
+        return this.getCurrentTab().buffer;
+    }
+
     public void destroy() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public void unregisterBufferObserver() {
-        
-        int currentTab = this.tabs.getSelectedIndex();
-        
-        ObservableBuffer obsBuffer = this.buffers.get(currentTab);
-        
-        obsBuffer.deleteObservers();
-        
+
+        this.getCurrentTab().buffer.deleteObservers();
+
     }
 
     public void registerBufferObserver(Observer activeBuffer) {
-        int currentTab = this.tabs.getSelectedIndex();
+        ObservableBuffer buffer = this.getCurrentTab().buffer;
+        buffer.addObserver(activeBuffer);
+
+    }
+
+    private FiveSecondsTab getCurrentTab() {
+
+        return ((FiveSecondsTab) tabs.getSelectedComponent());
+
+    }
+
+    private void insertContent(String textToInsert) {
+        this.getCurrentTab().insertContent(textToInsert);
+    }
+    
+    private void addTab(String tabName, String[] textAreaContents) {
+
+        String contentsAsString = Utilities.arrayToString(textAreaContents);
+        this.addTab(tabName, contentsAsString);
+
+    }
+
+    private void addTab(String tabName, String textAreaContents) {
+
+        FiveSecondsTab newPanel = new FiveSecondsTab(tabName, textAreaContents);
+
+        tabs.add(tabName, newPanel);
+
+        tabs.setSelectedIndex(tabs.getTabCount() - 1);
+
+    }
+    
+    public void invokeNewFileCommand() {
+        this._dave.getNewFileCommand().execute(this, null);
+    }
+    
+    public void invokeOpenCommand() {
         
-        ObservableBuffer obsBuffer = this.buffers.get(currentTab);
-        
-        obsBuffer.addObserver(activeBuffer);
+    }
+
+    private void addBlankTab() {
+        String docType = "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01//EN\" \"http://www.w3.org/TR/html4/strict.dtd\">";
+        String contents = docType + "\n<html>\n</html>";
+
+        this.addTab("New File", contents);
+    }
+    
+    public void inserthxHeaderElement(int level) {
+        this.insertSimpleElement("h" + level);
+    }
+    
+    public void insertSimpleElement(String content) {
+        String textToInsert = this.createSimpleElement(content);
+        this.insertContent(textToInsert);
+    }
+    
+    private String createUnorderedListElement(int numberOfItems) {
+
+        String textToInsert = "\n<ul>\n";
+
+        for (int i = 0; i < numberOfItems; i++) {
+            textToInsert += "<li></li>\n";
+        }
+
+        textToInsert += "</ul>\n";
+
+
+        return textToInsert;
+    }
+    
+    private String createTableElement(int numRows, int numCols) {
+        String textToInsert = "\n<table>\n";
+        int currRow = 0;
+        int currCol;
+
+        // jTextArea1.insert("<table>", jTextArea1.getCaretPosition());
+
+        String rowsToInsert = "";
+
+        currCol = 0;
+        while (currCol < numCols) {
+            rowsToInsert += "<td></td>\n";
+
+            //jTextArea1.insert("<td>     </td>", jTextArea1.getCaretPosition());
+
+            currCol++;
+        }
+
+        while (currRow < numRows) {
+
+            textToInsert += "\n<tr>\n";
+
+            // jTextArea1.insert("<tr>\n", jTextArea1.getCaretPosition());
+
+            textToInsert += rowsToInsert;
+
+            textToInsert += "\n</tr>\n";
+
+            //jTextArea1.insert("</tr>", jTextArea1.getCaretPosition());
+
+            currRow++;
+        }
+
+        textToInsert += "</table>\n";
+
+        // jTextArea1.insert("</table>", jTextArea1.getCaretPosition());
+
+
+
+        return textToInsert;
+    }
+
+
+    private String createSimpleElement(String tagName) {
+        String textToInsert = String.format("\n<%s></%s>\n", tagName, tagName);
+        return textToInsert;
+    }
+    
+    /**
+     * @param args the command line arguments
+     */
+    public static void instantiate(Commander dave) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            javax.swing.UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(testGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(testGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(testGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(testGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+
+        final Commander commander = dave;
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                testGUI gui = new testGUI(commander);
+                commander.setGUI(gui);
+                gui.invokeNewFileCommand();
+                gui.setVisible(true);
+                
+            }
+        });
     }
 }

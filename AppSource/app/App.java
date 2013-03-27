@@ -18,7 +18,7 @@ import gui.htmleditor.testGUI;
 public class App {
     
     private editor.Editor _editor;
-    private testGUI _gui;
+    
     private Commander _dave;
     
     public App() {
@@ -27,9 +27,7 @@ public class App {
         
         this._dave = new Commander(this);
         
-        this._gui = new testGUI(this._dave);
-        
-        this._gui.instantiate();
+        testGUI.instantiate(this._dave);
         
     }
     
@@ -37,17 +35,15 @@ public class App {
         return this._editor;
     }
     
-    public testGUI getGUI() {
-        return this._gui;
+    public Commander getCommander() {
+        return this._dave;
     }
-    
-    
     
     public void destroy() {
         
         // kill the GUI
         
-        this._gui.destroy();
+        this._dave.getGUI().destroy();
         
         
         
@@ -56,11 +52,11 @@ public class App {
     public void unregisterBufferObserver() {
         
         // only one observer so no parameters 
-        this._gui.unregisterBufferObserver();
+        this._dave.getGUI().unregisterBufferObserver();
     }
 
     public void registerBufferObserver(BufferObserver activeBuffer) {
-        this._gui.registerBufferObserver(activeBuffer);
+        this._dave.getGUI().registerBufferObserver(activeBuffer);
     }
     
 }

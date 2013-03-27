@@ -10,14 +10,14 @@ package gui.htmleditor;
  */
 public class HTMLEditor {
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
-        System.out.println("Hello! Danielle!");
-        testGUI g = new testGUI();
-        String[] s = new String[0];
-        g.instantiate();        
-    }
+//    /**
+//     * @param args the command line arguments
+//     */
+//    public static void main(String[] args) {
+//        // TODO code application logic here
+//        System.out.println("Hello! Danielle!");
+//        testGUI g = new testGUI();
+//        String[] s = new String[0];
+//        g.instantiate();        
+//    }
 }

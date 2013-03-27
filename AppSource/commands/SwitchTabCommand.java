@@ -25,7 +25,7 @@ public class SwitchTabCommand extends Command {
     public void execute(Object source, HashMap<String, Object> arguments) {
         
         Editor editor = this._app.getEditor();
-        testGUI gui = this._app.getGUI();
+        testGUI gui = this._app.getCommander().getGUI();
         
         // retrieve the file name (used to reference the file buffer in the editor)
         String currentTabIdentifier = (String) arguments.get("currentTabIdentifier");

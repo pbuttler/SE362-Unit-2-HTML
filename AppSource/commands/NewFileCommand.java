@@ -22,7 +22,12 @@ public class NewFileCommand extends Command {
         super(app);
     }
     
-    
+    /**
+     * Will inform the editor that a new file has successfully been opened
+     * @param source    the GUI (not used)
+     * @param arguments arguments for this command. Expects nothing
+     *                  
+     */
     public void execute(Object source, HashMap<String, Object> arguments) {
               /**
         * Process
@@ -38,8 +43,6 @@ public class NewFileCommand extends Command {
         String fileContents = "";
         
         BufferObserver activeBuffer = editor.createBufferObserver(fileName, fileContents);
-        
-        this._app.unregisterBufferObserver();
         
         this._app.registerBufferObserver(activeBuffer);
         

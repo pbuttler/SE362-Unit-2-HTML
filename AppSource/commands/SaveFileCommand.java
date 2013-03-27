@@ -19,6 +19,14 @@ public class SaveFileCommand extends Command {
     }
     
    @Override
+   /**
+     * Will inform the editor that a new file has successfully been opened
+     * @param source    the GUI (not used)
+     * @param arguments arguments for this command. Expects "tabIdentifier: the 
+     *                  name of the file which is used to identify the buffer in
+     *                  the editor
+     *                  
+     */
    public void execute(Object source, HashMap<String, Object> arguments) {
        
        Editor editor = this._app.getEditor();

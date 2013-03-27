@@ -22,10 +22,18 @@ public class CloseTabCommand extends Command {
     }
     
     @Override
+    /**
+     * Will inform the editor that a new file has successfully been opened
+     * @param source    the GUI (not used)
+     * @param arguments arguments for this command. Expects "tabIdentifier: the 
+     *                  name of the file which is used to identify the buffer in
+     *                  the editor
+     *                  
+     */
     public void execute(Object source, HashMap<String, Object> arguments) {
         
         Editor editor = this._app.getEditor();
-        testGUI gui = this._app.getGUI();
+        testGUI gui = this._app.getCommander().getGUI();
         
         // retrieve the file name (used to reference the file buffer in the editor)
         String closedTabIdentifier = (String) arguments.get("tabIdentifier");

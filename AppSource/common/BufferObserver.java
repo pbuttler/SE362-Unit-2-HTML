@@ -4,9 +4,11 @@
  */
 package common;
 
+import editor.Validator;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
+import utils.Utilities;
 
 /**
 *
@@ -42,6 +44,9 @@ public class BufferObserver implements Observer {
     public void validateBufferContents() {
     	
     	// Uses validate method to match constructs 
+        
+        Validator validator = new Validator();
+        validator.parseBuffer(this.ContentsString);
     	
     }
     
@@ -52,9 +57,11 @@ public class BufferObserver implements Observer {
     @Override
     public void update(Observable o, Object arg) {
     	ObservableBuffer guiBuffer = (ObservableBuffer) o;
-        String contents = guiBuffer.getContents();
+        String[] contents = guiBuffer.getContents();
         
-        this.ContentsString = contents;
+        String contentsAsString = Utilities.arrayToString(contents);
+        
+        this.ContentsString = contentsAsString;
         
         this.validateBufferContents();
     }

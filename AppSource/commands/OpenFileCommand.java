@@ -23,6 +23,15 @@ public class OpenFileCommand extends Command {
     }
     
     @Override
+    
+    /**
+     * Will inform the editor that a new file has successfully been opened
+     * @param source    the GUI (not used)
+     * @param arguments arguments for this command. Expects "filename: the name 
+     *                  of the file, file: the file object, fileContents: the 
+     *                  contents of the file as an array of strings
+     *                  
+     */
     public void execute(Object source, HashMap<String, Object> arguments) {
        /**
         * Process
@@ -36,11 +45,9 @@ public class OpenFileCommand extends Command {
         
         String fileName = (String) arguments.get("fileName");
         File file = (File) arguments.get("file");
-        String fileContents = (String) arguments.get("fileContents");
+        String[] fileContents = (String[]) arguments.get("fileContents");
         
         BufferObserver activeBufferObserver = editor.createBufferObserver(fileName,fileContents);
-        
-        this._app.unregisterBufferObserver();
         
         this._app.registerBufferObserver(activeBufferObserver);
         

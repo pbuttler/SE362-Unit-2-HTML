@@ -11,19 +11,34 @@ import java.util.Observable;
  * @author Danielle Neuberger and Luke Coy
  */
 public class ObservableBuffer extends Observable {
-    String contents = "";
-    int number;    
+    String[] contents;
     
-    public ObservableBuffer(int number, String contents){
-        this.number = number;
-        this.contents = contents;
+    
+    public ObservableBuffer(String contents){
+        
+        String[] contentsAsArray = contents.split("\\r?\\n");
+        
+        
+        
+        this.contents = contentsAsArray;
     }
     
-    public void updateContents(String s){
-        contents = s;
+    public ObservableBuffer(String[] contents){
+        this.contents = contents;
+        
+        
+    }
+    
+    public void updateContents(String newContents){
+        
+        String[] contentsAsArray = newContents.split("\\r?\\n");
+        
+        contents = contentsAsArray;
+        this.setChanged();
+        this.notifyObservers();
     }
 
-    String getContents() {
+    public String[] getContents() {
         return this.contents;
     }
 }

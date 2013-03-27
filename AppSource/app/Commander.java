@@ -11,6 +11,7 @@ import commands.NewFileCommand;
 import commands.OpenFileCommand;
 import commands.SaveFileCommand;
 import commands.SwitchTabCommand;
+import gui.htmleditor.testGUI;
 
 /**
  *
@@ -19,6 +20,7 @@ import commands.SwitchTabCommand;
 public class Commander {
     
     private App _app;
+    private testGUI gui;
     private commands.NewFileCommand _newFileCommand;
     private commands.OpenFileCommand _openFileCommand;
     private commands.SaveFileCommand _saveFileCommand;
@@ -42,6 +44,13 @@ public class Commander {
         this._switchTabCommand = commandFactory.getSwitchTabCommand(this._app);
     }
     
+    public void setGUI(testGUI gui) {
+        this.gui = gui;
+    }
+    
+    public testGUI getGUI() {
+        return this.gui;
+    }
     public NewFileCommand getNewFileCommand() {
         
         return this._newFileCommand;

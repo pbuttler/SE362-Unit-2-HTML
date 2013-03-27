@@ -3,16 +3,18 @@ package editor;
 import common.BufferObserver;
 import java.util.ArrayList;
 import java.util.HashMap;
+import utils.Utilities;
 
 public class Editor {
     
 	private BufferObserver _activeBufferObserver;
-	private ArrayList<BufferObserver> _bufferList;
+	private HashMap<String, BufferObserver> _bufferList;
 	
     
     public Editor() {
         
     	// Constructs Editor
+        _bufferList = new HashMap<>();
         
     }
     
@@ -45,7 +47,7 @@ public class Editor {
     	// VALIDATED
     	
     	BufferObserver newBufferObserver = new BufferObserver(fileName, fileContents);
-    	_bufferList.add(newBufferObserver);
+    	_bufferList.put(fileName, newBufferObserver);
 		
     	return newBufferObserver;
     }
@@ -53,8 +55,10 @@ public class Editor {
     public BufferObserver getBufferObserver(String bufferIdentifier) {
         
     	//Returns a buffer based on identifier
+        
+        return _bufferList.get(bufferIdentifier);
     	
-    	return null;
+    	 
     }
 
     public void saveBufferObserver(String bufferIdentifier) {
@@ -66,5 +70,12 @@ public class Editor {
     
     public void destroy() {
     	
+    }
+
+    public BufferObserver createBufferObserver(String fileName, String[] fileContents) {
+        BufferObserver newBufferObserver = new BufferObserver(fileName, Utilities.arrayToString(fileContents));
+    	_bufferList.put(fileName, newBufferObserver);
+		
+    	return newBufferObserver;
     }
 }
