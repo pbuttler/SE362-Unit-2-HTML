@@ -66,6 +66,7 @@ public class testGUI extends javax.swing.JFrame {
         OpenMenuItem = new javax.swing.JMenuItem();
         SaveMenuItem = new javax.swing.JMenuItem();
         SaveAsMenuItem = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         EditMenu = new javax.swing.JMenu();
         CutMenuItem = new javax.swing.JMenuItem();
         CopyMenuItem = new javax.swing.JMenuItem();
@@ -173,6 +174,15 @@ public class testGUI extends javax.swing.JFrame {
             }
         });
         FileMenu.add(SaveAsMenuItem);
+
+        jMenuItem1.setText("Close");
+        jMenuItem1.setToolTipText("");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                closeFileMenuItemActionPerformed(evt);
+            }
+        });
+        FileMenu.add(jMenuItem1);
 
         jMenuBar1.add(FileMenu);
 
@@ -491,7 +501,7 @@ public class testGUI extends javax.swing.JFrame {
 
     private void newFileMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newFileMenuItemActionPerformed
         this.addBlankTab();
-//        this.addBuffer(contents);
+//      this.addBuffer(contents);
 
         // finally, forwared this event to the rest of the application
         if (null != this._dave) {
@@ -703,6 +713,10 @@ public class testGUI extends javax.swing.JFrame {
         // int pos = currentTextArea.getCaretPosition();
         this.inserthxHeaderElement(6);
     }//GEN-LAST:event_h6HeaderActionPerformed
+
+    private void closeFileMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeFileMenuItemActionPerformed
+        this.invokeCloseFileCommand();
+    }//GEN-LAST:event_closeFileMenuItemActionPerformed
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBoxMenuItem AutoIndentMenuCheckBox;
@@ -743,6 +757,7 @@ public class testGUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem h6Header;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JMenuItem newFileMenuItem;
     private javax.swing.JTabbedPane tabs;
@@ -921,5 +936,11 @@ public class testGUI extends javax.swing.JFrame {
                 
             }
         });
+    }
+
+    private void invokeCloseFileCommand() {
+        
+        //TODO CLOSE FILE CODE
+        
     }
 }
