@@ -10,6 +10,7 @@ import java.util.HashMap;
 import app.App;
 import common.BufferObserver;
 import editor.Editor;
+import java.io.File;
 
 
 /**
@@ -39,10 +40,10 @@ public class NewFileCommand extends Command {
         
         Editor editor = this._app.getEditor();
         
-        String fileName = "";
-        String fileContents = "";
+        String fileName = "New File";
+        String fileContents = "Hello";
         
-        BufferObserver activeBuffer = editor.createBufferObserver(fileName, fileContents);
+        BufferObserver activeBuffer = editor.createBufferObserver(new File(fileName), fileContents);
         
         this._app.registerBufferObserver(activeBuffer);
         

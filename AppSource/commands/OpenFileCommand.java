@@ -10,6 +10,7 @@ import app.App;
 import common.BufferObserver;
 
 import editor.Editor;
+import utils.Utilities;
 
 /**
  *
@@ -43,20 +44,13 @@ public class OpenFileCommand extends Command {
         
         Editor editor = this._app.getEditor();
         
-        String fileName = (String) arguments.get("fileName");
-        File file = (File) arguments.get("file");
+        File file = (File) arguments.get("file");        
         String[] fileContents = (String[]) arguments.get("fileContents");
+        String fileString = Utilities.arrayToString(fileContents);
         
-        BufferObserver activeBufferObserver = editor.createBufferObserver(fileName,fileContents);
+        BufferObserver activeBufferObserver = editor.createBufferObserver(file , fileString);
         
-        this._app.registerBufferObserver(activeBufferObserver);
-        
-        
-        
-        
-        
-        
-        
+        this._app.registerBufferObserver(activeBufferObserver);       
         
     }
 

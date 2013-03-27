@@ -1,6 +1,10 @@
 package editor;
 
 import common.BufferObserver;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import utils.Utilities;
@@ -41,13 +45,13 @@ public class Editor {
 
     }
 
-    public BufferObserver createBufferObserver(String fileName, String fileContents) {
+    public BufferObserver createBufferObserver(File file, String fileString) {
         
     	// Create a new buffer with a given fileName and contents
     	// VALIDATED
     	
-    	BufferObserver newBufferObserver = new BufferObserver(fileName, fileContents);
-    	_bufferList.put(fileName, newBufferObserver);
+    	BufferObserver newBufferObserver = new BufferObserver(file, fileString);
+    	_bufferList.put(file.getName(), newBufferObserver);
 		
     	return newBufferObserver;
     }
@@ -61,10 +65,21 @@ public class Editor {
     	 
     }
 
-    public void saveBufferObserver(String bufferIdentifier) {
+    public void saveBufferObserver(String bufferIdentifier) throws IOException {
         
-    	// Saves a buffer's status to its attached file
-    	// VALIDATED
+    	BufferObserver currentBuffer = _bufferList.get(bufferIdentifier);
+        File file = currentBuffer.getFile();
+        
+        // if file doesnt exists, then create it
+        if (!file.exists()) {
+		file.createNewFile();
+	}
+ 
+	FileWriter fw = new FileWriter(file.getAbsoluteFile());
+	BufferedWriter bw = new BufferedWriter(fw);
+	bw.write(currentBuffer.getContents());
+	bw.close();    
+        
     	
     }
     
@@ -72,9 +87,9 @@ public class Editor {
     	
     }
 
-    public BufferObserver createBufferObserver(String fileName, String[] fileContents) {
-        BufferObserver newBufferObserver = new BufferObserver(fileName, Utilities.arrayToString(fileContents));
-    	_bufferList.put(fileName, newBufferObserver);
+    public BufferObserver createBufferObserver(File file, String[] fileContents) {
+        BufferObserver newBufferObserver = new BufferObserver(file, Utilities.arrayToString(fileContents));
+    	_bufferList.put(file.getName(), newBufferObserver);
 		
     	return newBufferObserver;
     }

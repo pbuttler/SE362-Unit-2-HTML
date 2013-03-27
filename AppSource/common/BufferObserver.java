@@ -5,6 +5,7 @@
 package common;
 
 import editor.Validator;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
@@ -16,15 +17,21 @@ import utils.Utilities;
 */
 public class BufferObserver implements Observer {
     
-	private ArrayList<Object> Contents;
 	private String ContentsString;
         private String filename;
-	
+        private boolean hasChanged = false;
+        private File file;	
    
-    public BufferObserver(String systemPath, String bufferContents) {
+    public BufferObserver(File file, String bufferContents) {
         
-    	// Constructor for Buffer
+       this.file = file;
+       ContentsString = bufferContents;        
     	
+    }
+    
+    public File getFile(){
+        
+        return file;
     }
     
     public String getContents() {
@@ -57,12 +64,14 @@ public class BufferObserver implements Observer {
     @Override
     public void update(Observable o, Object arg) {
     	ObservableBuffer guiBuffer = (ObservableBuffer) o;
-        String[] contents = guiBuffer.getContents();
+        String[] contents = guiBuffer.getContents();       
         
-        String contentsAsString = Utilities.arrayToString(contents);
+        hasChanged = true;
+        
+        String contentsAsString = Utilities.arrayToString(contents);        
         
         this.ContentsString = contentsAsString;
-        
+                
         this.validateBufferContents();
     }
     

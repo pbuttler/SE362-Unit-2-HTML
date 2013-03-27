@@ -7,6 +7,9 @@ package commands;
 import java.util.HashMap;
 import app.App;
 import editor.Editor;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -32,8 +35,11 @@ public class SaveFileCommand extends Command {
        Editor editor = this._app.getEditor();
        
        String tabIdentifier = (String) arguments.get("tabIdentifier");
-       
-       editor.saveBufferObserver(tabIdentifier);
+        try {
+            editor.saveBufferObserver(tabIdentifier);
+        } catch (IOException ex) {
+            Logger.getLogger(SaveFileCommand.class.getName()).log(Level.SEVERE, null, ex);
+        }
        
    }
     
