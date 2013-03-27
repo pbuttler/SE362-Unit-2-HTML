@@ -662,6 +662,12 @@ public class testGUI extends javax.swing.JFrame {
 
     private void PictureMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PictureMenuItemActionPerformed
         // TODO add your handling code here:
+        String url = JOptionPane.showInputDialog(this,
+                "What is the URL of the picture?", null);
+        String altText = JOptionPane.showInputDialog(this,
+                "What is the alternate text for this picture?", null);
+        this.insertContent("<img src=\""+ url + "\" alt=\"" + altText + "\">");
+        
     }//GEN-LAST:event_PictureMenuItemActionPerformed
 
     private void tabsFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tabsFocusGained
