@@ -19,6 +19,10 @@ import java.io.IOException;
 import java.util.*;
 import javax.swing.*;
 import java.awt.*;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import utils.Utilities;
 
 /**
@@ -448,6 +452,11 @@ public class testGUI extends javax.swing.JFrame {
 
     private void SaveMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveMenuItemActionPerformed
 
+        String fileName = this.getCurrentTab().tabName;
+        
+        if ( "New File".equals(fileName) ) {
+            return;
+        }
 
 
         //have Buffer notify editor that it's contents have changed
@@ -580,11 +589,55 @@ public class testGUI extends javax.swing.JFrame {
 
     private void SaveAsMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveAsMenuItemActionPerformed
         // TODO add your handling code here:
-        if (null != this._dave) {
-            HashMap<String, Object> arguments = new HashMap<String, Object>();
-            arguments.put("tabIdentifier", this.getCurrentTab().getTabName());
-            this._dave.getSaveFileCommand().execute(this, null);
+        
+        JFileChooser fileChooser = new JFileChooser();
+        
+        String name =this.getCurrentTab().tabName;
+        
+        File file = new File(name);
+        fileChooser.setSelectedFile(file);
+        int returnValue = fileChooser.showSaveDialog(this);
+        
+        
+        
+
+        if (returnValue == JFileChooser.APPROVE_OPTION) {
+            String contents =this.getCurrentTab().getText();
+            file = fileChooser.getSelectedFile();
+            
+            BufferedWriter bufferedWriter = null;
+            try {
+                
+                if (!file.exists()) {
+                    file.createNewFile();
+                }
+                
+                bufferedWriter =  new BufferedWriter(new FileWriter(file));
+                bufferedWriter.write(contents);
+                
+                tabs.setTitleAt(tabs.getSelectedIndex(), file.getName());
+               
+            } catch (IOException ex) {
+                Logger.getLogger(testGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }finally {
+            //Close the BufferedWriter
+            try {
+                if (bufferedWriter != null) {
+                    bufferedWriter.flush();
+                    bufferedWriter.close();
+                }
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
         }
+        
+        }
+        
+//        if (null != this._dave) {
+//            HashMap<String, Object> arguments = new HashMap<String, Object>();
+//            arguments.put("tabIdentifier", this.getCurrentTab().getTabName());
+//            this._dave.getSaveFileCommand().execute(this, null);
+//        }
     }//GEN-LAST:event_SaveAsMenuItemActionPerformed
 
     private void ViewAsWebpageMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewAsWebpageMenuItemActionPerformed
