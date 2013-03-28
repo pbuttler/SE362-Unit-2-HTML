@@ -596,8 +596,6 @@ public class testGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_CutMenuItemActionPerformed
 
     private void SaveAsMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveAsMenuItemActionPerformed
-        // TODO add your handling code here:
-        
         JFileChooser fileChooser = new JFileChooser();
         
         String name =this.getCurrentTab().tabName;
