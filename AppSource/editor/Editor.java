@@ -42,6 +42,9 @@ public class Editor {
     	
     	// VALIDATED
     	// close a buffer based on its identifier
+        
+        BufferObserver currentBuffer = _bufferList.get(bufferIdentifier);
+        
 
     }
 
