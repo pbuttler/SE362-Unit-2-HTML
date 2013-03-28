@@ -11,24 +11,27 @@ import java.awt.event.KeyListener;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 /**
  *
  * @author innod_000
  */
-public class FiveSecondsTab extends JPanel implements KeyListener {
+public class FiveSecondsTab extends JPanel implements DocumentListener {
     
     public final JTextArea textArea;
     public ObservableBuffer buffer;
     public String tabName;
-    public FiveSecondsTab(String tabName, String textAreaContents) {
+    public FiveSecondsTab(String tabName, String textAreaContents) { //, KeyListener parentListener) {
         super(new GridLayout(1, 1));
 
         this.tabName = tabName;
         textArea = new JTextArea();
         textArea.setText(textAreaContents);
         
-        textArea.addKeyListener(this);
+//        textArea.addKeyListener(parentListener);
+        textArea.getDocument().addDocumentListener(this);
         
         JScrollPane scrollPane = new JScrollPane();
         scrollPane.setViewportView(textArea);
@@ -68,22 +71,21 @@ public class FiveSecondsTab extends JPanel implements KeyListener {
     }
 
     @Override
-    public void keyTyped(KeyEvent ke) {
-        
-        this.insertContent(ke.getKeyChar() + "");
-        
-        
+    public void insertUpdate(DocumentEvent e) {
         this.updateBuffer();
+        // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void keyPressed(KeyEvent ke) {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void removeUpdate(DocumentEvent e) {
+        this.updateBuffer();
+        // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void keyReleased(KeyEvent ke) {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void changedUpdate(DocumentEvent e) {
+        this.updateBuffer();
+        // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

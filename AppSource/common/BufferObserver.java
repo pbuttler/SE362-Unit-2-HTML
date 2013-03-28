@@ -4,7 +4,7 @@
  */
 package common;
 
-import editor.Validator;
+//import editor.Validator;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Observable;
@@ -52,8 +52,8 @@ public class BufferObserver implements Observer {
     	
     	// Uses validate method to match constructs 
         
-        Validator validator = new Validator();
-        validator.parseBuffer(this.ContentsString);
+//        Validator validator = new Validator();
+//        validator.parseBuffer(this.ContentsString);
     	
     }
     
