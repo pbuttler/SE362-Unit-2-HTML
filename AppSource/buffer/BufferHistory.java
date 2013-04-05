@@ -13,5 +13,25 @@ import java.util.ArrayList;
 public class BufferHistory {
     
     private ArrayList<BufferObserver> bufferTreadmill;
+    private int index;
+    
+    public BufferHistory(){
+        
+    }
+    
+    public BufferObserver stepForward(){
+        
+        return null; //PLACEHOLDER
+    }
+    
+    public BufferObserver stepBack(){
+        
+        return null; //PLACEHOLDER
+    }
+    
+    public void roll(){
+        
+    }
+    
     
 }

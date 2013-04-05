@@ -65,7 +65,11 @@ public class BufferObserver implements Observer {
     }
     
     public void printLines(){
-        
+        ContentsString = "";
+        for(Line l : lines){
+            ContentsString += l.getContents();
+            ContentsString += "\n";
+        }
     }
 
     @Override
