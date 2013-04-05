@@ -7,7 +7,7 @@ package commands;
 import java.io.File;
 import java.util.HashMap;
 import app.App;
-import common.BufferObserver;
+import buffer.BufferObserver;
 
 import editor.Editor;
 import utils.Utilities;

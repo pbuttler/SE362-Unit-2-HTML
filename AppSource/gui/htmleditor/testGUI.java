@@ -11,7 +11,7 @@ import commands.NewFileCommand;
 import commands.OpenFileCommand;
 import commands.SaveFileCommand;
 import commands.SwitchTabCommand;
-import common.ObservableBuffer;
+import buffer.ObservableBuffer;
 import java.awt.Component;
 import java.io.File;
 import java.io.FileNotFoundException;
