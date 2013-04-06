@@ -6,7 +6,7 @@ package app;
 
 import javax.swing.JFrame;
 import commands.CommandFactory;
-import common.BufferObserver;
+import buffer.BufferObserver;
 import editor.Editor;
 import gui.htmleditor.GUI;
 

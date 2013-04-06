@@ -1,6 +1,6 @@
 package editor;
 
-import common.BufferObserver;
+import buffer.BufferObserver;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;

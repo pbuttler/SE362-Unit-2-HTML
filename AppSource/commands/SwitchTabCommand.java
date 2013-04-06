@@ -6,7 +6,7 @@ package commands;
 
 import java.util.HashMap;
 import app.App;
-import common.BufferObserver;
+import buffer.BufferObserver;
 import editor.Editor;
 import gui.htmleditor.GUI;
 

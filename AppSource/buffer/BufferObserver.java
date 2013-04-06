@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package common;
+package buffer;
 
 //import editor.Validator;
 import java.io.File;
@@ -20,7 +20,10 @@ public class BufferObserver implements Observer {
 	private String ContentsString;
         private String filename;
         private boolean hasChanged = false;
-        private File file;	
+        private File file;
+        
+        private ArrayList<Line> lines;
+        private int lineIndex;
    
     public BufferObserver(File file, String bufferContents) {
         
@@ -59,6 +62,14 @@ public class BufferObserver implements Observer {
     
     public void saveBuffer() {
         
+    }
+    
+    public void printLines(){
+        ContentsString = "";
+        for(Line l : lines){
+            ContentsString += l.getContents();
+            ContentsString += "\n";
+        }
     }
 
     @Override
