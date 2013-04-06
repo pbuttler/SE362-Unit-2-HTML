@@ -8,7 +8,7 @@ import javax.swing.JFrame;
 import commands.CommandFactory;
 import common.BufferObserver;
 import editor.Editor;
-import gui.htmleditor.testGUI;
+import gui.htmleditor.GUI;
 
 
 /**
@@ -27,7 +27,7 @@ public class App {
         
         this._dave = new Commander(this);
         
-        testGUI.instantiate(this._dave);
+        GUI.instantiate(this._dave);
         
     }
     

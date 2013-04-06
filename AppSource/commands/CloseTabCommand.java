@@ -8,35 +8,37 @@ import java.util.HashMap;
 import app.App;
 import common.BufferObserver;
 import editor.Editor;
-import gui.htmleditor.testGUI;
+import gui.htmleditor.GUI;
 
 /**
  *
  * @author Isioma
  */
-public class CloseTabCommand extends Command {
+public class CloseTabCommand implements Command {
 
+    private App _appRef;
     
     public CloseTabCommand(App app) {
-        super(app);
+        _appRef = app;
     }
     
-    @Override
+    
     /**
      * Will inform the editor that a new file has successfully been opened
-     * @param source    the GUI (not used)
      * @param arguments arguments for this command. Expects "tabIdentifier: the 
      *                  name of the file which is used to identify the buffer in
      *                  the editor
      *                  
      */
-    public void execute(Object source, HashMap<String, Object> arguments) {
+    public void execute(CommandArgs args) {
         
-        Editor editor = this._app.getEditor();
-        testGUI gui = this._app.getCommander().getGUI();
+        CloseTabCommandArgs  arguments = (CloseTabCommandArgs) args;
+        
+        Editor editor = this._appRef.getEditor();
+        GUI gui = this._appRef.getCommander().getGUI();
         
         // retrieve the file name (used to reference the file buffer in the editor)
-        String closedTabIdentifier = (String) arguments.get("tabIdentifier");
+        String closedTabIdentifier = arguments.TabIdentifier;
         
         // tell the editor to close the buffer
         // the editor should check to see if buffer contents have been saved
@@ -46,12 +48,13 @@ public class CloseTabCommand extends Command {
         // TODO put this code in one place possibly APP
         // reset the buffer observer
         String activeTabIdentifier = gui.getActiveTabIdentifier();
-        this._app.unregisterBufferObserver();
+        this._appRef.unregisterBufferObserver();
         BufferObserver activeBuffer = editor.getBufferObserver(activeTabIdentifier);
-        this._app.registerBufferObserver(activeBuffer);
+        this._appRef.registerBufferObserver(activeBuffer);
         
         
     }
+
 
    
     

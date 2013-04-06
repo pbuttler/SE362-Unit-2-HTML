@@ -16,14 +16,13 @@ import utils.Utilities;
  *
  * @author Isioma
  */
-public class OpenFileCommand extends Command {
+public class OpenFileCommand implements Command {
     
-    
+    private App _appRef;
     public OpenFileCommand(App app) {
-        super(app);
+        this._appRef = app;
     }
     
-    @Override
     
     /**
      * Will inform the editor that a new file has successfully been opened
@@ -33,7 +32,9 @@ public class OpenFileCommand extends Command {
      *                  contents of the file as an array of strings
      *                  
      */
-    public void execute(Object source, HashMap<String, Object> arguments) {
+    public void execute(CommandArgs args) {
+        
+        OpenFileCommandArgs arguments = (OpenFileCommandArgs) args;
        /**
         * Process
         * prerequisites:
@@ -42,15 +43,15 @@ public class OpenFileCommand extends Command {
         * 3) the file path must be present
         */
         
-        Editor editor = this._app.getEditor();
+        Editor editor = this._appRef.getEditor();
         
-        File file = (File) arguments.get("file");        
-        String[] fileContents = (String[]) arguments.get("fileContents");
+        File file = arguments.File;        
+        String[] fileContents = arguments.FileContents;
         String fileString = Utilities.arrayToString(fileContents);
         
         BufferObserver activeBufferObserver = editor.createBufferObserver(file , fileString);
         
-        this._app.registerBufferObserver(activeBufferObserver);       
+        this._appRef.registerBufferObserver(activeBufferObserver);       
         
     }
 
