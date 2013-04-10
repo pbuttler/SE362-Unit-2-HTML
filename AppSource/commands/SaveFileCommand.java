@@ -15,13 +15,14 @@ import java.util.logging.Logger;
  *
  * @author Isioma
  */
-public class SaveFileCommand extends Command {
+public class SaveFileCommand implements Command {
 
+    private App _appRef;
     public SaveFileCommand(App app) {
-        super(app);
+        this._appRef = app;
     }
     
-   @Override
+   
    /**
      * Will inform the editor that a new file has successfully been opened
      * @param source    the GUI (not used)
@@ -30,11 +31,13 @@ public class SaveFileCommand extends Command {
      *                  the editor
      *                  
      */
-   public void execute(Object source, HashMap<String, Object> arguments) {
+   public void execute(CommandArgs args) {
        
-       Editor editor = this._app.getEditor();
+       SaveFileCommandArgs arguments = (SaveFileCommandArgs) args;
        
-       String tabIdentifier = (String) arguments.get("tabIdentifier");
+       Editor editor = this._appRef.getEditor();
+       
+       String tabIdentifier = arguments.TabIdentifier;
         try {
             editor.saveBufferObserver(tabIdentifier);
         } catch (IOException ex) {

@@ -17,11 +17,13 @@ import java.io.File;
  *
  * @author Isioma
  */
-public class NewFileCommand extends Command {
+public class NewFileCommand implements Command {
     
+    private App _appRef;
     public NewFileCommand(App app) {
-        super(app);
+        this._appRef = app;
     }
+    
     
     /**
      * Will inform the editor that a new file has successfully been opened
@@ -29,7 +31,9 @@ public class NewFileCommand extends Command {
      * @param arguments arguments for this command. Expects nothing
      *                  
      */
-    public void execute(Object source, HashMap<String, Object> arguments) {
+    public void execute(CommandArgs args) {
+        
+        NewFileCommandArgs arguments = (NewFileCommandArgs) args;
               /**
         * Process
         * prerequisites:
@@ -38,14 +42,14 @@ public class NewFileCommand extends Command {
         * 3) the file path must be present
         */
         
-        Editor editor = this._app.getEditor();
+        Editor editor = this._appRef.getEditor();
         
         String fileName = "New File";
         String fileContents = "Hello";
         
         BufferObserver activeBuffer = editor.createBufferObserver(new File(fileName), fileContents);
         
-        this._app.registerBufferObserver(activeBuffer);
+        this._appRef.registerBufferObserver(activeBuffer);
         
         
         

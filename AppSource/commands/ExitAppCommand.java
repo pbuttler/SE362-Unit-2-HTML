@@ -11,23 +11,23 @@ import app.App;
  *
  * @author Isioma
  */
-public class ExitAppCommand extends Command {
+public class ExitAppCommand implements Command {
     
+    private App _appRef;
     public ExitAppCommand(App app) {
-        super(app);
+       this._appRef = app;
         
     }
     
-    @Override
-    public void execute(Object source, HashMap<String, Object> arguments) {
+    public void execute(CommandArgs args) {
        
         // destroy the editor 
             // editor should check to see if the contents of each buffer have 
             // saved
         
-        this._app.getEditor().destroy();
+        this._appRef.getEditor().destroy();
         
-        this._app.destroy(); 
+        this._appRef.destroy(); 
         
     }
     
