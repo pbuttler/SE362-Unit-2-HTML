@@ -12,7 +12,7 @@ import java.util.ArrayList;
  */
 public class BufferHistory {
     
-    private ArrayList<BufferObserver> bufferTreadmill;
+    private ArrayList<Buffer> bufferTreadmill;
     private int index;
     
     public BufferHistory(){

@@ -19,7 +19,6 @@ public class ObservableBuffer extends Observable {
         String[] contentsAsArray = contents.split("\\r?\\n");
         
         
-        
         this.contents = contentsAsArray;
     }
     
@@ -28,6 +27,8 @@ public class ObservableBuffer extends Observable {
         
         
     }
+    
+    
     
     public void updateContents(String newContents){
         
