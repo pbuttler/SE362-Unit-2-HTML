@@ -21,6 +21,7 @@ public class BufferObserver implements Observer {
         private String filename;
         private boolean hasChanged = false;
         private File file;
+        private ObservableBuffer guiBuffer;
         
         private ArrayList<Line> lines;
         private int lineIndex;
@@ -64,17 +65,17 @@ public class BufferObserver implements Observer {
         
     }
     
-    public void printLines(){
-        ContentsString = "";
-        for(Line l : lines){
-            ContentsString += l.getContents();
-            ContentsString += "\n";
-        }
-    }
+//    public void printLines(){
+//        ContentsString = "";
+//        for(Line l : lines){
+//            ContentsString += l.getContents();
+//            ContentsString += "\n";
+//        }
+//    }
 
     @Override
     public void update(Observable o, Object arg) {
-    	ObservableBuffer guiBuffer = (ObservableBuffer) o;
+    	guiBuffer = (ObservableBuffer) o;
         String[] contents = guiBuffer.getContents();       
         
         hasChanged = true;
