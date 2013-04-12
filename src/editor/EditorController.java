@@ -10,6 +10,7 @@ import editor.actioncontext.NewFileActionContext;
 import main.FSViewManager;
 import viewcontroller.GeneralController;
 import viewcontroller.GeneralView.InputChannel;
+import org.w3c.tidy.Tidy;
 
 /**
  *
@@ -17,7 +18,7 @@ import viewcontroller.GeneralView.InputChannel;
  */
 public class EditorController extends GeneralController {
 
-    
+    Tidy tidy = new Tidy();
     /**
         * The states of this controller.
         */
