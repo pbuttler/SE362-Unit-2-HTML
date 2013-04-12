@@ -14,11 +14,16 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowListener;
 import java.util.Stack;
 import javax.swing.JButton;
+import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 import javax.swing.border.LineBorder;
+import viewcontroller.FSMenuBar;
 import viewcontroller.GeneralViewGUI;
 
 /**
@@ -65,6 +70,8 @@ public class FSViewManager extends JFrame implements ActionListener {
 	 * The label of the main window that displays the current component's title.
 	 */
 	private static JLabel _componentTitleLabel;
+        
+        
 	
 
 	
@@ -107,28 +114,30 @@ public class FSViewManager extends JFrame implements ActionListener {
 		
 		// Create a panel for the top.
 		JPanel topPanel = new JPanel();
-		topPanel.setLayout( new GridLayout(1,2) );
+		topPanel.setLayout( new GridLayout(1,2) ); // one column two rows
 		topPanel.setBorder( LineBorder.createGrayLineBorder() );
-		
-		// Set the title label.
-		_componentTitleLabel = new JLabel();
-		_componentTitleLabel.setFont( new Font( "SansSerif", Font.PLAIN, 30 ) );
-		JPanel titlePanel = new JPanel();
-		titlePanel.setLayout( new FlowLayout( FlowLayout.LEADING ) );
-		titlePanel.add( _componentTitleLabel );
-		topPanel.add( titlePanel );
+                
+		FSMenuBar menubar = new FSMenuBar(_mainWindow);
+                
+//		// Set the title label.
+//		_componentTitleLabel = new JLabel();
+//		_componentTitleLabel.setFont( new Font( "SansSerif", Font.PLAIN, 30 ) );
+//		JPanel titlePanel = new JPanel();
+//		titlePanel.setLayout( new FlowLayout( FlowLayout.LEADING ) );
+//		titlePanel.add( _componentTitleLabel );
+		topPanel.add( menubar );
 
 		
 		// Create a panel for the bottom.
-		JPanel bottomPanel = new JPanel();
-		bottomPanel.setLayout( new GridLayout(1,2) );
-		bottomPanel.setBorder( LineBorder.createGrayLineBorder() );
+		JPanel workspace = new JPanel();
+		workspace.setLayout( new GridLayout(1,2) );
+		workspace.setBorder( LineBorder.createGrayLineBorder() );
 
 
 
 		// Add the panels to the main window.
 		_mainWindow.getContentPane().add( topPanel, BorderLayout.NORTH );
-		_mainWindow.getContentPane().add( bottomPanel, BorderLayout.SOUTH );
+		_mainWindow.getContentPane().add( workspace, BorderLayout.SOUTH );
 		
 	}
 	
