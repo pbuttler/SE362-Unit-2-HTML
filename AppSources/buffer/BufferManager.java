@@ -12,4 +12,8 @@ public class BufferManager {
     
     private BufferHistory history;
     
+    public BufferManager(){
+        
+    }
+    
 }

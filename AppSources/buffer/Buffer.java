@@ -11,8 +11,11 @@ import java.util.ArrayList;
  *
  * @author Peter
  */
-public class Buffer {
+public class Buffer {   
     
+    private boolean hasChanged = false;              
+    
+    private int lineIndex;    
     private ArrayList<Line> lines;
     String contentsString;
     private File file;
