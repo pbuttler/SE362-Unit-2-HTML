@@ -4,10 +4,15 @@
  */
 package editor.actioncontext;
 
+import actioncontext.GeneralActionContext;
+import java.io.File;
+
 /**
  *
- * @author User
+ * @author Danielle
  */
-public class SaveFileActionContext {
+public class SaveFileActionContext extends GeneralActionContext{
     
+    public SaveFileActionContext(){
+    }
 }

@@ -4,10 +4,17 @@
  */
 package editor.actioncontext;
 
+import actioncontext.GeneralActionContext;
+import java.io.File;
+
 /**
  *
- * @author User
+ * @author Danielle
  */
-public class IndentCurrentLineActionContext {
+public class IndentCurrentLineActionContext extends GeneralActionContext{
+    
+    public IndentCurrentLineActionContext(){
+        
+    }
     
 }

@@ -4,10 +4,17 @@
  */
 package editor.actioncontext;
 
+import actioncontext.GeneralActionContext;
+import java.io.File;
+
 /**
  *
- * @author User
+ * @author Danielle
  */
-public class InsertHTMLActionContext {
+public class InsertHTMLActionContext extends GeneralActionContext{
+    
+    public InsertHTMLActionContext(){
+        
+    }
     
 }
