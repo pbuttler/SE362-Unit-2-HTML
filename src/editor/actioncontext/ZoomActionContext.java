@@ -13,6 +13,8 @@ import java.io.File;
  */
 public class ZoomActionContext extends GeneralActionContext{
     
+    
+    
     public ZoomActionContext(){
         
     }

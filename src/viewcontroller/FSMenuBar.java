@@ -190,50 +190,50 @@ public class FSMenuBar extends JMenuBar {
             
         }
         
-//        private void initializeListeners() {
-//            
-//            newFileMenuItem.addActionListener(this);
-//            OpenMenuItem.addActionListener(this);
-//            SaveMenuItem.addActionListener(this);
-//            SaveAsMenuItem.addActionListener(this);
-//            CloseMenuItem.addActionListener(this);
-//            
-//            CutMenuItem.addActionListener(this);
-//            CopyMenuItem.addActionListener(this);
-//            PasteMenuItem.addActionListener(this);
-//            
-//            ViewAsWebpageMenuItem.addActionListener(this);
-//            FiftyPercentZoom.addActionListener(this);
-//            OneHundredPercentZoom.addActionListener(this);
-//            TwoHundredPercentZoom.addActionListener(this);
-//            ViewAsWebpageMenuItem.addActionListener(this);
-//            FiftyPercentZoom.addActionListener(this);
-//            OneHundredPercentZoom.addActionListener(this);
-//            TwoHundredPercentZoom.addActionListener(this);
-//            
-//            AutoWordWrapMenuCheckBox.addActionListener(this);
-//            AutoIndentMenuCheckBox.addActionListener(this);
-//            SyntaxHighlightingMenuCheckbox.addActionListener(this);
-//            IndentCurrentLineMenuItem.addActionListener(this);
-//            IndentSelectedTextMenuItem.addActionListener(this);
-//            IndentEntireBufferMenuItem.addActionListener(this);
-//            
-//            h1HeaderMenuItem.addActionListener(this);
-//            h2HeaderMenuItem.addActionListener(this);
-//            h3HeaderMenuItem.addActionListener(this);
-//            h4HeaderMenuItem.addActionListener(this);
-//            h5HeaderMenuItem.addActionListener(this);
-//            h6HeaderMenuItem.addActionListener(this);
-//            TableMenuItem.addActionListener(this);
-//            ListMenuItem.addActionListener(this);
-//            BoldMenuItem.addActionListener(this);
-//            ItalicMenuItem.addActionListener(this);
-//            UnderlineMenuItem.addActionListener(this);
-//            ParagraphMenuItem.addActionListener(this);
-//            PictureMenuItem.addActionListener(this);
-//
-//        }
-//        
+        public void setActionListeners(ActionListener parent) {
+            
+            newFileMenuItem.addActionListener(parent);
+            OpenMenuItem.addActionListener(parent);
+            SaveMenuItem.addActionListener(parent);
+            SaveAsMenuItem.addActionListener(parent);
+            CloseMenuItem.addActionListener(parent);
+            
+            CutMenuItem.addActionListener(parent);
+            CopyMenuItem.addActionListener(parent);
+            PasteMenuItem.addActionListener(parent);
+            
+            ViewAsWebpageMenuItem.addActionListener(parent);
+            FiftyPercentZoom.addActionListener(parent);
+            OneHundredPercentZoom.addActionListener(parent);
+            TwoHundredPercentZoom.addActionListener(parent);
+            ViewAsWebpageMenuItem.addActionListener(parent);
+            FiftyPercentZoom.addActionListener(parent);
+            OneHundredPercentZoom.addActionListener(parent);
+            TwoHundredPercentZoom.addActionListener(parent);
+            
+            AutoWordWrapMenuCheckBox.addActionListener(parent);
+            AutoIndentMenuCheckBox.addActionListener(parent);
+            SyntaxHighlightingMenuCheckbox.addActionListener(parent);
+            IndentCurrentLineMenuItem.addActionListener(parent);
+            IndentSelectedTextMenuItem.addActionListener(parent);
+            IndentEntireBufferMenuItem.addActionListener(parent);
+            
+            h1HeaderMenuItem.addActionListener(parent);
+            h2HeaderMenuItem.addActionListener(parent);
+            h3HeaderMenuItem.addActionListener(parent);
+            h4HeaderMenuItem.addActionListener(parent);
+            h5HeaderMenuItem.addActionListener(parent);
+            h6HeaderMenuItem.addActionListener(parent);
+            TableMenuItem.addActionListener(parent);
+            ListMenuItem.addActionListener(parent);
+            BoldMenuItem.addActionListener(parent);
+            ItalicMenuItem.addActionListener(parent);
+            UnderlineMenuItem.addActionListener(parent);
+            ParagraphMenuItem.addActionListener(parent);
+            PictureMenuItem.addActionListener(parent);
+
+        }
+        
         private void setText() {
             
             fileMenu.setText("File");

@@ -71,7 +71,7 @@ public class FSViewManager extends JFrame implements ActionListener {
 	 */
 	private static JLabel _componentTitleLabel;
         
-        
+        public static FSMenuBar menubar;
 	
 
 	
@@ -117,7 +117,8 @@ public class FSViewManager extends JFrame implements ActionListener {
 		topPanel.setLayout( new GridLayout(1,2) ); // one column two rows
 		topPanel.setBorder( LineBorder.createGrayLineBorder() );
                 
-		FSMenuBar menubar = new FSMenuBar(_mainWindow);
+		menubar = new FSMenuBar(_mainWindow);
+                menubar.setActionListeners(_mainWindow);
                 
 //		// Set the title label.
 //		_componentTitleLabel = new JLabel();
@@ -236,11 +237,30 @@ public class FSViewManager extends JFrame implements ActionListener {
 	 */
 	public static void addNewWindowListener( WindowListener wl ) {
 		_mainWindow.addWindowListener( wl );
+                
+                
 	}
+        
+        
+        public void newFileActionPerformed() {
+            
+            // open a JFileChooser
+            // which 
+            
+            
+            
+        }
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        System.out.println(e.getActionCommand());
         
+        switch (e.getActionCommand()) {
+            case "Table":
+//                handleTableAction();
+                break;
+        
+        }
     }
 	
 	

@@ -12,6 +12,7 @@ import java.io.File;
  * @author Isioma
  */
 public class NewFileActionContext extends GeneralActionContext {
+    
     private File _newFile;
     public NewFileActionContext() {
     }
