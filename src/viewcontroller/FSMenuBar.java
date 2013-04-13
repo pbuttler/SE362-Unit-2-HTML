@@ -17,11 +17,11 @@ import javax.swing.JPanel;
  *
  * @author iun4534
  */
-public class FSMenuBar extends JPanel implements ActionListener {
+public class FSMenuBar extends JMenuBar {
     
         public ActionListener parentWindow;
         
-        public JMenuBar menuBar;
+        
 
         public JMenu fileMenu;
         public JMenuItem // File menu items
@@ -80,13 +80,11 @@ public class FSMenuBar extends JPanel implements ActionListener {
         public FSMenuBar(ActionListener parentWindow) {
             this.parentWindow = parentWindow;
             initializeMenus();
-            initializeListeners();
+//            initializeListeners();
             setText();
         }
         
         private void initializeMenus() {
-            
-            this.menuBar = new JMenuBar();
             
             fileMenu = new JMenu();
         
@@ -101,7 +99,7 @@ public class FSMenuBar extends JPanel implements ActionListener {
             fileMenu.add(SaveMenuItem);
             fileMenu.add(SaveAsMenuItem);
             fileMenu.add(CloseMenuItem);
-            this.menuBar.add(fileMenu);
+            this.add(fileMenu);
 
             EditMenu = new JMenu();
         
@@ -112,7 +110,7 @@ public class FSMenuBar extends JPanel implements ActionListener {
             EditMenu.add(CutMenuItem);
             EditMenu.add(CopyMenuItem);
             EditMenu.add(PasteMenuItem);            
-            this.menuBar.add(EditMenu);
+            this.add(EditMenu);
             
             ViewMenu = new JMenu();
             ZoomToMenu = new JMenu();
@@ -128,7 +126,7 @@ public class FSMenuBar extends JPanel implements ActionListener {
             ZoomToMenu.add(OneHundredPercentZoom);
             ZoomToMenu.add(TwoHundredPercentZoom);
             
-            this.menuBar.add(ViewMenu);
+            this.add(ViewMenu);
 
             OptionsMenu = new JMenu();
             
@@ -146,7 +144,7 @@ public class FSMenuBar extends JPanel implements ActionListener {
             OptionsMenu.add(IndentSelectedTextMenuItem);
             OptionsMenu.add(IndentEntireBufferMenuItem);
             
-            this.menuBar.add(OptionsMenu);
+            this.add(OptionsMenu);
             
             InsertMenu = new JMenu();
             headingsMenu = new JMenu();
@@ -187,57 +185,55 @@ public class FSMenuBar extends JPanel implements ActionListener {
             FontEmphasisMenu.add(ParagraphMenuItem);
             FontEmphasisMenu.add(PictureMenuItem);
             
-            this.menuBar.add(InsertMenu);
-            
-            this.add(menuBar);
+            this.add(InsertMenu);
             
             
         }
         
-        private void initializeListeners() {
-            
-            newFileMenuItem.addActionListener(this);
-            OpenMenuItem.addActionListener(this);
-            SaveMenuItem.addActionListener(this);
-            SaveAsMenuItem.addActionListener(this);
-            CloseMenuItem.addActionListener(this);
-            
-            CutMenuItem.addActionListener(this);
-            CopyMenuItem.addActionListener(this);
-            PasteMenuItem.addActionListener(this);
-            
-            ViewAsWebpageMenuItem.addActionListener(this);
-            FiftyPercentZoom.addActionListener(this);
-            OneHundredPercentZoom.addActionListener(this);
-            TwoHundredPercentZoom.addActionListener(this);
-            ViewAsWebpageMenuItem.addActionListener(this);
-            FiftyPercentZoom.addActionListener(this);
-            OneHundredPercentZoom.addActionListener(this);
-            TwoHundredPercentZoom.addActionListener(this);
-            
-            AutoWordWrapMenuCheckBox.addActionListener(this);
-            AutoIndentMenuCheckBox.addActionListener(this);
-            SyntaxHighlightingMenuCheckbox.addActionListener(this);
-            IndentCurrentLineMenuItem.addActionListener(this);
-            IndentSelectedTextMenuItem.addActionListener(this);
-            IndentEntireBufferMenuItem.addActionListener(this);
-            
-            h1HeaderMenuItem.addActionListener(this);
-            h2HeaderMenuItem.addActionListener(this);
-            h3HeaderMenuItem.addActionListener(this);
-            h4HeaderMenuItem.addActionListener(this);
-            h5HeaderMenuItem.addActionListener(this);
-            h6HeaderMenuItem.addActionListener(this);
-            TableMenuItem.addActionListener(this);
-            ListMenuItem.addActionListener(this);
-            BoldMenuItem.addActionListener(this);
-            ItalicMenuItem.addActionListener(this);
-            UnderlineMenuItem.addActionListener(this);
-            ParagraphMenuItem.addActionListener(this);
-            PictureMenuItem.addActionListener(this);
-
-        }
-        
+//        private void initializeListeners() {
+//            
+//            newFileMenuItem.addActionListener(this);
+//            OpenMenuItem.addActionListener(this);
+//            SaveMenuItem.addActionListener(this);
+//            SaveAsMenuItem.addActionListener(this);
+//            CloseMenuItem.addActionListener(this);
+//            
+//            CutMenuItem.addActionListener(this);
+//            CopyMenuItem.addActionListener(this);
+//            PasteMenuItem.addActionListener(this);
+//            
+//            ViewAsWebpageMenuItem.addActionListener(this);
+//            FiftyPercentZoom.addActionListener(this);
+//            OneHundredPercentZoom.addActionListener(this);
+//            TwoHundredPercentZoom.addActionListener(this);
+//            ViewAsWebpageMenuItem.addActionListener(this);
+//            FiftyPercentZoom.addActionListener(this);
+//            OneHundredPercentZoom.addActionListener(this);
+//            TwoHundredPercentZoom.addActionListener(this);
+//            
+//            AutoWordWrapMenuCheckBox.addActionListener(this);
+//            AutoIndentMenuCheckBox.addActionListener(this);
+//            SyntaxHighlightingMenuCheckbox.addActionListener(this);
+//            IndentCurrentLineMenuItem.addActionListener(this);
+//            IndentSelectedTextMenuItem.addActionListener(this);
+//            IndentEntireBufferMenuItem.addActionListener(this);
+//            
+//            h1HeaderMenuItem.addActionListener(this);
+//            h2HeaderMenuItem.addActionListener(this);
+//            h3HeaderMenuItem.addActionListener(this);
+//            h4HeaderMenuItem.addActionListener(this);
+//            h5HeaderMenuItem.addActionListener(this);
+//            h6HeaderMenuItem.addActionListener(this);
+//            TableMenuItem.addActionListener(this);
+//            ListMenuItem.addActionListener(this);
+//            BoldMenuItem.addActionListener(this);
+//            ItalicMenuItem.addActionListener(this);
+//            UnderlineMenuItem.addActionListener(this);
+//            ParagraphMenuItem.addActionListener(this);
+//            PictureMenuItem.addActionListener(this);
+//
+//        }
+//        
         private void setText() {
             
             fileMenu.setText("File");
@@ -281,12 +277,5 @@ public class FSMenuBar extends JPanel implements ActionListener {
             ParagraphMenuItem.setText("Paragraph");
             PictureMenuItem.setText("Picture");
         }
-        
-       
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        this.parentWindow.actionPerformed(e);
-    }
     
 }

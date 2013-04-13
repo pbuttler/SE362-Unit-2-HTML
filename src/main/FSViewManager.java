@@ -125,7 +125,7 @@ public class FSViewManager extends JFrame implements ActionListener {
 //		JPanel titlePanel = new JPanel();
 //		titlePanel.setLayout( new FlowLayout( FlowLayout.LEADING ) );
 //		titlePanel.add( _componentTitleLabel );
-		topPanel.add( menubar );
+		
 
 		
 		// Create a panel for the bottom.
@@ -139,6 +139,8 @@ public class FSViewManager extends JFrame implements ActionListener {
 		_mainWindow.getContentPane().add( topPanel, BorderLayout.NORTH );
 		_mainWindow.getContentPane().add( workspace, BorderLayout.SOUTH );
 		
+                
+                _mainWindow.setJMenuBar(menubar);
 	}
 	
 	/**
