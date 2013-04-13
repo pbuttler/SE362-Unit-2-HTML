@@ -206,7 +206,7 @@ public class FSViewManager extends JFrame implements ActionListener {
 			topView.setVisible( true );
 	
 			// Change the title label's text.
-			_componentTitleLabel.setText( "  " + topView.getMainPanel().getName() );
+//			_componentTitleLabel.setText( "  " + topView.getMainPanel().getName() );
 	
 			
 		}

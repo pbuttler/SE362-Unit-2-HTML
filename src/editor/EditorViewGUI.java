@@ -8,6 +8,7 @@ import actioncontext.GeneralActionContext;
 import editor.actioncontext.NewFileActionContext;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
+import javax.swing.GroupLayout;
 import javax.swing.JPanel;
 import viewcontroller.GeneralView;
 import viewcontroller.GeneralViewGUI;
@@ -22,6 +23,32 @@ public class EditorViewGUI extends EditorView implements GeneralViewGUI {
     * The JPanel to which contains everything in this view.
     */
    private JPanel _mainPanel;
+   private FSTabbedPane _tabs;
+   
+   public EditorViewGUI() {
+   
+       _mainPanel = new JPanel();
+       _tabs = new FSTabbedPane();
+       
+       GroupLayout mainPanelLayout = new GroupLayout(_mainPanel);
+       
+       _mainPanel.setLayout(mainPanelLayout);
+
+       mainPanelLayout.setHorizontalGroup(
+            mainPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addComponent(_tabs, GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+        );
+       
+       mainPanelLayout.setVerticalGroup(
+            mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(_tabs, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
+        );
+       
+       _tabs.add("New Tab", new FSTab());
+       
+       
+   
+   }
 
     public void setChannelEnabled(InputChannel inChannel, boolean enabled) {
     }

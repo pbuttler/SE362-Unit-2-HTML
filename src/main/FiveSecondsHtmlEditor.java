@@ -39,8 +39,7 @@ public class FiveSecondsHtmlEditor implements WindowListener {
         
         EditorView view = new EditorViewGUI();
         FSViewManager.setWindowVisible( true );
-        FSViewManager.addNewWindowListener( new FiveSecondsHtmlEditor() );
-        
+        FSViewManager.addNewWindowListener( new FiveSecondsHtmlEditor() ); 
         // connect the view and controller
         cont.setView(view);
         view.setController(cont);

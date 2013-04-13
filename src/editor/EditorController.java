@@ -32,7 +32,6 @@ public class EditorController extends GeneralController {
     
   
     public void respondToInput(GeneralActionContext context) {
-        
         if ( context instanceof NewFileActionContext ) {}
         
     }
