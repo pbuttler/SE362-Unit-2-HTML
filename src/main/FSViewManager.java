@@ -256,8 +256,8 @@ public class FSViewManager extends JFrame implements ActionListener {
         System.out.println(e.getActionCommand());
         
         switch (e.getActionCommand()) {
-            case "Table":
-//                handleTableAction();
+            case FSMenuBar.NEW_FILE:
+//                handleNewFileAction();
                 break;
         
         }

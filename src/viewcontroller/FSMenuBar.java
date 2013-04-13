@@ -234,10 +234,12 @@ public class FSMenuBar extends JMenuBar {
 
         }
         
+        public static final String FILE_MENU_NAME = "File";
+        public static final String NEW_FILE = "New";
         private void setText() {
             
-            fileMenu.setText("File");
-            newFileMenuItem.setText("New");
+            fileMenu.setText(FILE_MENU_NAME);
+            newFileMenuItem.setText(NEW_FILE);
             OpenMenuItem.setText("Open");
             SaveMenuItem.setText("Save");
             SaveAsMenuItem.setText("Save As");
