@@ -1,3 +1,6 @@
+
+package editor;
+
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -16,8 +19,7 @@ import org.w3c.tidy.Tidy;
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
- */
-package editor;
+*/
 
 /**
  *
