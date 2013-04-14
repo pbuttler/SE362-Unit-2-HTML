@@ -372,6 +372,9 @@ public class FSViewManager extends JFrame implements ActionListener {
             case FSMenuBar.PICTURE_OPTION:
                     handlePictureAction();
                     break;    
+            case FSMenuBar.VALIDATE_OPTION:
+                    handleValidateAction();
+                    break;
             default:
                 break;
         
@@ -540,5 +543,7 @@ public class FSViewManager extends JFrame implements ActionListener {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 	
-	
+    private void handleValidateAction() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
