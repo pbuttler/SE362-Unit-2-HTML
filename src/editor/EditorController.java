@@ -35,7 +35,10 @@ public class EditorController extends GeneralController {
         FSViewManager.pushView( (EditorViewGUI) view );
     }
     
-  
+    /**
+     * It takes the given context, and send it to a specific action 
+     * - Luke
+     **/
     public void respondToInput(GeneralActionContext context) {
         if ( context instanceof NewFileActionContext ) {
             
@@ -68,7 +71,11 @@ public class EditorController extends GeneralController {
 //        }
 //        
 //    }
-
+    /**
+     *  The actions are performed here, and the views take the context
+     *  The view is actionContext.EditorViewGUI.displayOutput
+     * - Luke
+     **/
     public void handleNewFileAction(NewFileActionContext context) {
         
         // TODO create new buffer

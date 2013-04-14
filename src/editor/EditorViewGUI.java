@@ -72,7 +72,11 @@ public class EditorViewGUI extends EditorView implements GeneralViewGUI {
     public void actionPerformed(ActionEvent e) {
     }
 
-    
+    /**
+     * So display output is given the context in a switch. 
+     * Follow the method you want
+     * - Luke
+    **/
     public void displayOutput(GeneralActionContext context) {
         
         if ( context instanceof NewFileActionContext ) {
@@ -113,6 +117,11 @@ public class EditorViewGUI extends EditorView implements GeneralViewGUI {
         _tabs.setSelectedIndex(_tabs.getTabCount() - 1);
 
     }
+    
+    /**
+     * Actions in GUI handled here. and we're done :)
+     * - Luke
+     **/
     
     public void handleNewFileAction(NewFileActionContext context) {
         this.addBlankTab();

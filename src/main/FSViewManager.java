@@ -264,7 +264,10 @@ public class FSViewManager extends JFrame implements ActionListener {
             
             
         }
-
+    /** So the actionPerformed for all events happen here. 
+     *  Its starting point and it leads to actionContext.EditorController.respondToInput
+     * - Luke
+     **/    
     @Override
     public void actionPerformed(ActionEvent e) {
         System.out.println(e.getActionCommand());
