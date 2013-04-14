@@ -234,50 +234,89 @@ public class FSMenuBar extends JMenuBar {
 
         }
         
-        public static final String FILE_MENU_NAME = "File";
-        public static final String NEW_FILE = "New";
+        public static final String 
+            FILE_MENU_NAME = "File",
+            NEW_FILE_OPTION = "New",
+            OPEN_FILE_OPTION = "Open",
+            SAVE_OPTION = "Save",
+            SAVEAS_OPTION = "Save As",
+            CLOSE_OPTION = "Close",
+            CUT_OPTION = "Cut",
+            COPY_OPTION = "Copy",
+            PASTE_OPTION = "Paste",
+            VIEW_OPTION = "View",
+            VIEWASWEBPAGE_OPTION = "View As Webpage",
+            ZOOMTO_OPTION = "Zoom To..",
+            FIFTY_OPTION = "50%",
+            HUNDRED_OPTION = "100%",
+            TWOHUNDRED_OPTION = "200%",
+            OPTIONS_OPTION = "Options",
+            AUTOWORDWRAP_OPTION = "Auto Word Wrap",
+            AUTOINDENT_OPTION = "Auto Indent",
+            SYNTAXHIGHLIGHTING_OPTION = "Syntax Highlighting",
+            INDENTCURRENTLINE_OPTION = "Indent Current Line",
+            INDENTSELECTEDTEXT_OPTION = "Indent Selected Text",
+            INDENTENTIREBUFFER_OPTION = "Indent Entire Buffer",
+            INSERT_OPTION = "Insert",
+            HEADER_OPTION = "Header",
+            H1_OPTION = "<h1>",
+            H2_OPTION = "<h2>",
+            H3_OPTION = "<h3>",
+            H4_OPTION = "<h4>",
+            H5_OPTION = "<h5>",
+            H6_OPTION = "<h6>",
+            TABLE_OPTION = "Table",
+            LIST_OPTION = "List",
+            FONTEMPHASIS_OPTION = "Font Emphasis",
+            BOLD_OPTION = "Bold",
+            ITALIC_OPTION = "Italic",
+            UNDERLINE_OPTION = "Underline",
+            PARAGRAPH_OPTION = "Paragraph",
+            PICTURE_OPTION = "Picture";
+        
+        public static final String EDIT_OPTION = "Edit";
         private void setText() {
             
             fileMenu.setText(FILE_MENU_NAME);
-            newFileMenuItem.setText(NEW_FILE);
-            OpenMenuItem.setText("Open");
-            SaveMenuItem.setText("Save");
-            SaveAsMenuItem.setText("Save As");
-            CloseMenuItem.setText("Close");
+            newFileMenuItem.setText(NEW_FILE_OPTION);
+            OpenMenuItem.setText(OPEN_FILE_OPTION);
+            SaveMenuItem.setText(SAVE_OPTION);
+            SaveAsMenuItem.setText(SAVEAS_OPTION);
+            CloseMenuItem.setText(CLOSE_OPTION);
             
-            EditMenu.setText("Edit");
-            CutMenuItem.setText("Cut");
-            CopyMenuItem.setText("Copy");
-            PasteMenuItem.setText("Paste");
-            ViewMenu.setText("View");
-            ViewAsWebpageMenuItem.setText("View As Webpage");
-            ZoomToMenu.setText("Zoom To..");
-            FiftyPercentZoom.setText("50%");
-            OneHundredPercentZoom.setText("100%");
-            TwoHundredPercentZoom.setText("200%");
-            OptionsMenu.setText("Options");
-            AutoWordWrapMenuCheckBox.setText("Auto Word Wrap");
-            AutoIndentMenuCheckBox.setText("Auto Indent");
-            SyntaxHighlightingMenuCheckbox.setText("Syntax Highlighting");
-            IndentCurrentLineMenuItem.setText("Indent Current Line");
-            IndentSelectedTextMenuItem.setText("Indent Selected Text");
-            IndentEntireBufferMenuItem.setText("Indent Entire Buffer");
-            InsertMenu.setText("Insert");
-            headingsMenu.setText("Header");
-            h1HeaderMenuItem.setText("<h1>");
-            h2HeaderMenuItem.setText("<h2>");
-            h3HeaderMenuItem.setText("<h3>");
-            h4HeaderMenuItem.setText("<h4>");
-            h5HeaderMenuItem.setText("<h5>");
-            h6HeaderMenuItem.setText("<h6>");
-            TableMenuItem.setText("Table");
-            ListMenuItem.setText("List");
-            FontEmphasisMenu.setText("Font Emphasis");
-            BoldMenuItem.setText("Bold");
-            ItalicMenuItem.setText("Italic");
-            UnderlineMenuItem.setText("Underline");
-            ParagraphMenuItem.setText("Paragraph");
-            PictureMenuItem.setText("Picture");
+            EditMenu.setText(EDIT_OPTION);
+            CutMenuItem.setText(CUT_OPTION);
+            CopyMenuItem.setText(COPY_OPTION);
+            PasteMenuItem.setText(PASTE_OPTION);
+            ViewMenu.setText(VIEW_OPTION);
+            ViewAsWebpageMenuItem.setText(VIEWASWEBPAGE_OPTION);
+            ZoomToMenu.setText(ZOOMTO_OPTION);
+            FiftyPercentZoom.setText(FIFTY_OPTION);
+            OneHundredPercentZoom.setText(HUNDRED_OPTION);
+            TwoHundredPercentZoom.setText(TWOHUNDRED_OPTION);
+            OptionsMenu.setText(OPTIONS_OPTION);
+            AutoWordWrapMenuCheckBox.setText(AUTOWORDWRAP_OPTION);
+            AutoIndentMenuCheckBox.setText(AUTOINDENT_OPTION);
+            SyntaxHighlightingMenuCheckbox.setText(SYNTAXHIGHLIGHTING_OPTION);
+            IndentCurrentLineMenuItem.setText(INDENTCURRENTLINE_OPTION);
+            IndentSelectedTextMenuItem.setText(INDENTSELECTEDTEXT_OPTION);
+            IndentEntireBufferMenuItem.setText(INDENTENTIREBUFFER_OPTION);
+            InsertMenu.setText(INSERT_OPTION);
+            headingsMenu.setText(HEADER_OPTION);
+            h1HeaderMenuItem.setText(H1_OPTION);
+            h2HeaderMenuItem.setText(H2_OPTION);
+            h3HeaderMenuItem.setText(H3_OPTION);
+            h4HeaderMenuItem.setText(H4_OPTION);
+            h5HeaderMenuItem.setText(H5_OPTION);
+            h6HeaderMenuItem.setText(H6_OPTION);
+            TableMenuItem.setText(TABLE_OPTION);
+            ListMenuItem.setText(LIST_OPTION);
+            FontEmphasisMenu.setText(FONTEMPHASIS_OPTION);
+            BoldMenuItem.setText(BOLD_OPTION);
+            ItalicMenuItem.setText(ITALIC_OPTION);
+            UnderlineMenuItem.setText(UNDERLINE_OPTION);
+            ParagraphMenuItem.setText(PARAGRAPH_OPTION);
+            PictureMenuItem.setText(PICTURE_OPTION);
         }
     
 }

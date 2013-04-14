@@ -75,8 +75,29 @@ public class EditorViewGUI extends EditorView implements GeneralViewGUI {
     
     public void displayOutput(GeneralActionContext context) {
         
-        if ( context instanceof NewFileActionContext ) {}
+        if ( context instanceof NewFileActionContext ) {
+            this.addBlankTab();
+        }
         
+    }
+    
+    
+    
+    private void addBlankTab() {
+        String docType = "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01//EN\" \"http://www.w3.org/TR/html4/strict.dtd\">";
+        String contents = docType + "\n<html>\n</html>";
+
+        this.addTab("New File", contents);
+    }
+    
+    private void addTab(String tabName, String textAreaContents) {
+
+        FSTab newPanel = new FSTab(tabName, textAreaContents);
+
+        _tabs.add(tabName, newPanel);
+
+        _tabs.setSelectedIndex(_tabs.getTabCount() - 1);
+
     }
     
 }

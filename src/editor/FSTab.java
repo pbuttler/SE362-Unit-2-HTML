@@ -13,16 +13,28 @@ import javax.swing.JPanel;
  * @author innod_000
  */
 public class FSTab extends JPanel {
-    JEditorPane editorPane;
+    private JEditorPane _editorPane;
+    private String _tabName;
     
     public FSTab() {
         
-        editorPane = new JEditorPane();
+        _editorPane = new JEditorPane();
         
         this.setLayout(new GridLayout(1,1));
         
-        this.add(editorPane);
+        this.add(_editorPane);
     
+    }
+
+    public FSTab(String tabName, String textAreaContents) {
+        
+        this();
+        
+        _tabName = tabName;
+        
+        _editorPane.setText(textAreaContents);
+
+        
     }
 }
     

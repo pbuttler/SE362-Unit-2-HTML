@@ -4,6 +4,7 @@
  */
 package main;
 
+import editor.actioncontext.NewFileActionContext;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -24,6 +25,7 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 import javax.swing.border.LineBorder;
 import viewcontroller.FSMenuBar;
+import viewcontroller.GeneralView;
 import viewcontroller.GeneralViewGUI;
 
 /**
@@ -230,6 +232,12 @@ public class FSViewManager extends JFrame implements ActionListener {
 		}
 
 	}
+        
+        private GeneralViewGUI getTopView() {
+            
+        
+            return _viewStack.peek();
+        }
 
 	
 	/**
@@ -256,11 +264,256 @@ public class FSViewManager extends JFrame implements ActionListener {
         System.out.println(e.getActionCommand());
         
         switch (e.getActionCommand()) {
-            case FSMenuBar.NEW_FILE:
-//                handleNewFileAction();
+            case FSMenuBar.NEW_FILE_OPTION:
+                handleNewFileAction();
+                break;
+            case FSMenuBar.OPEN_FILE_OPTION:
+                handleOpenFileAction();
+                break;
+            case FSMenuBar.SAVE_OPTION:
+                handleSaveAction();
+                break;
+            case FSMenuBar.SAVEAS_OPTION:
+                handleSaveAsAction();
+                break;
+            case FSMenuBar.CLOSE_OPTION:
+                handleCloseAction();
+                break;
+            case FSMenuBar.CUT_OPTION:
+                    handleCutAction();
+                    break;
+            case FSMenuBar.COPY_OPTION:
+                    handleCopyAction();
+                    break;
+            case FSMenuBar.PASTE_OPTION:
+                    handlePasteAction();
+                    break;
+            case FSMenuBar.VIEW_OPTION:
+                    handleViewAction();
+                    break;
+            case FSMenuBar.VIEWASWEBPAGE_OPTION:
+                    handleViewAsWebpageAction();
+                    break;
+            case FSMenuBar.ZOOMTO_OPTION:
+                    handleZoomToAction();
+                    break;
+            case FSMenuBar.OPTIONS_OPTION:
+                    handleOptionsAction();
+                    break;
+            case FSMenuBar.AUTOWORDWRAP_OPTION:
+                    handleAutoWordWrapAction();
+                    break;
+            case FSMenuBar.AUTOINDENT_OPTION:
+                    handleAutoIndentAction();
+                    break;
+            case FSMenuBar.SYNTAXHIGHLIGHTING_OPTION:
+                    handleSyntaxHighlightAction();
+                    break;
+            case FSMenuBar.INDENTCURRENTLINE_OPTION:
+                    handleIndentCurrentLineAction();
+                    break;
+            case FSMenuBar.INDENTSELECTEDTEXT_OPTION:
+                    handleIndentSelectedTextAction();
+                    break;
+            case FSMenuBar.INDENTENTIREBUFFER_OPTION:
+                    handleIndentEntireBufferAction();
+                    break;
+            case FSMenuBar.INSERT_OPTION:
+                    handleInsertAction();
+                    break;
+            case FSMenuBar.HEADER_OPTION:
+                    handleHeaderAction();
+                    break;
+            case FSMenuBar.H1_OPTION:
+                    handleH1Action();
+                    break;
+            case FSMenuBar.H2_OPTION:
+                    handleH2Action();
+                    break;
+            case FSMenuBar.H3_OPTION:
+                    handleH3Action();
+                    break;
+            case FSMenuBar.H4_OPTION:
+                    handleH4Action();
+                    break;
+            case FSMenuBar.H5_OPTION:
+                    handleH5Action();
+                    break;
+            case FSMenuBar.H6_OPTION:
+                    handleH6Action();
+                    break;
+            case FSMenuBar.TABLE_OPTION:
+                    handleTableAction();
+                    break;
+            case FSMenuBar.LIST_OPTION:
+                    handleListAction();
+                    break;
+            case FSMenuBar.FONTEMPHASIS_OPTION:
+                    handleFontEmphasisAction();
+                    break;
+            case FSMenuBar.BOLD_OPTION:
+                    handleBoldAction();
+                    break;
+            case FSMenuBar.ITALIC_OPTION:
+                    handleItalicAction();
+                    break;
+            case FSMenuBar.UNDERLINE_OPTION:
+                    handleUnderlineAction();
+                    break;
+            case FSMenuBar.PARAGRAPH_OPTION:
+                    handleParagraphAction();
+                    break;
+            case FSMenuBar.PICTURE_OPTION:
+                    handlePictureAction();
+                    break;    
+            default:
                 break;
         
         }
+    }
+    
+    public void handleNewFileAction() {
+        
+        NewFileActionContext actionContext = new NewFileActionContext();
+        
+        GeneralView currentView = (GeneralView) this.getTopView();
+        
+        currentView.getController().respondToInput(actionContext);
+        
+        
+    
+    }
+
+    private void handleOpenFileAction() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void handleCutAction() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void handleCopyAction() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void handlePasteAction() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void handleViewAction() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void handleViewAsWebpageAction() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void handleZoomToAction() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void handleOptionsAction() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void handleAutoWordWrapAction() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void handleAutoIndentAction() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void handleSyntaxHighlightAction() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void handleIndentCurrentLineAction() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void handleIndentSelectedTextAction() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void handleIndentEntireBufferAction() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void handleInsertAction() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void handleHeaderAction() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void handleH1Action() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void handleH2Action() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void handleH3Action() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void handleH4Action() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void handleH5Action() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void handleH6Action() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void handleTableAction() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void handleListAction() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void handleFontEmphasisAction() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void handleBoldAction() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void handleItalicAction() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void handleUnderlineAction() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void handleParagraphAction() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void handlePictureAction() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void handleSaveAction() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void handleSaveAsAction() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void handleCloseAction() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 	
 	

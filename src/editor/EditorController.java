@@ -32,7 +32,9 @@ public class EditorController extends GeneralController {
     
   
     public void respondToInput(GeneralActionContext context) {
-        if ( context instanceof NewFileActionContext ) {}
+        if ( context instanceof NewFileActionContext ) {
+            this.view.displayOutput(context);
+        }
         
     }
 
