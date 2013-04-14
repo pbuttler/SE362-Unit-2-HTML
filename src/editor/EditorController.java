@@ -104,9 +104,11 @@ public class EditorController extends GeneralController {
     }
     
     private void handleSaveAction(SaveFileActionContext context) {
-        
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        
+      /*  try{
+            //stuff
+        } catch (IOException ex) {
+            
+        } */
     }
 
     private void handleSaveAsAction(SaveFileAsActionContext context) {
