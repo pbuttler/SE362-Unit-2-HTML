@@ -47,6 +47,8 @@ public class EditorViewGUI extends EditorView implements GeneralViewGUI {
        _tabs.add("New Tab", new FSTab());
        
        
+       
+       
    
    }
 

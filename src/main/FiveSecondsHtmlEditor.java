@@ -34,9 +34,22 @@ public class FiveSecondsHtmlEditor implements WindowListener {
         // Create the Editor Controller and view
         EditorController cont = new EditorController();
         try {
-            UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
-        } catch (Exception e) {        }
-        
+                // Set System L&F
+            UIManager.setLookAndFeel(
+                UIManager.getSystemLookAndFeelClassName());
+        } 
+        catch (UnsupportedLookAndFeelException e) {
+           // handle exception
+        }
+        catch (ClassNotFoundException e) {
+           // handle exception
+        }
+        catch (InstantiationException e) {
+           // handle exception
+        }
+        catch (IllegalAccessException e) {
+           // handle exception
+        }
         EditorView view = new EditorViewGUI();
         FSViewManager.setWindowVisible( true );
         FSViewManager.addNewWindowListener( new FiveSecondsHtmlEditor() ); 
