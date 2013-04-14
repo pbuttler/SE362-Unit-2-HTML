@@ -6,6 +6,7 @@ package editor;
 import java.awt.GridLayout;
 import javax.swing.JEditorPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 
 /**
@@ -22,7 +23,11 @@ public class FSTab extends JPanel {
         
         this.setLayout(new GridLayout(1,1));
         
-        this.add(_editorPane);
+        JScrollPane scrollPane = new JScrollPane();
+        scrollPane.setViewportView(_editorPane);
+        
+        this.add(scrollPane);
+        
     
     }
 

@@ -5,6 +5,7 @@
 package main;
 
 import editor.actioncontext.NewFileActionContext;
+import editor.actioncontext.OpenFileActionContext;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -13,9 +14,13 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowListener;
+import java.io.File;
+import java.io.IOException;
+import java.util.HashMap;
 import java.util.Stack;
 import javax.swing.JButton;
 import javax.swing.JCheckBoxMenuItem;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -24,6 +29,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 import javax.swing.border.LineBorder;
+import utils.Utilities;
 import viewcontroller.FSMenuBar;
 import viewcontroller.GeneralView;
 import viewcontroller.GeneralViewGUI;
@@ -385,7 +391,25 @@ public class FSViewManager extends JFrame implements ActionListener {
     }
 
     private void handleOpenFileAction() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        JFileChooser fileChooser = new JFileChooser();
+
+        int returnValue = fileChooser.showOpenDialog(this);
+
+        if (returnValue == JFileChooser.APPROVE_OPTION) {
+
+            File file = fileChooser.getSelectedFile();
+            String fileName = file.getName();
+            OpenFileActionContext context = new OpenFileActionContext();
+            context.setFile(file);
+            
+            GeneralView currentView = (GeneralView) this.getTopView();
+            
+            currentView.getController().respondToInput(context);
+
+
+        } else {
+            // Do nothing, the action was canceled
+        }
     }
 
     private void handleCutAction() {
