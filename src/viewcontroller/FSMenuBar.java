@@ -78,7 +78,7 @@ public class FSMenuBar extends JMenuBar {
             ParagraphMenuItem,
             PictureMenuItem;
         
-        public JButton Validate;
+        public JButton ValidateMenuItem;
         
         public FSMenuBar(ActionListener parentWindow) {
             this.parentWindow = parentWindow;
@@ -190,8 +190,8 @@ public class FSMenuBar extends JMenuBar {
             
             this.add(InsertMenu);
             
-            Validate = new JButton("Validate");
-            this.add(Validate);
+            ValidateMenuItem = new JButton("Validate");
+            this.add(ValidateMenuItem);
         }
         
         public void setActionListeners(ActionListener parent) {
@@ -236,6 +236,7 @@ public class FSMenuBar extends JMenuBar {
             ParagraphMenuItem.addActionListener(parent);
             PictureMenuItem.addActionListener(parent);
 
+            ValidateMenuItem.addActionListener(parent);
         }
         
         public static final String 
@@ -276,7 +277,8 @@ public class FSMenuBar extends JMenuBar {
             ITALIC_OPTION = "Italic",
             UNDERLINE_OPTION = "Underline",
             PARAGRAPH_OPTION = "Paragraph",
-            PICTURE_OPTION = "Picture";
+            PICTURE_OPTION = "Picture",
+            VALIDATE_OPTION = "Validate";
         
         public static final String EDIT_OPTION = "Edit";
         private void setText() {
@@ -321,6 +323,7 @@ public class FSMenuBar extends JMenuBar {
             UnderlineMenuItem.setText(UNDERLINE_OPTION);
             ParagraphMenuItem.setText(PARAGRAPH_OPTION);
             PictureMenuItem.setText(PICTURE_OPTION);
+            ValidateMenuItem.setText(VALIDATE_OPTION);
         }
     
 }
