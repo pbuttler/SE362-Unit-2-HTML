@@ -7,6 +7,7 @@ package viewcontroller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowListener;
+import javax.swing.JButton;
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -76,6 +77,8 @@ public class FSMenuBar extends JMenuBar {
             UnderlineMenuItem,
             ParagraphMenuItem,
             PictureMenuItem;
+        
+        public JButton Validate;
         
         public FSMenuBar(ActionListener parentWindow) {
             this.parentWindow = parentWindow;
@@ -187,7 +190,8 @@ public class FSMenuBar extends JMenuBar {
             
             this.add(InsertMenu);
             
-            
+            Validate = new JButton("Validate");
+            this.add(Validate);
         }
         
         public void setActionListeners(ActionListener parent) {
