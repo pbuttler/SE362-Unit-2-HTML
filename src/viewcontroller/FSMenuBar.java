@@ -358,6 +358,7 @@ public class FSMenuBar extends JMenuBar {
             IndentEntireBufferMenuItem = new JMenuItem();
             
             SourceMenu.add(ValidateMenuItem);
+            SourceMenu.add(OutlineViewMenuItem);            
             SourceMenu.add(new JSeparator()); // SEPARATOR
             SourceMenu.add(AutoWordWrapMenuCheckBox);
             SourceMenu.add(AutoIndentMenuCheckBox);
