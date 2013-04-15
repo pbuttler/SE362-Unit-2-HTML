@@ -209,8 +209,9 @@ public class EditorViewGUI extends EditorView implements GeneralViewGUI, Documen
     }
 
     private void addBlankTab() {
-        String docType = "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01//EN\" \"http://www.w3.org/TR/html4/strict.dtd\">";
-        String contents = docType + "\n<html>\n</html>";
+        //String docType = "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01//EN\" \"http://www.w3.org/TR/html4/strict.dtd\">";
+        //String contents = docType + "\n<html>\n</html>";
+        String contents = "<html>\n</html>";
 
         this.addTab("New File", contents);
     }
