@@ -370,6 +370,9 @@ public class FSViewManager extends JFrame implements ActionListener {
             case FSMenuBar.VALIDATE_OPTION:
                 handleValidateAction();
                 break;
+            case FSMenuBar.OUTLINE_OPTION:
+                handleOutlineAction();
+                break;
             case FSMenuBar.UNDO_OPTION:
                 handleUndoAction();
                 break;
@@ -696,6 +699,12 @@ public class FSViewManager extends JFrame implements ActionListener {
         ValidateActionContext context = new ValidateActionContext();
         GeneralView currentView = (GeneralView) this.getTopView();
         currentView.getController().respondToInput(context);
+    }
+    
+    private void handleOutlineAction(){
+     
+        //insert code
+        
     }
 
     private void handleZoomToFiftyAction() {
