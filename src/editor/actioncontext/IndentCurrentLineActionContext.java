@@ -14,6 +14,9 @@ import java.io.File;
 public class IndentCurrentLineActionContext extends GeneralActionContext{
     private int currentTab;
     private int currentLine;
+    /**
+     *
+     */
     public IndentCurrentLineActionContext(){
         
     }

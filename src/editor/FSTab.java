@@ -36,7 +36,13 @@ import javax.swing.text.TextAction;
 public class FSTab extends JPanel {
     private JEditorPane _editorPane;
     private String _title;
+    private static final int DEFAULT_FONT_SIZE = 12;
+    private static final int DEFAULT_FONT_INCREMENT = DEFAULT_FONT_SIZE / 2;
+    private int currentFontSize;
     
+    /**
+     *
+     */
     public FSTab() {
         _editorPane = new JEditorPane();
         
@@ -48,10 +54,19 @@ public class FSTab extends JPanel {
         this.add(scrollPane);
         ActionMap am = _editorPane.getActionMap();
         am.put(DefaultEditorKit.insertBreakAction, new IndentBreakAction());
+        
+        currentFontSize = DEFAULT_FONT_SIZE;
+        
+        zoom(100);
     
     }
     
 
+    /**
+     *
+     * @param tabName
+     * @param textAreaContents
+     */
     public FSTab(String tabName, String textAreaContents) {
         
         this();
@@ -62,22 +77,39 @@ public class FSTab extends JPanel {
         
     }
     
+    /**
+     *
+     * @return
+     */
     public String getTitle() {
         
         return _title;
         
     }
     
+    /**
+     *
+     * @return
+     */
     public String getContent() {
         
         return _editorPane.getText();
         
     }
     
+    /**
+     *
+     * @param textToInsert
+     */
     public void insertContent(String textToInsert) {
         insertContent(textToInsert, _editorPane.getCaretPosition());
     }
     
+    /**
+     *
+     * @param textToInsert
+     * @param position
+     */
     public void insertContent(String textToInsert, int position) {
          try {
             this._editorPane.getDocument().insertString(position, textToInsert, null);
@@ -87,6 +119,10 @@ public class FSTab extends JPanel {
         
     }
     
+    /**
+     *
+     * @param lister
+     */
     public void addEditorActionListener(DocumentListener lister) {
         
         _editorPane.getDocument().addDocumentListener(lister);
@@ -94,15 +130,28 @@ public class FSTab extends JPanel {
     }
     
 
+    /**
+     *
+     * @param level
+     */
     public void inserthxHeaderElement(int level) {
         this.insertSimpleElement("h" + level);
     }
     
+    /**
+     *
+     * @param content
+     */
     public void insertSimpleElement(String content) {
         String textToInsert = this.createSimpleElement(content);
         this.insertContent(textToInsert);
     }
     
+    /**
+     *
+     * @param numberOfItems
+     * @return
+     */
     public String createUnorderedListElement(int numberOfItems) {
 
         String textToInsert = "\n<ul>\n";
@@ -117,6 +166,12 @@ public class FSTab extends JPanel {
         return textToInsert;
     }
     
+    /**
+     *
+     * @param numRows
+     * @param numCols
+     * @return
+     */
     public String createTableElement(int numRows, int numCols) {
         String textToInsert = "\n<table>";
         int currRow = 0;
@@ -160,61 +215,100 @@ public class FSTab extends JPanel {
     }
 
 
+    /**
+     *
+     * @param tagName
+     * @return
+     */
     public String createSimpleElement(String tagName) {
         String textToInsert = String.format("\n<%s></%s>\n", tagName, tagName);
         return textToInsert;
     }
 
+    /**
+     *
+     */
     public void cut() {
         this._editorPane.cut();
     }
     
+    /**
+     *
+     */
     public void copy() {
         this._editorPane.copy();
     }
     
+    /**
+     *
+     */
     public void paste() {
         this._editorPane.paste();
 
     }
 
+    /**
+     *
+     */
     public void indentCurrentLine() {
         
     }
 
+    /**
+     *
+     */
     public void indentSelection() {
         
     }
 
+    /**
+     *
+     */
     public void indentAll() {
         
     }
     
     void zoom(int percent) {
         
-        if ( percent == 50 ) {
-            int f = this.getFont().getStyle();
-            Font newFont = new Font("", f, 15);
-            this._editorPane.setFont(newFont);
         
-        } else if (percent == 100 ) {
-            
-            int f = this.getFont().getStyle();
-            Font newFont = new Font("", f, 20);
-            this._editorPane.setFont(newFont);
-            
+        int newFontSize = DEFAULT_FONT_SIZE;
         
-        } else if ( percent == 200 ) {
+        if ( 100 != percent ) {
+//            float factor = ((float) percent) / 100;
+//            newFontSize= (int) (currentFontSize * factor);
             
-            int f = this.getFont().getStyle();
-            Font newFont = new Font("", f, 30);
-            this._editorPane.setFont(newFont);
+            if ( percent > 100 ) {
+                newFontSize = currentFontSize + DEFAULT_FONT_INCREMENT; 
+            }
+            
+            if ( percent < 100 ) {
+                
+                newFontSize = currentFontSize - DEFAULT_FONT_INCREMENT;
+                
+                if ( newFontSize < DEFAULT_FONT_INCREMENT) {
+                    newFontSize = DEFAULT_FONT_INCREMENT;
+                }
+                
+            }
             
         }
+        
+        setFontSize(newFontSize);
+        currentFontSize = newFontSize;
+        
+    }
+    
+    void setFontSize(int size) {
+        int f = this.getFont().getStyle();
+        Font newFont = new Font("monospaced", f, size);
+        this._editorPane.setFont(newFont);
     }
     
     // Indent code
-     public static class IndentBreakAction extends TextAction {
+     /**
+     *
+     */
+    public static class IndentBreakAction extends TextAction {
          /**
          * Creates this object with the appropriate identifier.
          */

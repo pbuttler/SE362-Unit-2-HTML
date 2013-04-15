@@ -14,6 +14,9 @@ import java.io.File;
 public class ZoomActionContext extends GeneralActionContext{
     private int currentTab;
     private int percentZoom;
+    /**
+     *
+     */
     public ZoomActionContext(){
         
     }

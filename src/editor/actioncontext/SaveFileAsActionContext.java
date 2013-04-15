@@ -14,6 +14,9 @@ import java.io.File;
 public class SaveFileAsActionContext extends GeneralActionContext{
     private File newFile;
     private int currentTab;
+    /**
+     *
+     */
     public SaveFileAsActionContext(){
         
     }

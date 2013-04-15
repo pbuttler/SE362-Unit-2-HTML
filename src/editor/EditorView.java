@@ -11,9 +11,15 @@ import viewcontroller.GeneralView;
  * @author Isioma
  */
 public abstract class EditorView extends GeneralView {
+    /**
+     *
+     */
     public enum EditorInChan implements InputChannel {
 		
-		ICSampleAction
+		/**
+         *
+         */
+        ICSampleAction
 		
 	}
 	
@@ -22,7 +28,10 @@ public abstract class EditorView extends GeneralView {
 	 */
 	public enum EditorOutChan implements OutputChannel {
 		
-		OCSampleAction
+		/**
+         *
+         */
+        OCSampleAction
 		
 	}
 }

@@ -15,6 +15,9 @@ public class IndentSelectedTextActionContext extends GeneralActionContext{
     private int currentTab;
     private int startLineNumber;
     private int endLineNumber;
+    /**
+     *
+     */
     public IndentSelectedTextActionContext(){
         
     }

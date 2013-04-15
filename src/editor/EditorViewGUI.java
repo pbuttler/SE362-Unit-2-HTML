@@ -6,12 +6,14 @@ package editor;
 
 import actioncontext.GeneralActionContext;
 import editor.actioncontext.*;
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import javax.swing.GroupLayout;
 import javax.swing.JPanel;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import main.FSViewManager;
 import viewcontroller.GeneralView;
 import viewcontroller.GeneralViewGUI;
 
@@ -27,6 +29,9 @@ public class EditorViewGUI extends EditorView implements GeneralViewGUI, Documen
     private JPanel _mainPanel;
     private FSTabbedPane _tabs;
 
+    /**
+     *
+     */
     public EditorViewGUI() {
 
         _mainPanel = new JPanel();
@@ -61,6 +66,10 @@ public class EditorViewGUI extends EditorView implements GeneralViewGUI, Documen
         _mainPanel.setVisible(visible);
     }
 
+    /**
+     *
+     * @param e
+     */
     public void actionPerformed(ActionEvent e) {
     }
 
@@ -68,7 +77,8 @@ public class EditorViewGUI extends EditorView implements GeneralViewGUI, Documen
      * So display output is given the context in a switch. Follow the method you
      * want - Luke
     *
-     */
+    * @param context 
+    */
     public void displayOutput(GeneralActionContext context) {
 
         if (context instanceof NewFileActionContext) {
@@ -176,6 +186,17 @@ public class EditorViewGUI extends EditorView implements GeneralViewGUI, Documen
                     this.handleZoomToTwoHundredAction(zoomContext);
                     break;
             }
+        } else if (context instanceof UndoActionContext) {
+            handleUndoAction((UndoActionContext) context);
+        } else if (context instanceof RedoActionContext) {
+
+            handleRedoAction((RedoActionContext) context);
+
+        
+        } else if (context instanceof ExitActionContext) {
+
+            handleExitAction((ExitActionContext) context);
+
         }
 
 
@@ -213,6 +234,7 @@ public class EditorViewGUI extends EditorView implements GeneralViewGUI, Documen
      */
     /**
      * DocumentListener methods *
+     * @param de 
      */
     @Override
     public void insertUpdate(DocumentEvent de) {
@@ -231,6 +253,10 @@ public class EditorViewGUI extends EditorView implements GeneralViewGUI, Documen
 
     }
 
+    /**
+     *
+     * @param de
+     */
     @Override
     public void removeUpdate(DocumentEvent de) {
 
@@ -246,41 +272,73 @@ public class EditorViewGUI extends EditorView implements GeneralViewGUI, Documen
         this.controller.respondToInput(context);
     }
 
+    /**
+     *
+     * @param de
+     */
     @Override
     public void changedUpdate(DocumentEvent de) {
     }
 
     /**
      * Handle GUI Actions *
+     * @param context 
      */
     public void handleNewFileAction(NewFileActionContext context) {
         this.addBlankTab();
     }
 
+    /**
+     *
+     * @param context
+     */
     public void handleOpenFileAction(OpenFileActionContext context) {
 
         this.addTab(context.getTitle(), context.getContents());
 
     }
 
+    /**
+     *
+     * @param context
+     */
     public void handleSaveAction(SaveFileActionContext context) {
 
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 
     }
 
+    /**
+     *
+     * @param context
+     */
     public void handleSaveAsAction(SaveFileAsActionContext context) {
 
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 
     }
 
+    /**
+     *
+     * @param context
+     */
     @Override
     public void handleCloseTabAction(CloseTabActionContext context) {
 
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Component selected = _tabs.getSelectedComponent();
+        if (selected != null) {
+
+            _tabs.remove(selected);
+            
+        }
+        
+        
     }
 
+    /**
+     *
+     * @param context
+     */
     @Override
     public void handleCutAction(CutActionContext context) {
 
@@ -289,6 +347,10 @@ public class EditorViewGUI extends EditorView implements GeneralViewGUI, Documen
 
     }
 
+    /**
+     *
+     * @param context
+     */
     @Override
     public void handleCopyAction(CopyActionContext context) {
 
@@ -297,71 +359,119 @@ public class EditorViewGUI extends EditorView implements GeneralViewGUI, Documen
 
     }
 
+    /**
+     *
+     * @param context
+     */
     @Override
     public void handlePasteAction(PasteActionContext context) {
         FSTab currentTab = this.getCurrentTab();
         currentTab.paste();
     }
 
+    /**
+     *
+     * @param context
+     */
     @Override
     public void handleViewAsWebpageAction(ViewAsWebpageActionContext context) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     *
+     * @param context
+     */
     @Override
     public void handleIndentCurrentLineAction(IndentCurrentLineActionContext context) {
         FSTab currentTab = this.getCurrentTab();
         currentTab.indentCurrentLine();
     }
 
+    /**
+     *
+     * @param context
+     */
     @Override
     public void handleIndentSelectedTextAction(IndentSelectedTextActionContext context) {
         FSTab currentTab = this.getCurrentTab();
         currentTab.indentSelection();
     }
 
+    /**
+     *
+     * @param context
+     */
     @Override
     public void handleIndentEntireBufferAction(IndentEntireBufferActionContext context) {
         FSTab currentTab = this.getCurrentTab();
         currentTab.indentAll();
     }
 
+    /**
+     *
+     * @param context
+     */
     @Override
     public void handleH1Action(InsertHTMLActionContext context) {
         FSTab currentTab = this.getCurrentTab();
         currentTab.inserthxHeaderElement(1);
     }
 
+    /**
+     *
+     * @param context
+     */
     @Override
     public void handleH2Action(InsertHTMLActionContext context) {
         FSTab currentTab = this.getCurrentTab();
         currentTab.inserthxHeaderElement(2);
     }
 
+    /**
+     *
+     * @param context
+     */
     @Override
     public void handleH3Action(InsertHTMLActionContext context) {
         FSTab currentTab = this.getCurrentTab();
         currentTab.inserthxHeaderElement(3);
     }
 
+    /**
+     *
+     * @param context
+     */
     @Override
     public void handleH4Action(InsertHTMLActionContext context) {
         FSTab currentTab = this.getCurrentTab();
         currentTab.inserthxHeaderElement(4);
     }
 
+    /**
+     *
+     * @param context
+     */
     @Override
     public void handleH5Action(InsertHTMLActionContext context) {
         FSTab currentTab = this.getCurrentTab();
         currentTab.inserthxHeaderElement(4);
     }
 
+    /**
+     *
+     * @param context
+     */
     @Override
     public void handleH6Action(InsertHTMLActionContext context) {
         FSTab currentTab = this.getCurrentTab();
         currentTab.inserthxHeaderElement(6);
     }
 
+    /**
+     *
+     * @param context
+     */
     @Override
     public void handleTableAction(InsertHTMLActionContext context) {
 
@@ -373,6 +483,10 @@ public class EditorViewGUI extends EditorView implements GeneralViewGUI, Documen
         currentTab.insertContent(table);
     }
 
+    /**
+     *
+     * @param context
+     */
     @Override
     public void handleListAction(InsertHTMLActionContext context) {
 
@@ -384,34 +498,58 @@ public class EditorViewGUI extends EditorView implements GeneralViewGUI, Documen
         currentTab.insertContent(list);
     }
 
+    /**
+     *
+     * @param context
+     */
     @Override
     public void handleFontEmphasisAction(InsertHTMLActionContext context) {
     }
 
+    /**
+     *
+     * @param context
+     */
     @Override
     public void handleBoldAction(InsertHTMLActionContext context) {
         FSTab currentTab = this.getCurrentTab();
         currentTab.insertSimpleElement("b");
     }
 
+    /**
+     *
+     * @param context
+     */
     @Override
     public void handleItalicAction(InsertHTMLActionContext context) {
         FSTab currentTab = this.getCurrentTab();
         currentTab.insertSimpleElement("i");
     }
 
+    /**
+     *
+     * @param context
+     */
     @Override
     public void handleUnderlineAction(InsertHTMLActionContext context) {
         FSTab currentTab = this.getCurrentTab();
         currentTab.insertSimpleElement("u");
     }
 
+    /**
+     *
+     * @param context
+     */
     @Override
     public void handleParagraphAction(InsertHTMLActionContext context) {
         FSTab currentTab = this.getCurrentTab();
         currentTab.insertSimpleElement("p");
     }
 
+    /**
+     *
+     * @param context
+     */
     @Override
     public void handlePictureAction(InsertHTMLActionContext context) {
         String url = (String) context.getData().get("url");
@@ -420,33 +558,78 @@ public class EditorViewGUI extends EditorView implements GeneralViewGUI, Documen
         currentTab.insertContent("<img src=\"" + url + "\" alt=\"" + altText + "\">");
     }
     
+    /**
+     *
+     * @param context
+     */
     @Override
     public void handleZoomToFiftyAction(ZoomActionContext context) {
         FSTab currentTab = this.getCurrentTab();
         currentTab.zoom(context.getPercentZoom());
     }
 
+    /**
+     *
+     * @param context
+     */
     @Override
     public void handleZoomToHundredAction(ZoomActionContext context) {
         FSTab currentTab = this.getCurrentTab();
         currentTab.zoom(context.getPercentZoom());
     }
 
+    /**
+     *
+     * @param context
+     */
     @Override
     public void handleZoomToTwoHundredAction(ZoomActionContext context) {
         FSTab currentTab = this.getCurrentTab();
         currentTab.zoom(context.getPercentZoom());
     }
 
+    /**
+     *
+     * @param context
+     */
     @Override
     public void handleDocumentUpdateAction(DocumentUpdateActionContext context) {
 //        System.out.println(context.getContent());
     }
 
 
+    /**
+     *
+     * @param context
+     */
     @Override
     public void handleValidateAction(ValidateActionContext context) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    /**
+     *
+     * @param context
+     */
+    @Override
+    public void handleUndoAction(UndoActionContext context) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    /**
+     *
+     * @param context
+     */
+    @Override
+    public void handleRedoAction(RedoActionContext context) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void handleExitAction(ExitActionContext context) {
+        
+        FSViewManager.close();
+       
     }
     
 

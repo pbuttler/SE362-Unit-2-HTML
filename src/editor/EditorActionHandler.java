@@ -12,25 +12,61 @@ import editor.actioncontext.*;
  */
 public interface EditorActionHandler {
     
-     void handleNewFileAction(NewFileActionContext context);
+     /**
+     *
+     * @param context
+     */
+    void handleNewFileAction(NewFileActionContext context);
     
-     void handleOpenFileAction(OpenFileActionContext context);
+     /**
+     *
+     * @param context
+     */
+    void handleOpenFileAction(OpenFileActionContext context);
     
-     void handleSaveAction(SaveFileActionContext context);
+     /**
+     *
+     * @param context
+     */
+    void handleSaveAction(SaveFileActionContext context);
 
-     void handleSaveAsAction(SaveFileAsActionContext context);
+     /**
+     *
+     * @param context
+     */
+    void handleSaveAsAction(SaveFileAsActionContext context);
 
-     void handleCloseTabAction(CloseTabActionContext context);
+     /**
+     *
+     * @param context
+     */
+    void handleCloseTabAction(CloseTabActionContext context);
 
-     void handleCutAction(CutActionContext context);
+     /**
+     *
+     * @param context
+     */
+    void handleCutAction(CutActionContext context);
 
-     void handleCopyAction(CopyActionContext context);
+     /**
+     *
+     * @param context
+     */
+    void handleCopyAction(CopyActionContext context);
 
-     void handlePasteAction(PasteActionContext context);
+     /**
+     *
+     * @param context
+     */
+    void handlePasteAction(PasteActionContext context);
 
 //     void handleViewAction(ViewActionContext context);
 
-     void handleViewAsWebpageAction(ViewAsWebpageActionContext context);
+     /**
+     *
+     * @param context
+     */
+    void handleViewAsWebpageAction(ViewAsWebpageActionContext context);
 
 //     void handleZoomToAction(ZoomActionContext context);
 
@@ -42,54 +78,161 @@ public interface EditorActionHandler {
 
 //     void handleSyntaxHighlightAction(SyntaxHighlightActionContext context);
 
-     void handleIndentCurrentLineAction(IndentCurrentLineActionContext context);
+     /**
+     *
+     * @param context
+     */
+    void handleIndentCurrentLineAction(IndentCurrentLineActionContext context);
 
-     void handleIndentSelectedTextAction(IndentSelectedTextActionContext context);
+     /**
+     *
+     * @param context
+     */
+    void handleIndentSelectedTextAction(IndentSelectedTextActionContext context);
 
-     void handleIndentEntireBufferAction(IndentEntireBufferActionContext context);
+     /**
+     *
+     * @param context
+     */
+    void handleIndentEntireBufferAction(IndentEntireBufferActionContext context);
 
 //     void handleInsertAction(InsertHTMLActionContext context);
 
 //     void handleHeaderAction(InsertHTMLActionContext context);
 
-     void handleH1Action(InsertHTMLActionContext context);
+     /**
+     *
+     * @param context
+     */
+    void handleH1Action(InsertHTMLActionContext context);
 
-     void handleH2Action(InsertHTMLActionContext context);
+     /**
+     *
+     * @param context
+     */
+    void handleH2Action(InsertHTMLActionContext context);
 
-     void handleH3Action(InsertHTMLActionContext context);
+     /**
+     *
+     * @param context
+     */
+    void handleH3Action(InsertHTMLActionContext context);
 
-     void handleH4Action(InsertHTMLActionContext context);
+     /**
+     *
+     * @param context
+     */
+    void handleH4Action(InsertHTMLActionContext context);
 
-     void handleH5Action(InsertHTMLActionContext context);
+     /**
+     *
+     * @param context
+     */
+    void handleH5Action(InsertHTMLActionContext context);
 
-     void handleH6Action(InsertHTMLActionContext context);
+     /**
+     *
+     * @param context
+     */
+    void handleH6Action(InsertHTMLActionContext context);
 
-     void handleTableAction(InsertHTMLActionContext context);
+     /**
+     *
+     * @param context
+     */
+    void handleTableAction(InsertHTMLActionContext context);
 
-     void handleListAction(InsertHTMLActionContext context);
+     /**
+     *
+     * @param context
+     */
+    void handleListAction(InsertHTMLActionContext context);
 
-     void handleFontEmphasisAction(InsertHTMLActionContext context);
+     /**
+     *
+     * @param context
+     */
+    void handleFontEmphasisAction(InsertHTMLActionContext context);
 
-     void handleBoldAction(InsertHTMLActionContext context);
+     /**
+     *
+     * @param context
+     */
+    void handleBoldAction(InsertHTMLActionContext context);
 
-     void handleItalicAction(InsertHTMLActionContext context);
+     /**
+     *
+     * @param context
+     */
+    void handleItalicAction(InsertHTMLActionContext context);
 
-     void handleUnderlineAction(InsertHTMLActionContext context);
+     /**
+     *
+     * @param context
+     */
+    void handleUnderlineAction(InsertHTMLActionContext context);
 
-     void handleParagraphAction(InsertHTMLActionContext context);
+     /**
+     *
+     * @param context
+     */
+    void handleParagraphAction(InsertHTMLActionContext context);
 
-     void handlePictureAction(InsertHTMLActionContext context);
+     /**
+     *
+     * @param context
+     */
+    void handlePictureAction(InsertHTMLActionContext context);
      
-     void handleDocumentUpdateAction(DocumentUpdateActionContext context);
+     /**
+     *
+     * @param context
+     */
+    void handleDocumentUpdateAction(DocumentUpdateActionContext context);
      
 
+    /**
+     *
+     * @param context
+     */
     void handleZoomToFiftyAction(ZoomActionContext context);
 
+    /**
+     *
+     * @param context
+     */
     void handleZoomToHundredAction(ZoomActionContext context);
 
+    /**
+     *
+     * @param context
+     */
     void handleZoomToTwoHundredAction(ZoomActionContext context);
 
-     void handleValidateAction(ValidateActionContext context);
+     /**
+     *
+     * @param context
+     */
+    void handleValidateAction(ValidateActionContext context);
+     
+     /**
+     *
+     * @param context
+     */
+    void handleUndoAction(UndoActionContext context);
+     
+     /**
+     *
+     * @param context
+     */
+    void handleRedoAction(RedoActionContext context);
+     /**
+     *
+     * @param context
+     */
+    void handleExitAction(ExitActionContext context);
+     
+     
 
 
 }

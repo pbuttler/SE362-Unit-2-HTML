@@ -20,6 +20,9 @@ import javax.swing.UnsupportedLookAndFeelException;
  */
 public class FiveSecondsHtmlEditor implements WindowListener {
 
+    /**
+     *
+     */
     public static void initialize() {
         
     }
@@ -62,23 +65,51 @@ public class FiveSecondsHtmlEditor implements WindowListener {
     }
 
     
+    /**
+     *
+     * @param e
+     */
     public void windowOpened(WindowEvent e) {}
 
     
+    /**
+     *
+     * @param e
+     */
     public void windowClosing(WindowEvent e) {}
 
     
+    /**
+     *
+     * @param e
+     */
     public void windowClosed(WindowEvent e) {}
 
     
+    /**
+     *
+     * @param e
+     */
     public void windowIconified(WindowEvent e) {}
 
     
+    /**
+     *
+     * @param e
+     */
     public void windowDeiconified(WindowEvent e) {}
 
     
+    /**
+     *
+     * @param e
+     */
     public void windowActivated(WindowEvent e) {}
 
     
+    /**
+     *
+     * @param e
+     */
     public void windowDeactivated(WindowEvent e) {}
 }

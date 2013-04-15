@@ -27,6 +27,11 @@ import org.w3c.tidy.Tidy;
  */
 public class EditorChecker {
     
+    /**
+     *
+     * @param currentBuffer
+     * @return
+     */
     public boolean validator(String currentBuffer){
         Tidy tidy = new Tidy();
         boolean isValid = false;

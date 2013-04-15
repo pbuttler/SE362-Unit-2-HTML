@@ -19,6 +19,9 @@ public class SaveFileActionContext extends GeneralActionContext{
     // I dont think we need this if we just pass the currentTab. Not sure..
     private String _contents;
     
+    /**
+     *
+     */
     public SaveFileActionContext(){
     }
 

@@ -13,6 +13,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JSeparator;
 
 /**
  *
@@ -20,37 +21,43 @@ import javax.swing.JPanel;
  */
 public class FSMenuBar extends JMenuBar {
     
-        public ActionListener parentWindow;
+        /**
+     *
+     */
+    public ActionListener parentWindow;
         
         
 
-        public JMenu fileMenu;
-        public JMenuItem // File menu items
+        private JMenu fileMenu;
+        private JMenuItem // File menu items
             newFileMenuItem,
             OpenMenuItem,
             SaveMenuItem,
             SaveAsMenuItem,
-            CloseMenuItem;
+            ExitMenuItem;
 
 
-        public JMenu EditMenu;
-        public JMenuItem // Edit menu items
+        private JMenu EditMenu;
+        private JMenuItem // Edit menu items
+            UndoMenuItem,
+            RedoMenuItem,
             CutMenuItem,
             CopyMenuItem,
             PasteMenuItem;
 
-        public JMenu 
+        private JMenu 
                 ViewMenu,
                 ZoomToMenu;
 
-        public JMenuItem // View menu items
+        private JMenuItem // View menu items
             ViewAsWebpageMenuItem,
             FiftyPercentZoom,
             OneHundredPercentZoom,
             TwoHundredPercentZoom;
 
-        public JMenu OptionsMenu;
-        public JMenuItem // Options menu items
+        private JMenu SourceMenu;
+        private JMenuItem // Options menu items
+            ValidateMenuItem,
             AutoWordWrapMenuCheckBox,
             AutoIndentMenuCheckBox,
             SyntaxHighlightingMenuCheckbox,
@@ -58,12 +65,12 @@ public class FSMenuBar extends JMenuBar {
             IndentSelectedTextMenuItem,
             IndentEntireBufferMenuItem;
 
-        public JMenu 
+        private JMenu 
                 InsertMenu,
                 headingsMenu,
                 FontEmphasisMenu;
 
-        public JMenuItem // Insert menu items
+        private JMenuItem // Insert menu items
             h1HeaderMenuItem,
             h2HeaderMenuItem,
             h3HeaderMenuItem,
@@ -78,9 +85,200 @@ public class FSMenuBar extends JMenuBar {
             ParagraphMenuItem,
             PictureMenuItem;
         
-        public JButton ValidateMenuItem;
+        private JMenu  
+            WindowMenu;
         
-        public FSMenuBar(ActionListener parentWindow) {
+        private JMenuItem
+                CloseMenuItem;
+        
+        /**
+         *
+         */
+        public static final String 
+            FILE_MENU_NAME = "File",
+            /**
+             *
+             */
+            NEW_FILE_OPTION = "New File...",
+            /**
+             *
+             */
+            OPEN_FILE_OPTION = "Open File...",
+            /**
+             *
+             */
+            SAVE_OPTION = "Save...",
+            /**
+             *
+             */
+            SAVEAS_OPTION = "Save As...",
+            /**
+             *
+             */    
+            EXIT_OPTION = "Exit",
+            
+            /**
+             *
+             */
+            CLOSE_OPTION = "Close Tab",
+            /**
+             *
+             */
+            CUT_OPTION = "Cut",
+            /**
+             *
+             */
+            COPY_OPTION = "Copy",
+            /**
+             *
+             */
+            PASTE_OPTION = "Paste",
+            /**
+             *
+             */
+            VIEW_OPTION = "View",
+            /**
+             *
+             */
+            VIEWASWEBPAGE_OPTION = "View As Webpage",
+            /**
+             *
+             */
+            ZOOMTO_OPTION = "Zoom",
+            /**
+             *
+             */
+            FIFTY_OPTION = "Zoom Out",
+            /**
+             *
+             */
+            HUNDRED_OPTION = "Reset",
+            /**
+             *
+             */
+            TWOHUNDRED_OPTION = "Zoom In",
+            /**
+             *
+             */
+            SOURCE_OPTION = "Source",
+            /**
+             *
+             */
+            AUTOWORDWRAP_OPTION = "Auto Word Wrap",
+            /**
+             *
+             */
+            AUTOINDENT_OPTION = "Auto Indent",
+            /**
+             *
+             */
+            SYNTAXHIGHLIGHTING_OPTION = "Syntax Highlighting",
+            /**
+             *
+             */
+            INDENTCURRENTLINE_OPTION = "Indent Current Line",
+            /**
+             *
+             */
+            INDENTSELECTEDTEXT_OPTION = "Indent Selected Text",
+            /**
+             *
+             */
+            INDENTENTIREBUFFER_OPTION = "Indent Entire Buffer",
+            /**
+             *
+             */
+            INSERT_OPTION = "Insert",
+            /**
+             *
+             */
+            HEADER_OPTION = "Header",
+            /**
+             *
+             */
+            H1_OPTION = "H1",
+            /**
+             *
+             */
+            H2_OPTION = "H2",
+            /**
+             *
+             */
+            H3_OPTION = "H3",
+            /**
+             *
+             */
+            H4_OPTION = "H4",
+            /**
+             *
+             */
+            H5_OPTION = "H5",
+            /**
+             *
+             */
+            H6_OPTION = "H6",
+            /**
+             *
+             */
+            TABLE_OPTION = "Table",
+            /**
+             *
+             */
+            LIST_OPTION = "List",
+            /**
+             *
+             */
+            FONTEMPHASIS_OPTION = "Font Emphasis",
+            /**
+             *
+             */
+            BOLD_OPTION = "Bold",
+            /**
+             *
+             */
+            ITALIC_OPTION = "Italic",
+            /**
+             *
+             */
+            UNDERLINE_OPTION = "Underline",
+            /**
+             *
+             */
+            PARAGRAPH_OPTION = "Paragraph",
+            /**
+             *
+             */
+            PICTURE_OPTION = "Picture",
+            /**
+             *
+             */
+            VALIDATE_OPTION = "Validate",
+            /**
+             *
+             */
+            EDIT_OPTION = "Edit",
+            /**
+             *
+             */
+            UNDO_OPTION = "Undo",
+            /**
+             *
+             */
+            REDO_OPTION = "Redo",
+            /**
+             *
+             */
+            WINDOW_MENU = "Window";
+        
+        
+        
+            
+        
+        /**
+     *
+     * @param parentWindow
+     */
+    public FSMenuBar(ActionListener parentWindow) {
             this.parentWindow = parentWindow;
             initializeMenus();
 //            initializeListeners();
@@ -95,21 +293,32 @@ public class FSMenuBar extends JMenuBar {
             OpenMenuItem = new JMenuItem();
             SaveMenuItem = new JMenuItem();
             SaveAsMenuItem = new JMenuItem();
-            CloseMenuItem = new JMenuItem();
+            ExitMenuItem = new JMenuItem();
+            
             
             fileMenu.add(newFileMenuItem);
+            fileMenu.add(new JSeparator()); // SEPARATOR
             fileMenu.add(OpenMenuItem);
+            fileMenu.add(new JSeparator()); // SEPARATOR
             fileMenu.add(SaveMenuItem);
             fileMenu.add(SaveAsMenuItem);
-            fileMenu.add(CloseMenuItem);
+            fileMenu.add(new JSeparator()); // SEPARATOR
+            fileMenu.add(ExitMenuItem);
+            
             this.add(fileMenu);
 
             EditMenu = new JMenu();
         
+            UndoMenuItem = new JMenuItem();
+            RedoMenuItem = new JMenuItem();
+            
             CutMenuItem = new JMenuItem();
             CopyMenuItem = new JMenuItem();
             PasteMenuItem = new JMenuItem();
         
+            EditMenu.add(UndoMenuItem);
+            EditMenu.add(RedoMenuItem);
+            EditMenu.add(new JSeparator()); // SEPARATOR
             EditMenu.add(CutMenuItem);
             EditMenu.add(CopyMenuItem);
             EditMenu.add(PasteMenuItem);            
@@ -124,6 +333,7 @@ public class FSMenuBar extends JMenuBar {
             TwoHundredPercentZoom = new JMenuItem();
             
             ViewMenu.add(ViewAsWebpageMenuItem);
+            ViewMenu.add(new JSeparator()); // SEPARATOR
             ViewMenu.add(ZoomToMenu);
             ZoomToMenu.add(FiftyPercentZoom);
             ZoomToMenu.add(OneHundredPercentZoom);
@@ -131,8 +341,9 @@ public class FSMenuBar extends JMenuBar {
             
             this.add(ViewMenu);
 
-            OptionsMenu = new JMenu();
+            SourceMenu = new JMenu();
             
+            ValidateMenuItem = new JMenuItem();
             AutoWordWrapMenuCheckBox = new JCheckBoxMenuItem();
             AutoIndentMenuCheckBox = new JCheckBoxMenuItem();
             SyntaxHighlightingMenuCheckbox = new JCheckBoxMenuItem();
@@ -140,14 +351,18 @@ public class FSMenuBar extends JMenuBar {
             IndentSelectedTextMenuItem = new JMenuItem();
             IndentEntireBufferMenuItem = new JMenuItem();
             
-            OptionsMenu.add(AutoWordWrapMenuCheckBox);
-            OptionsMenu.add(AutoIndentMenuCheckBox);
-            OptionsMenu.add(SyntaxHighlightingMenuCheckbox);
-            OptionsMenu.add(IndentCurrentLineMenuItem);
-            OptionsMenu.add(IndentSelectedTextMenuItem);
-            OptionsMenu.add(IndentEntireBufferMenuItem);
+            SourceMenu.add(ValidateMenuItem);
+            SourceMenu.add(new JSeparator()); // SEPARATOR
+            SourceMenu.add(AutoWordWrapMenuCheckBox);
+            SourceMenu.add(AutoIndentMenuCheckBox);
+            SourceMenu.add(new JSeparator()); // SEPARATOR
+            SourceMenu.add(SyntaxHighlightingMenuCheckbox);
+            SourceMenu.add(new JSeparator()); // SEPARATOR
+            SourceMenu.add(IndentCurrentLineMenuItem);
+            SourceMenu.add(IndentSelectedTextMenuItem);
+            SourceMenu.add(IndentEntireBufferMenuItem);
             
-            this.add(OptionsMenu);
+            this.add(SourceMenu);
             
             InsertMenu = new JMenu();
             headingsMenu = new JMenu();
@@ -190,17 +405,29 @@ public class FSMenuBar extends JMenuBar {
             
             this.add(InsertMenu);
             
-            ValidateMenuItem = new JButton();
-            this.add(ValidateMenuItem);
+            
+            this.WindowMenu = new JMenu();
+
+            CloseMenuItem = new JMenuItem();
+            fileMenu.add(CloseMenuItem);
+            
+            WindowMenu.add(CloseMenuItem);
+            
+            this.add(WindowMenu);
         }
         
-        public void setActionListeners(ActionListener parent) {
+        /**
+     *
+     * @param parent
+     */
+    public void setActionListeners(ActionListener parent) {
             
             newFileMenuItem.addActionListener(parent);
             OpenMenuItem.addActionListener(parent);
             SaveMenuItem.addActionListener(parent);
             SaveAsMenuItem.addActionListener(parent);
-            CloseMenuItem.addActionListener(parent);
+            ExitMenuItem.addActionListener(parent);
+            
             
             CutMenuItem.addActionListener(parent);
             CopyMenuItem.addActionListener(parent);
@@ -237,50 +464,14 @@ public class FSMenuBar extends JMenuBar {
             PictureMenuItem.addActionListener(parent);
 
             ValidateMenuItem.addActionListener(parent);
+            
+            CloseMenuItem.addActionListener(parent);
+            
+            UndoMenuItem.addActionListener(parent);
+            RedoMenuItem.addActionListener(parent);
         }
         
-        public static final String 
-            FILE_MENU_NAME = "File",
-            NEW_FILE_OPTION = "New",
-            OPEN_FILE_OPTION = "Open",
-            SAVE_OPTION = "Save",
-            SAVEAS_OPTION = "Save As",
-            CLOSE_OPTION = "Close",
-            CUT_OPTION = "Cut",
-            COPY_OPTION = "Copy",
-            PASTE_OPTION = "Paste",
-            VIEW_OPTION = "View",
-            VIEWASWEBPAGE_OPTION = "View As Webpage",
-            ZOOMTO_OPTION = "Zoom To..",
-            FIFTY_OPTION = "50%",
-            HUNDRED_OPTION = "100%",
-            TWOHUNDRED_OPTION = "200%",
-            OPTIONS_OPTION = "Options",
-            AUTOWORDWRAP_OPTION = "Auto Word Wrap",
-            AUTOINDENT_OPTION = "Auto Indent",
-            SYNTAXHIGHLIGHTING_OPTION = "Syntax Highlighting",
-            INDENTCURRENTLINE_OPTION = "Indent Current Line",
-            INDENTSELECTEDTEXT_OPTION = "Indent Selected Text",
-            INDENTENTIREBUFFER_OPTION = "Indent Entire Buffer",
-            INSERT_OPTION = "Insert",
-            HEADER_OPTION = "Header",
-            H1_OPTION = "<h1>",
-            H2_OPTION = "<h2>",
-            H3_OPTION = "<h3>",
-            H4_OPTION = "<h4>",
-            H5_OPTION = "<h5>",
-            H6_OPTION = "<h6>",
-            TABLE_OPTION = "Table",
-            LIST_OPTION = "List",
-            FONTEMPHASIS_OPTION = "Font Emphasis",
-            BOLD_OPTION = "Bold",
-            ITALIC_OPTION = "Italic",
-            UNDERLINE_OPTION = "Underline",
-            PARAGRAPH_OPTION = "Paragraph",
-            PICTURE_OPTION = "Picture",
-            VALIDATE_OPTION = "Validate";
         
-        public static final String EDIT_OPTION = "Edit";
         private void setText() {
             
             fileMenu.setText(FILE_MENU_NAME);
@@ -288,7 +479,11 @@ public class FSMenuBar extends JMenuBar {
             OpenMenuItem.setText(OPEN_FILE_OPTION);
             SaveMenuItem.setText(SAVE_OPTION);
             SaveAsMenuItem.setText(SAVEAS_OPTION);
-            CloseMenuItem.setText(CLOSE_OPTION);
+            ExitMenuItem.setText(EXIT_OPTION);
+            
+            
+            this.UndoMenuItem.setText(UNDO_OPTION);
+            this.RedoMenuItem.setText(REDO_OPTION);
             
             EditMenu.setText(EDIT_OPTION);
             CutMenuItem.setText(CUT_OPTION);
@@ -300,7 +495,7 @@ public class FSMenuBar extends JMenuBar {
             FiftyPercentZoom.setText(FIFTY_OPTION);
             OneHundredPercentZoom.setText(HUNDRED_OPTION);
             TwoHundredPercentZoom.setText(TWOHUNDRED_OPTION);
-            OptionsMenu.setText(OPTIONS_OPTION);
+            SourceMenu.setText(SOURCE_OPTION);
             AutoWordWrapMenuCheckBox.setText(AUTOWORDWRAP_OPTION);
             AutoIndentMenuCheckBox.setText(AUTOINDENT_OPTION);
             SyntaxHighlightingMenuCheckbox.setText(SYNTAXHIGHLIGHTING_OPTION);
@@ -324,6 +519,11 @@ public class FSMenuBar extends JMenuBar {
             ParagraphMenuItem.setText(PARAGRAPH_OPTION);
             PictureMenuItem.setText(PICTURE_OPTION);
             ValidateMenuItem.setText(VALIDATE_OPTION);
+            
+            WindowMenu.setText(WINDOW_MENU);
+            CloseMenuItem.setText(CLOSE_OPTION);
+            
+            
         }
     
 }

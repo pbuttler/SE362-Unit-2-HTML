@@ -13,6 +13,9 @@ import java.io.File;
  */
 public class ViewAsWebpageActionContext extends GeneralActionContext{
     private int currentTab;
+    /**
+     *
+     */
     public ViewAsWebpageActionContext(){
         
     }

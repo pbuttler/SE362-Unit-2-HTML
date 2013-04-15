@@ -13,6 +13,9 @@ import java.io.File;
  */
 public class ValidateActionContext extends GeneralActionContext{
     private int currentTab;
+    /**
+     *
+     */
     public ValidateActionContext(){
         
     }

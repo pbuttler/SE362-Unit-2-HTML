@@ -78,9 +78,7 @@ public abstract class GeneralController {
 	/**
 	 * This is the method called by the view to send input.
 	 * 
-	 * @param 	message		The input message, formatted as a string.
-	 * @param   channel		The input channel, which indicates the source
-	 * 						 of the input.
+         * @param context 
 	 */
 	public abstract void respondToInput( GeneralActionContext context );
 	

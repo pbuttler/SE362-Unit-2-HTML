@@ -14,6 +14,12 @@ import java.util.ArrayList;
  */
 public class Utilities {
     
+    /**
+     *
+     * @param file
+     * @return
+     * @throws IOException
+     */
     public static String[] readFileToArray(File file) throws IOException {
         
         java.io.FileReader reader  = new java.io.FileReader(file);
@@ -29,6 +35,12 @@ public class Utilities {
         return linesAsArray;
     }
     
+    /**
+     *
+     * @param file
+     * @return
+     * @throws IOException
+     */
     public static String readFileToString(File file)  throws IOException {
         
         java.io.FileReader reader  = new java.io.FileReader(file);
@@ -43,6 +55,11 @@ public class Utilities {
         return outputString;
     }
     
+    /**
+     *
+     * @param lines
+     * @return
+     */
     public static String arrayToString(String[] lines) {
     
         String outputString = "";

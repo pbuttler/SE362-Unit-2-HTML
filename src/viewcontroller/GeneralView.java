@@ -60,7 +60,11 @@ public abstract class GeneralView {
 	public abstract void setChannelEnabled( InputChannel inChannel, 
 											boolean enabled ); 
 
-        public abstract void displayOutput( GeneralActionContext context );
+        /**
+     *
+     * @param context
+     */
+    public abstract void displayOutput( GeneralActionContext context );
         
 //	/**
 //	 * Writes the given string to the indicated output channel.  

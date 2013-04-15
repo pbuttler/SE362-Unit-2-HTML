@@ -13,6 +13,9 @@ import java.io.File;
  */
 public class IndentEntireBufferActionContext extends GeneralActionContext{
     private int currentTab;
+    /**
+     *
+     */
     public IndentEntireBufferActionContext(){
         
     }

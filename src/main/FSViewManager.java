@@ -46,13 +46,13 @@ public class FSViewManager extends JFrame implements ActionListener {
      */
     public static final Font DEFAULT_TEXTFIELD_FONT = new Font("SansSerif", Font.PLAIN, 16);
     /**
-     * The system-wide height for textfields.
+     * The system-wide height for text fields.
      */
     public static final int DEFAULT_TEXTFIELD_HEIGHT = 28;
     /**
      * The system-wide default font for text fields labels.
      */
-    public static final Font DEFAULT_TF_LABEL_FONT = new Font("SansSerif", Font.BOLD, 15);
+    public static final Font DEFAULT_TF_LABEL_FONT = new Font("Trebuchet MS", Font.BOLD, 15);
     /**
      * The system-wide default font for text fields labels.
      */
@@ -69,11 +69,18 @@ public class FSViewManager extends JFrame implements ActionListener {
      * The label of the main window that displays the current component's title.
      */
     private static JLabel _componentTitleLabel;
+    /**
+     *
+     */
     public static FSMenuBar menubar;
     /**
      * The stack of views displayed in this window.
      */
     private static Stack<GeneralViewGUI> _viewStack;
+
+    public static void close() {
+        _mainWindow.dispose();
+    }
 
     /**
      * Creates a new PDSMainWindow object. Sets up the JFrame.
@@ -88,6 +95,8 @@ public class FSViewManager extends JFrame implements ActionListener {
         // Set the default close operation and title of the window.
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle(FSViewManager.MAIN_WINDOW_NAME);
+        
+        
 
     }
 
@@ -232,6 +241,7 @@ public class FSViewManager extends JFrame implements ActionListener {
 
     /**
      * Adds a window listener to the main window.
+     * @param wl 
      */
     public static void addNewWindowListener(WindowListener wl) {
         _mainWindow.addWindowListener(wl);
@@ -239,15 +249,11 @@ public class FSViewManager extends JFrame implements ActionListener {
 
     }
 
-    public void newFileActionPerformed() {
-        // open a JFileChooser
-        // which 
-    }
-
     /**
      * So the actionPerformed for all events happen here. Its starting point and
      * it leads to editor.EditorController.respondToInput - Luke
      *
+     * @param e 
      */
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -278,9 +284,7 @@ public class FSViewManager extends JFrame implements ActionListener {
             case FSMenuBar.PASTE_OPTION:
                 handlePasteAction();
                 break;
-            case FSMenuBar.VIEW_OPTION:
-                handleViewAction();
-                break;
+
             case FSMenuBar.VIEWASWEBPAGE_OPTION:
                 handleViewAsWebpageAction();
                 break;
@@ -296,9 +300,7 @@ public class FSViewManager extends JFrame implements ActionListener {
             case FSMenuBar.TWOHUNDRED_OPTION:
                 handleZoomToTwoHundredAction();
                 break;
-            case FSMenuBar.OPTIONS_OPTION:
-                handleOptionsAction();
-                break;
+
             case FSMenuBar.AUTOWORDWRAP_OPTION:
                 handleAutoWordWrapAction();
                 break;
@@ -368,12 +370,24 @@ public class FSViewManager extends JFrame implements ActionListener {
             case FSMenuBar.VALIDATE_OPTION:
                 handleValidateAction();
                 break;
+            case FSMenuBar.UNDO_OPTION:
+                handleUndoAction();
+                break;
+            case FSMenuBar.REDO_OPTION:
+                handleRedoAction();
+                break;
+            case FSMenuBar.EXIT_OPTION:
+                handleExitAction();
+                break;
             default:
                 break;
 
         }
     }
 
+    /**
+     *
+     */
     public void handleNewFileAction() {
 
         NewFileActionContext actionContext = new NewFileActionContext();
@@ -434,14 +448,7 @@ public class FSViewManager extends JFrame implements ActionListener {
         currentView.getController().respondToInput(context);
 
     }
-    // And this? View is a menu. Now a sub menu. - Luke
-
-    private void handleViewAction() {
-
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    // See comment above - Luke
-
+    
     private void handleViewAsWebpageAction() {
         ViewAsWebpageActionContext context = new ViewAsWebpageActionContext();
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -452,12 +459,6 @@ public class FSViewManager extends JFrame implements ActionListener {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    // This is just like view. Its not a menuitem. Just a menu. 
-    private void handleOptionsAction() {
-
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    // See comment above -Luke
 
     private void handleAutoWordWrapAction() {
         AutoWordWrapActionContext context = new AutoWordWrapActionContext();
@@ -660,17 +661,35 @@ public class FSViewManager extends JFrame implements ActionListener {
 
     private void handleSaveAction() {
         SaveFileActionContext context = new SaveFileActionContext();
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        GeneralView currentView = (GeneralView) this.getTopView();
+        currentView.getController().respondToInput(context);
     }
 
     private void handleSaveAsAction() {
-        SaveFileAsActionContext context = new SaveFileAsActionContext();
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        JFileChooser fileChooser = new JFileChooser();
+        int returnValue = fileChooser.showSaveDialog(this);
+        
+        if (returnValue == JFileChooser.APPROVE_OPTION) {
+            
+            File file = fileChooser.getSelectedFile();
+            
+            SaveFileAsActionContext context = new SaveFileAsActionContext();
+            
+            context.setNewFile(file);
+            
+            GeneralView currentView = (GeneralView) this.getTopView();
+            currentView.getController().respondToInput(context);
+            
+        }
     }
 
     private void handleCloseAction() {
+        
         CloseTabActionContext context = new CloseTabActionContext();
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        GeneralView currentView = (GeneralView) this.getTopView();
+        currentView.getController().respondToInput(context);
+        
     }
 
     private void handleValidateAction() {
@@ -698,6 +717,27 @@ public class FSViewManager extends JFrame implements ActionListener {
     private void handleZoomToTwoHundredAction() {
         ZoomActionContext context = new ZoomActionContext();
         context.setPercentZoom(200);
+        GeneralView currentView = (GeneralView) this.getTopView();
+
+        currentView.getController().respondToInput(context);
+    }
+
+    private void handleUndoAction() {
+        UndoActionContext context= new UndoActionContext();
+        GeneralView currentView = (GeneralView) this.getTopView();
+
+        currentView.getController().respondToInput(context);
+    }
+
+    private void handleRedoAction() {
+        RedoActionContext context= new RedoActionContext();
+        GeneralView currentView = (GeneralView) this.getTopView();
+
+        currentView.getController().respondToInput(context);
+    }
+
+    private void handleExitAction() {
+        ExitActionContext context= new ExitActionContext();
         GeneralView currentView = (GeneralView) this.getTopView();
 
         currentView.getController().respondToInput(context);

@@ -25,8 +25,6 @@ public class EditorController extends GeneralController implements EditorActionH
 
     Tidy tidy = new Tidy();
 
-   
-
     
 
     /**
@@ -42,13 +40,12 @@ public class EditorController extends GeneralController implements EditorActionH
         handleNewFileAction(new NewFileActionContext());
     }
 
-    
     /**
-     * It takes the given context, and send it to a specific action 
-     * We don't have them all here, I figure we can do them as we go.
-     * - Luke
-     **/
-
+     * It takes the given context, and send it to a specific action We don't
+     * have them all here, I figure we can do them as we go. - Luke
+     *
+     * @param context 
+     */
     public void respondToInput(GeneralActionContext context) {
         if (context instanceof NewFileActionContext) {
 
@@ -137,30 +134,39 @@ public class EditorController extends GeneralController implements EditorActionH
 
         } else if (context instanceof DocumentUpdateActionContext) {
             handleDocumentUpdateAction((DocumentUpdateActionContext) context);
-        } else if ( context instanceof ZoomActionContext ) {
-    
+        } else if (context instanceof ZoomActionContext) {
+
             ZoomActionContext zoomContext = (ZoomActionContext) context;
-            
+
 
             switch (zoomContext.getPercentZoom()) {
                 case 50:
                     this.handleZoomToFiftyAction(zoomContext);
-                    
+
                     break;
                 case 100:
                     this.handleZoomToHundredAction(zoomContext);
-                    
+
                     break;
                 case 200:
                     this.handleZoomToTwoHundredAction(zoomContext);
                     break;
             }
 
-            this.handleDocumentUpdateAction((DocumentUpdateActionContext) context);
-            
         } else if (context instanceof ValidateActionContext) {
-            
+
             handleViewAsWebpageAction(null);
+
+        } else if (context instanceof UndoActionContext) {
+            handleUndoAction((UndoActionContext) context);
+        } else if (context instanceof RedoActionContext) {
+
+            handleRedoAction((RedoActionContext) context);
+
+        
+        } else if (context instanceof ExitActionContext) {
+
+            handleExitAction((ExitActionContext) context);
 
         }
 
@@ -170,6 +176,7 @@ public class EditorController extends GeneralController implements EditorActionH
      * The actions are performed here, and the views take the context The view
      * is EditorViewGUI.displayOutput - Luke
      *
+     * @param context 
      */
     public void handleNewFileAction(NewFileActionContext context) {
 
@@ -177,13 +184,21 @@ public class EditorController extends GeneralController implements EditorActionH
 
         this.view.displayOutput(context);
     }
-    
+
+    /**
+     *
+     * @param context
+     */
     @Override
     public void handleValidateAction(ValidateActionContext context) {
-        
+
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
+    /**
+     *
+     * @param context
+     */
     public void handleOpenFileAction(OpenFileActionContext context) {
         try {
             File file = context.getFile();
@@ -204,22 +219,42 @@ public class EditorController extends GeneralController implements EditorActionH
 
     }
 
+    /**
+     *
+     * @param context
+     */
     public void handleSaveAction(SaveFileActionContext context) {
+
+        this.view.displayOutput(context);
 
     }
 
+    /**
+     *
+     * @param context
+     */
     public void handleSaveAsAction(SaveFileAsActionContext context) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        this.view.displayOutput(context);
+
     }
 
     public void handleInputError(String message) {
     }
 
+    /**
+     *
+     * @param context
+     */
     @Override
     public void handleCloseTabAction(CloseTabActionContext context) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.view.displayOutput(context);
     }
 
+    /**
+     *
+     * @param context
+     */
     @Override
     public void handleCutAction(CutActionContext context) {
 
@@ -227,6 +262,10 @@ public class EditorController extends GeneralController implements EditorActionH
 
     }
 
+    /**
+     *
+     * @param context
+     */
     @Override
     public void handleCopyAction(CopyActionContext context) {
 
@@ -234,6 +273,10 @@ public class EditorController extends GeneralController implements EditorActionH
 
     }
 
+    /**
+     *
+     * @param context
+     */
     @Override
     public void handlePasteAction(PasteActionContext context) {
 
@@ -241,26 +284,46 @@ public class EditorController extends GeneralController implements EditorActionH
 
     }
 
+    /**
+     *
+     * @param context
+     */
     @Override
     public void handleViewAsWebpageAction(ViewAsWebpageActionContext context) {
         this.view.displayOutput(context);
     }
 
+    /**
+     *
+     * @param context
+     */
     @Override
     public void handleIndentCurrentLineAction(IndentCurrentLineActionContext context) {
         this.view.displayOutput(context);
     }
 
+    /**
+     *
+     * @param context
+     */
     @Override
     public void handleIndentSelectedTextAction(IndentSelectedTextActionContext context) {
         this.view.displayOutput(context);
     }
 
+    /**
+     *
+     * @param context
+     */
     @Override
     public void handleIndentEntireBufferAction(IndentEntireBufferActionContext context) {
         this.view.displayOutput(context);
     }
 
+    /**
+     *
+     * @param context
+     */
     @Override
     public void handleH1Action(InsertHTMLActionContext context) {
 
@@ -268,90 +331,186 @@ public class EditorController extends GeneralController implements EditorActionH
         view.displayOutput(context);
     }
 
+    /**
+     *
+     * @param context
+     */
     @Override
     public void handleH2Action(InsertHTMLActionContext context) {
         view.displayOutput(context);
     }
 
+    /**
+     *
+     * @param context
+     */
     @Override
     public void handleH3Action(InsertHTMLActionContext context) {
         view.displayOutput(context);
     }
 
+    /**
+     *
+     * @param context
+     */
     @Override
     public void handleH4Action(InsertHTMLActionContext context) {
         view.displayOutput(context);
     }
 
+    /**
+     *
+     * @param context
+     */
     @Override
     public void handleH5Action(InsertHTMLActionContext context) {
         view.displayOutput(context);
     }
 
+    /**
+     *
+     * @param context
+     */
     @Override
     public void handleH6Action(InsertHTMLActionContext context) {
         view.displayOutput(context);
     }
 
+    /**
+     *
+     * @param context
+     */
     @Override
     public void handleTableAction(InsertHTMLActionContext context) {
         view.displayOutput(context);
     }
 
+    /**
+     *
+     * @param context
+     */
     @Override
     public void handleListAction(InsertHTMLActionContext context) {
         view.displayOutput(context);
     }
 
+    /**
+     *
+     * @param context
+     */
     @Override
     public void handleFontEmphasisAction(InsertHTMLActionContext context) {
         view.displayOutput(context);
     }
 
+    /**
+     *
+     * @param context
+     */
     @Override
     public void handleBoldAction(InsertHTMLActionContext context) {
         view.displayOutput(context);
     }
 
+    /**
+     *
+     * @param context
+     */
     @Override
     public void handleItalicAction(InsertHTMLActionContext context) {
         view.displayOutput(context);
     }
 
+    /**
+     *
+     * @param context
+     */
     @Override
     public void handleUnderlineAction(InsertHTMLActionContext context) {
         view.displayOutput(context);
     }
 
+    /**
+     *
+     * @param context
+     */
     @Override
     public void handleParagraphAction(InsertHTMLActionContext context) {
         view.displayOutput(context);
     }
 
+    /**
+     *
+     * @param context
+     */
     @Override
     public void handlePictureAction(InsertHTMLActionContext context) {
         view.displayOutput(context);
     }
-    
+
+    /**
+     *
+     * @param context
+     */
     @Override
     public void handleZoomToFiftyAction(ZoomActionContext context) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        view.displayOutput(context);
     }
 
+    /**
+     *
+     * @param context
+     */
     @Override
     public void handleZoomToHundredAction(ZoomActionContext context) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        view.displayOutput(context);
     }
 
+    /**
+     *
+     * @param context
+     */
     @Override
     public void handleZoomToTwoHundredAction(ZoomActionContext context) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        view.displayOutput(context);
     }
 
+    /**
+     *
+     * @param context
+     */
     @Override
     public void handleDocumentUpdateAction(DocumentUpdateActionContext context) {
 
-        System.out.println(context.getContent());
+        System.out.println("Controller: Current text area contents: " + context.getContent());
 
+    }
+
+    /**
+     *
+     * @param context
+     */
+    @Override
+    public void handleRedoAction(RedoActionContext context) {
+        System.out.println("Controller: Rolling forward changes");
+        view.displayOutput(context);
+
+    }
+
+    /**
+     *
+     * @param context
+     */
+    @Override
+    public void handleUndoAction(UndoActionContext context) {
+        System.out.println("Controller: Rolling back changes");
+        view.displayOutput(context);
+
+    }
+    
+    @Override
+    public void handleExitAction(ExitActionContext context) {
+        System.out.println("Controller: Exiting...");
+        view.displayOutput(context);
     }
 }
