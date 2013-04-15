@@ -4,10 +4,12 @@
  */
 package editor.actioncontext;
 
+import actioncontext.GeneralActionContext;
+
 /**
  *
  * @author innod_000
  */
-public class CutActionContext {
+public class CutActionContext extends GeneralActionContext {
     
 }

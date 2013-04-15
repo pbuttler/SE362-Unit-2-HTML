@@ -4,6 +4,8 @@
  */
 package editor.actioncontext;
 
+import actioncontext.GeneralActionContext;
+
 /**
  *
  * @author innod_000

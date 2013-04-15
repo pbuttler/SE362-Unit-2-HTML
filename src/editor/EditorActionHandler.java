@@ -20,7 +20,7 @@ public interface EditorActionHandler {
 
      void handleSaveAsAction(SaveFileAsActionContext context);
 
-     void handleCloseTabAction(CloseFileActionContext context);
+     void handleCloseTabAction(CloseTabActionContext context);
 
      void handleCutAction(CutActionContext context);
 
