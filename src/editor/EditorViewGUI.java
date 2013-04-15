@@ -385,7 +385,9 @@ public class EditorViewGUI extends EditorView implements GeneralViewGUI, Documen
     
     public void handleOutlineViewAction(OutlineViewActionContext context) {
         OutlineView v = new OutlineView(this.getCurrentTab().getContent());
-        v.setVisible(true);
+        if (v.isNoError()==true) {
+            v.setVisible(true);
+        }
     }
 
     /**

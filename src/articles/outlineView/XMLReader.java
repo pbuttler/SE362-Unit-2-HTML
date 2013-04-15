@@ -11,6 +11,8 @@ import javax.swing.text.Document;
 import java.io.*;
 import java.util.HashMap;
 import java.util.ArrayList;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 
 public class XMLReader {
@@ -61,12 +63,22 @@ public class XMLReader {
             
             doc.setUserChanges(true);
         } catch(SAXException pce) {
+            System.out.println("SAX Exception");
             pce.printStackTrace();
+            
+            JFrame frame = new JFrame();
+            JOptionPane.showMessageDialog(frame,
+            pce.getMessage(),
+            "HTML error",
+            JOptionPane.ERROR_MESSAGE);
+            
             throw new IOException(pce.getMessage());
         } catch(ParserConfigurationException pce) {
+            System.out.println("PARSERCONFIG Exception");
             pce.printStackTrace();
             throw new IOException(pce.getMessage());
         } catch(IOException pce) {
+            System.out.println("IO Exception");
             pce.printStackTrace();
             throw new IOException(pce.getMessage());
         }
