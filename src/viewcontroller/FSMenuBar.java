@@ -190,7 +190,7 @@ public class FSMenuBar extends JMenuBar {
             
             this.add(InsertMenu);
             
-            ValidateMenuItem = new JButton("Validate");
+            ValidateMenuItem = new JButton();
             this.add(ValidateMenuItem);
         }
         
