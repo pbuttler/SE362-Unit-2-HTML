@@ -12,25 +12,57 @@ import java.util.ArrayList;
  */
 public class BufferHistory {
     
-    private ArrayList<Buffer> bufferTreadmill;
+    private ArrayList<String> bufferTreadmill;
     private int index;
     
     public BufferHistory(){
+        bufferTreadmill = new ArrayList<>();
+    }
+    
+    public String stepForward(){
+        
+        if (bufferTreadmill.size() == 0) {
+            
+            return "";
+            
+        }
+        
+        index++;
+        if (index == bufferTreadmill.size() - 1) {
+            index = bufferTreadmill.size() - 1;
+        }
+        
+        String nextBuffer = bufferTreadmill.get(index);
+        return nextBuffer;
+    }
+    
+    public String stepBack(){
+        
+        if (bufferTreadmill.size() == 0) {
+            
+            return "";
+            
+        }
+        
+        index--;
+        if (index == 0) {
+            index = 0;
+        }
+        
+        String lastBuffer = bufferTreadmill.get(index);
+        return lastBuffer;
+    }
+    
+    public void add(String contents) {
+        
+        bufferTreadmill.add(contents);
         
     }
     
-    public Buffer stepForward(){
-        
-        return null; //PLACEHOLDER
-    }
-    
-    public Buffer  stepBack(){
-        
-        return null; //PLACEHOLDER
-    }
-    
-    public void roll(){
-        
+    public void flush() {
+        for ( int i = index;i< bufferTreadmill.size(); i++ ) {
+            bufferTreadmill.remove(i);
+        }
     }
     
 }

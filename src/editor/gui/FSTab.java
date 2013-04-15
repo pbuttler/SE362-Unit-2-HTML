@@ -10,6 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.swing.ActionMap;
+import javax.swing.JEditorPane;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -31,17 +32,19 @@ import javax.swing.text.TextAction;
  */
 public class FSTab extends JPanel {
     
-    private CollapsableJEditorPane _editorPane;
+    private JEditorPane _editorPane;
     private String _title;
     private static final int DEFAULT_FONT_SIZE = 12;
     private static final int DEFAULT_FONT_INCREMENT = DEFAULT_FONT_SIZE / 2;
     private int currentFontSize;
     
+    private int _bufferId;
+    
     /**
      *
      */
     public FSTab() {
-        _editorPane = new CollapsableJEditorPane();
+        _editorPane = new JEditorPane();
         
         
         this.setLayout(new GridLayout(1,1));
@@ -72,6 +75,12 @@ public class FSTab extends JPanel {
         
         _editorPane.setText(textAreaContents);
         
+    }
+    public void setBufferId(int id) {
+        _bufferId = id;
+    }
+    public int getBufferId() {
+        return _bufferId;
     }
     
     /**
@@ -300,6 +309,16 @@ public class FSTab extends JPanel {
         Font newFont = new Font("monospaced", f, size);
         this._editorPane.setFont(newFont);
     }
+    
+    public void replaceText(String replacement) {
+        try {
+            this._editorPane.getDocument().remove(0, this._editorPane.getDocument().getLength());
+        } catch (BadLocationException ex) {
+            Logger.getLogger(FSTab.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+
     
     // Indent code
      /**

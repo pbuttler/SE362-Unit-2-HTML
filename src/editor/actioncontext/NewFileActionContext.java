@@ -35,4 +35,5 @@ public class NewFileActionContext extends GeneralActionContext {
     public void setFile(File file) {
         _newFile = file;
     }
+
 }

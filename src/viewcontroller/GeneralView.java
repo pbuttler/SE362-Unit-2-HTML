@@ -65,6 +65,8 @@ public abstract class GeneralView {
      * @param context
      */
     public abstract void displayOutput( GeneralActionContext context );
+    
+    public abstract Object getInfo(String id);
         
 //	/**
 //	 * Writes the given string to the indicated output channel.  

@@ -75,6 +75,27 @@ public class EditorViewGUI extends EditorView implements GeneralViewGUI, Documen
      */
     public void actionPerformed(ActionEvent e) {
     }
+    
+    @Override
+    public Object getInfo(String id) {
+        
+        switch(id) {
+            
+            case "currentTab":
+                FSTab currentTab = getCurrentTab();
+                
+                int data = currentTab.getBufferId();
+                
+                return data;
+                
+            default:
+                break;
+            
+        }
+        
+        return null;
+        
+    }
 
     /**
      * So display output is given the context in a switch. Follow the method you
@@ -389,7 +410,9 @@ public class EditorViewGUI extends EditorView implements GeneralViewGUI, Documen
     
     public void handleOutlineViewAction(OutlineViewActionContext context) {
         OutlineView v = new OutlineView(this.getCurrentTab().getContent());
-        v.setVisible(true);
+        if (v.isNoError()==true) {
+            v.setVisible(true);
+        }
     }
 
     /**
@@ -619,7 +642,12 @@ public class EditorViewGUI extends EditorView implements GeneralViewGUI, Documen
      */
     @Override
     public void handleDocumentUpdateAction(DocumentUpdateActionContext context) {
-//        System.out.println(context.getContent());
+
+        FSTab currentTab = this.getCurrentTab();
+        
+        currentTab.replaceText(context.getContent());
+        
+        
     }
 
 

@@ -7,6 +7,8 @@ package editor;
 import actioncontext.GeneralActionContext;
 import editor.EditorView.EditorInChan;
 import editor.actioncontext.*;
+import editor.buffermanager.Buffer;
+import editor.buffermanager.BufferManager;
 import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -23,9 +25,11 @@ import utils.Utilities;
  */
 public class EditorController extends GeneralController implements EditorActionHandler {
 
-    Tidy tidy = new Tidy();
+    private BufferManager _manager;
 
-    
+    public EditorController() {
+       _manager = new BufferManager(); 
+    }
 
     /**
      * The states of this controller.
@@ -187,8 +191,24 @@ public class EditorController extends GeneralController implements EditorActionH
     public void handleNewFileAction(NewFileActionContext context) {
 
         // TODO create new buffer
+        
+        Buffer newBuffer;
+        try {
+            
+            newBuffer = _manager.addBuffer();
+            
+            OpenFileActionContext oContext = new OpenFileActionContext();
+            oContext.setFile(context.getFile());
+            oContext.setBufferId(newBuffer.getId());
+            oContext.setBufferName(newBuffer.getName());
+            oContext.setContents(newBuffer.getContents());
 
-        this.view.displayOutput(context);
+            this.view.displayOutput(context);
+        } catch (IOException ex) {
+            Logger.getLogger(EditorController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
     }
 
     /**
@@ -206,19 +226,16 @@ public class EditorController extends GeneralController implements EditorActionH
      * @param context
      */
     public void handleOpenFileAction(OpenFileActionContext context) {
+        
+        File file = context.getFile();
+
+        Buffer newBuffer;
         try {
-            File file = context.getFile();
-            String fileName = file.getName();
-            String contents = Utilities.readFileToString(file);
-
-            context.setTitle(fileName);
-            context.setContents(contents);
-
-
-            // TODO create new buffer 
-
+            newBuffer = _manager.addBuffer(file);
+            context.setBufferId(newBuffer.getId());
+            context.setBufferName(newBuffer.getName());
+            context.setContents(newBuffer.getContents());
             this.view.displayOutput(context);
-
         } catch (IOException ex) {
             Logger.getLogger(EditorController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -231,6 +248,18 @@ public class EditorController extends GeneralController implements EditorActionH
      */
     public void handleSaveAction(SaveFileActionContext context) {
 
+        int id = (int) view.getInfo("currentTab");
+        
+        Buffer currentBuffer = _manager.getBuffer(id);
+        
+        if ( null == currentBuffer ) return;
+        
+        try {
+            currentBuffer.save();
+        } catch (IOException ex) {
+            Logger.getLogger(EditorController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         this.view.displayOutput(context);
 
     }
@@ -240,7 +269,19 @@ public class EditorController extends GeneralController implements EditorActionH
      * @param context
      */
     public void handleSaveAsAction(SaveFileAsActionContext context) {
-
+        
+        int id = (int) view.getInfo("currentTab");
+        
+        Buffer currentBuffer = _manager.getBuffer(id);
+        if ( null == currentBuffer ) return;
+        
+        try {
+            currentBuffer.setFile(context.getNewFile());
+            currentBuffer.save();
+        } catch (IOException ex) {
+            Logger.getLogger(EditorController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         this.view.displayOutput(context);
 
     }
@@ -503,7 +544,13 @@ public class EditorController extends GeneralController implements EditorActionH
     public void handleDocumentUpdateAction(DocumentUpdateActionContext context) {
 
         System.out.println("Controller: Current text area contents: " + context.getContent());
-
+        
+        int id = (int) view.getInfo("currentTab");
+        Buffer currentBuffer = _manager.getBuffer(id);
+        
+        if ( null == currentBuffer ) return;
+        
+        currentBuffer.update(context.getContent());
     }
 
     /**
@@ -513,7 +560,19 @@ public class EditorController extends GeneralController implements EditorActionH
     @Override
     public void handleRedoAction(RedoActionContext context) {
         System.out.println("Controller: Rolling forward changes");
-        view.displayOutput(context);
+        
+        int id = (int) view.getInfo("currentTab");
+        Buffer currentBuffer = _manager.getBuffer(id);
+        
+        currentBuffer.redo();
+        
+        String bufferContents = currentBuffer.getContents();
+        
+        DocumentUpdateActionContext dContext = new DocumentUpdateActionContext();
+        
+        dContext.setContent(bufferContents);
+        
+        view.displayOutput(dContext);
 
     }
 
@@ -523,8 +582,19 @@ public class EditorController extends GeneralController implements EditorActionH
      */
     @Override
     public void handleUndoAction(UndoActionContext context) {
-        System.out.println("Controller: Rolling back changes");
-        view.displayOutput(context);
+        
+        int id = (int) view.getInfo("currentTab");
+        Buffer currentBuffer = _manager.getBuffer(id);
+        
+        currentBuffer.undo();
+        
+        String bufferContents = currentBuffer.getContents();
+        
+        DocumentUpdateActionContext dContext = new DocumentUpdateActionContext();
+        
+        dContext.setContent(bufferContents);
+        
+        view.displayOutput(dContext);
 
     }
     

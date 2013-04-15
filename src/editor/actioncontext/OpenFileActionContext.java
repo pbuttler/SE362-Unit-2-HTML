@@ -16,6 +16,8 @@ public class OpenFileActionContext extends GeneralActionContext{
     private File openFile;
     private String _title;
     private String _contents;
+    private int _bufferId;
+    
     /**
      *
      */
@@ -67,5 +69,17 @@ public class OpenFileActionContext extends GeneralActionContext{
      */
     public String getContents() {
         return _contents;
+    }
+
+    public void setBufferId(int id) {
+        _bufferId = id;
+    }
+    
+    public int getBufferId() {
+        return _bufferId;
+    }
+
+    public void setBufferName(String name) {
+        _title = name;
     }
 }
