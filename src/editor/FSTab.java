@@ -373,7 +373,7 @@ public class FSTab extends JPanel {
                 }
 
         }
-    }
+    } 
 }
     
   
