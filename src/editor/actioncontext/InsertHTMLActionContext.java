@@ -15,6 +15,7 @@ import java.util.HashMap;
 public class InsertHTMLActionContext extends GeneralActionContext{
     
     private HashMap<String,Object> data;
+    //setContent alters tag
     private String tag;
     private String currentTab;
     private String updatedBuffer;
@@ -44,6 +45,10 @@ public class InsertHTMLActionContext extends GeneralActionContext{
              *
              */
             H6 = "H6",
+            /**
+             *
+             */
+            AHREF = "AHREF",
             /**
              *
              */

@@ -148,6 +148,9 @@ public class EditorViewGUI extends EditorView implements GeneralViewGUI, Documen
                 case InsertHTMLActionContext.H6:
                     handleH6Action(htmlActionContext);
                     break;
+                case InsertHTMLActionContext.AHREF:
+                    handleAHREFAction(htmlActionContext);
+                    break;
                 case InsertHTMLActionContext.TABLE:
                     handleTableAction(htmlActionContext);
                     break;
@@ -477,6 +480,17 @@ public class EditorViewGUI extends EditorView implements GeneralViewGUI, Documen
     public void handleH6Action(InsertHTMLActionContext context) {
         FSTab currentTab = this.getCurrentTab();
         currentTab.inserthxHeaderElement(6);
+    }
+      
+    /**
+     *
+     * @param context
+     */
+    public void handleAHREFAction(InsertHTMLActionContext context){
+        FSTab currentTab = this.getCurrentTab();
+        String url = (String) context.getData().get("url");
+        currentTab.insertContent("<a href=\"" + url + "\">");
+        
     }
 
     /**
