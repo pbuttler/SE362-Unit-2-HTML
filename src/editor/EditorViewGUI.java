@@ -10,6 +10,8 @@ import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import javax.swing.GroupLayout;
 import javax.swing.JPanel;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import viewcontroller.GeneralView;
 import viewcontroller.GeneralViewGUI;
 
@@ -17,7 +19,7 @@ import viewcontroller.GeneralViewGUI;
  *
  * @author Isioma
  */
-public class EditorViewGUI extends EditorView implements GeneralViewGUI {
+public class EditorViewGUI extends EditorView implements GeneralViewGUI, DocumentListener {
 
     /**
     * The JPanel to which contains everything in this view.
@@ -112,6 +114,8 @@ public class EditorViewGUI extends EditorView implements GeneralViewGUI {
 
         FSTab newPanel = new FSTab(tabName, textAreaContents);
 
+        newPanel.addEditorActionListener(this);
+        
         _tabs.add(tabName, newPanel);
 
         _tabs.setSelectedIndex(_tabs.getTabCount() - 1);
@@ -139,6 +143,23 @@ public class EditorViewGUI extends EditorView implements GeneralViewGUI {
 
     private void handleSaveAsAction(SaveFileAsActionContext context) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void insertUpdate(DocumentEvent de) {
+        DocumentUpdateActionContext context = new DocumentUpdateActionContext();
+        this.controller.respondToInput(context);
+    }
+
+    @Override
+    public void removeUpdate(DocumentEvent de) {
+        DocumentUpdateActionContext context = new DocumentUpdateActionContext();
+        this.controller.respondToInput(context);
+    }
+
+    @Override
+    public void changedUpdate(DocumentEvent de) {
+        
     }
     
 }

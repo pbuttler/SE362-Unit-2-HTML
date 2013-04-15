@@ -4,9 +4,13 @@
  */
 package editor;
 import java.awt.GridLayout;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import javax.swing.JEditorPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.event.DocumentListener;
 
 
 /**
@@ -15,6 +19,7 @@ import javax.swing.JScrollPane;
  */
 public class FSTab extends JPanel {
     private JEditorPane _editorPane;
+    
     private String _tabName;
     
     public FSTab() {
@@ -38,8 +43,11 @@ public class FSTab extends JPanel {
         _tabName = tabName;
         
         _editorPane.setText(textAreaContents);
-
         
+    }
+    
+    public void addEditorActionListener(DocumentListener lister) {
+        _editorPane.getDocument().addDocumentListener(lister);
     }
 }
     
