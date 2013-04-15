@@ -5,45 +5,101 @@
 package editor.actioncontext;
 
 import actioncontext.GeneralActionContext;
-import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  *
  * @author Danielle
  */
 public class InsertHTMLActionContext extends GeneralActionContext{
-    private String content;
-    private int currentTab;
+    
+    private HashMap<String,Object> data;
+    private String tag;
+    private String currentTab;
+    private String updatedBuffer;
+    
+    public static final String 
+            H1 = "H1",
+            H2 = "H2",
+            H3 = "H3",
+            H4 = "H4",
+            H5 = "H5",
+            H6 = "H6",
+            TABLE = "TABLE",
+            UL = "UL",
+            B = "B",
+            I = "I",
+            U = "U",
+            P = "P",
+            IMG = "IMG",
+            ROWS = "ROWS",
+            COLS = "COLS",
+            ALTTEXT = "ALTTEXT",
+            URL = "URL",
+            ITEMS = "ITEMS";
+            
+            
+            
+    
     public InsertHTMLActionContext(){
-        
+        data = new HashMap<>();
     }
 
     /**
      * @return the content
      */
     public String getContent() {
-        return content;
+        return tag;
     }
 
     /**
      * @param content the content to set
      */
     public void setContent(String content) {
-        this.content = content;
+        this.tag = content;
     }
 
     /**
      * @return the currentTab
      */
-    public int getCurrentTab() {
+    public String getCurrentTab() {
         return currentTab;
     }
+    
+    public void addData(String key, Object value) {
+        this.data.put(key, value);
+    }
+    
+    public void setData(HashMap data) {
+        
+        this.data = data;
+    }
+
 
     /**
      * @param currentTab the currentTab to set
      */
-    public void setCurrentTab(int currentTab) {
+    public void setCurrentTab(String currentTab) {
         this.currentTab = currentTab;
     }
     
+    public String getUpdatedBuffer() {
+        return this.updatedBuffer;
+    }
+    
+    public void setUpdatedBuffer(String updatedBuffer) {
+        this.updatedBuffer = updatedBuffer;
+    }
+
+    public HashMap getData() {
+        return this.data;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
+    }
+    public String getTag() {
+        return tag;
+    }
 }

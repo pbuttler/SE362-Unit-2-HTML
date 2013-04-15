@@ -4,10 +4,12 @@
  */
 package editor.actioncontext;
 
+import actioncontext.GeneralActionContext;
+
 /**
  *
  * @author Luke
  */
-public class AutoIndentActionContext {
+public class AutoIndentActionContext extends GeneralActionContext {
     
 }

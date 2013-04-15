@@ -4,10 +4,12 @@
  */
 package editor.actioncontext;
 
+import actioncontext.GeneralActionContext;
+
 /**
  *
  * @author Luke
  */
-public class AutoWordWrapActionContext {
+public class AutoWordWrapActionContext extends GeneralActionContext {
     
 }
