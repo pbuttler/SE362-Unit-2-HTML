@@ -141,7 +141,7 @@ public class FSTab extends JPanel {
                     target.replaceSelection("\n");  
                 }
         }
-    }
+    } 
 }
     
   
