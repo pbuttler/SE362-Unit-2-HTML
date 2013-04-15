@@ -105,17 +105,13 @@ public class EditorController extends GeneralController {
         
     }
     
-<<<<<<< HEAD
+
     public void handleSaveAction(SaveFileActionContext context) {
       /*  try{
             //stuff
         } catch (IOException ex) {
             
         } */
-=======
-    private void handleSaveAction(SaveFileActionContext context) {
-        
->>>>>>> 90a4a9fd3bd5af6441bb9307cf832c31a86fdb1f
     }
 
     public void handleSaveAsAction(SaveFileAsActionContext context) {

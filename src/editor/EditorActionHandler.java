@@ -48,37 +48,37 @@ public interface EditorActionHandler {
 
      void handleIndentEntireBufferAction();
 
-     void handleInsertAction();
+     void handleInsertAction(InsertHTMLActionContext context);
 
-     void handleHeaderAction();
+     void handleHeaderAction(InsertHTMLActionContext context);
 
-     void handleH1Action();
+     void handleH1Action(InsertHTMLActionContext context);
 
-     void handleH2Action();
+     void handleH2Action(InsertHTMLActionContext context);
 
-     void handleH3Action();
+     void handleH3Action(InsertHTMLActionContext context);
 
-     void handleH4Action();
+     void handleH4Action(InsertHTMLActionContext context);
 
-     void handleH5Action();
+     void handleH5Action(InsertHTMLActionContext context);
 
-     void handleH6Action();
+     void handleH6Action(InsertHTMLActionContext context);
 
-     void handleTableAction();
+     void handleTableAction(InsertHTMLActionContext context);
 
-     void handleListAction();
+     void handleListAction(InsertHTMLActionContext context);
 
-     void handleFontEmphasisAction();
+     void handleFontEmphasisAction(InsertHTMLActionContext context);
 
-     void handleBoldAction();
+     void handleBoldAction(InsertHTMLActionContext context);
 
-     void handleItalicAction();
+     void handleItalicAction(InsertHTMLActionContext context);
 
-     void handleUnderlineAction();
+     void handleUnderlineAction(InsertHTMLActionContext context);
 
-     void handleParagraphAction();
+     void handleParagraphAction(InsertHTMLActionContext context);
 
-     void handlePictureAction();
+     void handlePictureAction(InsertHTMLActionContext context);
 
     
 }
