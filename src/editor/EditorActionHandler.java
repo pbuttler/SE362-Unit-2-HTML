@@ -20,7 +20,7 @@ public interface EditorActionHandler {
 
      void handleSaveAsAction(SaveFileAsActionContext context);
 
-     void handleCloseAction(CloseFileActionContext context);
+     void handleCloseTabAction(CloseFileActionContext context);
 
      void handleCutAction(CutActionContext context);
 
@@ -28,19 +28,19 @@ public interface EditorActionHandler {
 
      void handlePasteAction(PasteActionContext context);
 
-     void handleViewAction(ViewActionContext context);
+//     void handleViewAction(ViewActionContext context);
 
      void handleViewAsWebpageAction(ViewAsWebpageActionContext context);
 
      void handleZoomToAction(ZoomActionContext context);
 
-     void handleOptionsAction(OptionsActionContext);
+//     void handleOptionsAction(OptionsActionContext context);
 
-     void handleAutoWordWrapAction(AutoWordWrapActionContext context);
+//     void handleAutoWordWrapAction(AutoWordWrapActionContext context);
 
-     void handleAutoIndentAction(AutoIndentActionContext context);
+//     void handleAutoIndentAction(AutoIndentActionContext context);
 
-     void handleSyntaxHighlightAction(SyntaxHighlightActionContext context);
+//     void handleSyntaxHighlightAction(SyntaxHighlightActionContext context);
 
      void handleIndentCurrentLineAction(IndentCurrentLineActionContext context);
 
