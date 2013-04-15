@@ -21,9 +21,11 @@ import utils.Utilities;
  *
  * @author Isioma
  */
-public class EditorController extends GeneralController {
+public class EditorController extends GeneralController implements EditorActionHandler {
 
     Tidy tidy = new Tidy();
+
+    
 
     
     /**
@@ -35,6 +37,7 @@ public class EditorController extends GeneralController {
     
     public void enterInitialState() {
         FSViewManager.pushView( (EditorViewGUI) view );
+        handleNewFileAction(new NewFileActionContext());
     }
     
     /**
@@ -58,21 +61,14 @@ public class EditorController extends GeneralController {
             
             this.handleSaveAction((SaveFileActionContext)context);
             
+        } else if (context instanceof DocumentUpdateActionContext) {
+            
+            this.handleDocumentUpdateAction((DocumentUpdateActionContext) context);
+            
         }
         
     }
 
-
-    
-//    public void respondToInput(String message, InputChannel channel) {
-//        
-//        switch ( (EditorState) currentState ) {
-//            case SAMPLESTATE:
-//                handleSampleState(message, (EditorInChan) channel);
-//                    break;
-//        }
-//        
-//    }
     /**
      *  The actions are performed here, and the views take the context
      *  The view is EditorViewGUI.displayOutput
@@ -119,6 +115,138 @@ public class EditorController extends GeneralController {
     
     
     public void handleInputError(String message) {
+        
+    }
+    
+    @Override
+    public void handleCloseTabAction(CloseTabActionContext context) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void handleCutAction(CutActionContext context) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void handleCopyAction(CopyActionContext context) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void handlePasteAction(PasteActionContext context) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void handleViewAsWebpageAction(ViewAsWebpageActionContext context) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void handleZoomToAction(ZoomActionContext context) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void handleIndentCurrentLineAction(IndentCurrentLineActionContext context) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void handleIndentSelectedTextAction(IndentSelectedTextActionContext context) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void handleIndentEntireBufferAction(IndentEntireBufferActionContext context) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void handleInsertAction(InsertHTMLActionContext context) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void handleHeaderAction(InsertHTMLActionContext context) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void handleH1Action(InsertHTMLActionContext context) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void handleH2Action(InsertHTMLActionContext context) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void handleH3Action(InsertHTMLActionContext context) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void handleH4Action(InsertHTMLActionContext context) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void handleH5Action(InsertHTMLActionContext context) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void handleH6Action(InsertHTMLActionContext context) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void handleTableAction(InsertHTMLActionContext context) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void handleListAction(InsertHTMLActionContext context) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void handleFontEmphasisAction(InsertHTMLActionContext context) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void handleBoldAction(InsertHTMLActionContext context) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void handleItalicAction(InsertHTMLActionContext context) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void handleUnderlineAction(InsertHTMLActionContext context) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void handleParagraphAction(InsertHTMLActionContext context) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void handlePictureAction(InsertHTMLActionContext context) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    @Override
+    public void handleDocumentUpdateAction(DocumentUpdateActionContext context) {
+        
+        System.out.println(context.getContent());
         
     }
     

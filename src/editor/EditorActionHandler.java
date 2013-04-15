@@ -79,5 +79,7 @@ public interface EditorActionHandler {
      void handleParagraphAction(InsertHTMLActionContext context);
 
      void handlePictureAction(InsertHTMLActionContext context);
+     
+     void handleDocumentUpdateAction(DocumentUpdateActionContext context);
 
 }

@@ -20,7 +20,7 @@ import javax.swing.event.DocumentListener;
 public class FSTab extends JPanel {
     private JEditorPane _editorPane;
     
-    private String _tabName;
+    private String _title;
     
     public FSTab() {
         
@@ -35,19 +35,34 @@ public class FSTab extends JPanel {
         
     
     }
+    
 
     public FSTab(String tabName, String textAreaContents) {
         
         this();
         
-        _tabName = tabName;
+        _title = tabName;
         
         _editorPane.setText(textAreaContents);
         
     }
     
+    public String getTitle() {
+        
+        return _title;
+        
+    }
+    
+    public String getContent() {
+        
+        return _editorPane.getText();
+        
+    }
+    
     public void addEditorActionListener(DocumentListener lister) {
+        
         _editorPane.getDocument().addDocumentListener(lister);
+        
     }
 }
     
