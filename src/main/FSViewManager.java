@@ -4,8 +4,7 @@
  */
 package main;
 
-import editor.actioncontext.NewFileActionContext;
-import editor.actioncontext.OpenFileActionContext;
+import editor.actioncontext.*;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -265,7 +264,7 @@ public class FSViewManager extends JFrame implements ActionListener {
             
         }
     /** So the actionPerformed for all events happen here. 
-     *  Its starting point and it leads to actionContext.EditorController.respondToInput
+     *  Its starting point and it leads to editor.EditorController.respondToInput
      * - Luke
      **/    
     @Override
@@ -459,14 +458,17 @@ public class FSViewManager extends JFrame implements ActionListener {
     }
 
     private void handleIndentCurrentLineAction() {
+        IndentCurrentLineActionContext context = new IndentCurrentLineActionContext();
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     private void handleIndentSelectedTextAction() {
+        IndentSelectedTextActionContext context = new IndentSelectedTextActionContext();
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     private void handleIndentEntireBufferAction() {
+        IndentEntireBufferActionContext context = new IndentEntireBufferActionContext();
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -535,10 +537,12 @@ public class FSViewManager extends JFrame implements ActionListener {
     }
 
     private void handleSaveAction() {
+        SaveFileActionContext context = new SaveFileActionContext();
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     private void handleSaveAsAction() {
+        SaveFileAsActionContext context = new SaveFileAsActionContext();
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
