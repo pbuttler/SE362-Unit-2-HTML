@@ -2,19 +2,15 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package editor;
+package editor.gui;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.swing.ActionMap;
 
-import javax.swing.JEditorPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.UIManager;
@@ -34,7 +30,8 @@ import javax.swing.text.TextAction;
  * @author innod_000
  */
 public class FSTab extends JPanel {
-    private JEditorPane _editorPane;
+    
+    private CollapsableJEditorPane _editorPane;
     private String _title;
     private static final int DEFAULT_FONT_SIZE = 12;
     private static final int DEFAULT_FONT_INCREMENT = DEFAULT_FONT_SIZE / 2;
@@ -44,7 +41,7 @@ public class FSTab extends JPanel {
      *
      */
     public FSTab() {
-        _editorPane = new JEditorPane();
+        _editorPane = new CollapsableJEditorPane();
         
         
         this.setLayout(new GridLayout(1,1));
@@ -268,7 +265,7 @@ public class FSTab extends JPanel {
         
     }
     
-    void zoom(int percent) {
+    public void zoom(int percent) {
         
         
         int newFontSize = DEFAULT_FONT_SIZE;
@@ -298,7 +295,7 @@ public class FSTab extends JPanel {
         
     }
     
-    void setFontSize(int size) {
+    private void setFontSize(int size) {
         int f = this.getFont().getStyle();
         Font newFont = new Font("monospaced", f, size);
         this._editorPane.setFont(newFont);

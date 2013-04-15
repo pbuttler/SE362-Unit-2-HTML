@@ -1,5 +1,5 @@
 
-package editor;
+package editor.validator;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;

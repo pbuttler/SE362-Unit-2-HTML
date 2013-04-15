@@ -4,6 +4,8 @@
  */
 package editor;
 
+import editor.gui.FSTab;
+import editor.gui.FSTabbedPane;
 import actioncontext.GeneralActionContext;
 import editor.actioncontext.*;
 import java.awt.Component;

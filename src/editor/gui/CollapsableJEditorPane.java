@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package editor;
+package editor.gui;
 
 import articles.collapse.CollapsibleEditorKit;
 import articles.collapse.CollapsibleView;
@@ -29,13 +29,13 @@ import javax.swing.text.View;
  * - understand?
  * @author Luke
  */
-public class collapsableJEditorPane extends JEditorPane {
-    public collapsableJEditorPane() {
+public class CollapsableJEditorPane extends JEditorPane {
+    public CollapsableJEditorPane() {
         super();
         final SimpleAttributeSet attrs=new SimpleAttributeSet();
 
         setEditorKit(new CollapsibleEditorKit());
-        Document doc= collapsableJEditorPane.this.getDocument();
+        Document doc= CollapsableJEditorPane.this.getDocument();
         try {
             doc.insertString(doc.getLength(), "Par before area\n", new SimpleAttributeSet());
             doc.insertString(doc.getLength(), "Par after area\n", new SimpleAttributeSet());
@@ -81,7 +81,7 @@ public class collapsableJEditorPane extends JEditorPane {
                     int offs=viewToModel(e.getPoint());
                     CollapsibleView cv=getCollapsibleView(offs);
                     cv.setExpanded(!cv.isExpanded());
-                    DefaultStyledDocument doc= (DefaultStyledDocument)collapsableJEditorPane.this.getDocument();
+                    DefaultStyledDocument doc= (DefaultStyledDocument)CollapsableJEditorPane.this.getDocument();
                     try {
                         doc.insertString(offs, "\n", new SimpleAttributeSet());
                         doc.remove(offs,1);
