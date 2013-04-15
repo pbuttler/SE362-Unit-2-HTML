@@ -12,7 +12,7 @@ import editor.actioncontext.*;
  */
 public interface EditorActionHandler {
     
-    void handleNewFileAction(NewFileActionContext context);
+     void handleNewFileAction(NewFileActionContext context);
     
      void handleOpenFileAction(OpenFileActionContext context);
     
@@ -20,33 +20,33 @@ public interface EditorActionHandler {
 
      void handleSaveAsAction(SaveFileAsActionContext context);
 
-     void handleCloseAction();
+     void handleCloseAction(CloseFileActionContext context);
 
-     void handleCutAction();
+     void handleCutAction(CutActionContext context);
 
-     void handleCopyAction();
+     void handleCopyAction(CopyActionContext context);
 
-     void handlePasteAction();
+     void handlePasteAction(PasteActionContext context);
 
-     void handleViewAction();
+     void handleViewAction(ViewActionContext context);
 
-     void handleViewAsWebpageAction();
+     void handleViewAsWebpageAction(ViewAsWebpageActionContext context);
 
-     void handleZoomToAction();
+     void handleZoomToAction(ZoomActionContext context);
 
-     void handleOptionsAction();
+     void handleOptionsAction(OptionsActionContext);
 
-     void handleAutoWordWrapAction();
+     void handleAutoWordWrapAction(AutoWordWrapActionContext context);
 
-     void handleAutoIndentAction();
+     void handleAutoIndentAction(AutoIndentActionContext context);
 
-     void handleSyntaxHighlightAction();
+     void handleSyntaxHighlightAction(SyntaxHighlightActionContext context);
 
-     void handleIndentCurrentLineAction();
+     void handleIndentCurrentLineAction(IndentCurrentLineActionContext context);
 
-     void handleIndentSelectedTextAction();
+     void handleIndentSelectedTextAction(IndentSelectedTextActionContext context);
 
-     void handleIndentEntireBufferAction();
+     void handleIndentEntireBufferAction(IndentEntireBufferActionContext context);
 
      void handleInsertAction(InsertHTMLActionContext context);
 
@@ -80,5 +80,4 @@ public interface EditorActionHandler {
 
      void handlePictureAction(InsertHTMLActionContext context);
 
-    
 }
