@@ -32,7 +32,7 @@ public interface EditorActionHandler {
 
      void handleViewAsWebpageAction(ViewAsWebpageActionContext context);
 
-     void handleZoomToAction(ZoomActionContext context);
+//     void handleZoomToAction(ZoomActionContext context);
 
 //     void handleOptionsAction(OptionsActionContext context);
 
@@ -48,9 +48,9 @@ public interface EditorActionHandler {
 
      void handleIndentEntireBufferAction(IndentEntireBufferActionContext context);
 
-     void handleInsertAction(InsertHTMLActionContext context);
+//     void handleInsertAction(InsertHTMLActionContext context);
 
-     void handleHeaderAction(InsertHTMLActionContext context);
+//     void handleHeaderAction(InsertHTMLActionContext context);
 
      void handleH1Action(InsertHTMLActionContext context);
 
@@ -81,5 +81,11 @@ public interface EditorActionHandler {
      void handlePictureAction(InsertHTMLActionContext context);
      
      void handleDocumentUpdateAction(DocumentUpdateActionContext context);
+     
+    void handleZoomToFiftyAction(ZoomActionContext context);
+
+    void handleZoomToHundredAction(ZoomActionContext context);
+
+    void handleZoomToTwoHundredAction(ZoomActionContext context);
 
 }
