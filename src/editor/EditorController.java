@@ -73,7 +73,7 @@ public class EditorController extends GeneralController {
 //    }
     /**
      *  The actions are performed here, and the views take the context
-     *  The view is actionContext.EditorViewGUI.displayOutput
+     *  The view is EditorViewGUI.displayOutput
      * - Luke
      **/
     public void handleNewFileAction(NewFileActionContext context) {
@@ -104,11 +104,7 @@ public class EditorController extends GeneralController {
     }
     
     private void handleSaveAction(SaveFileActionContext context) {
-      /*  try{
-            //stuff
-        } catch (IOException ex) {
-            
-        } */
+        
     }
 
     private void handleSaveAsAction(SaveFileAsActionContext context) {
