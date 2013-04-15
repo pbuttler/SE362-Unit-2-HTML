@@ -418,45 +418,58 @@ public class FSViewManager extends JFrame implements ActionListener {
     }
 
     private void handleCutAction() {
+        CutActionContext context = new CutActionContext();
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     private void handleCopyAction() {
+        CopyActionContext context = new CopyActionContext();
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     private void handlePasteAction() {
+        PasteActionContext context = new PasteActionContext();
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    // And this? View is a menu. Now a sub menu. - Luke
+        private void handleViewAction() {
 
-    private void handleViewAction() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+    // See comment above - Luke
     private void handleViewAsWebpageAction() {
+        ViewAsWebpageActionContext context = new ViewAsWebpageActionContext();
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     private void handleZoomToAction() {
+        ZoomActionContext context = new ZoomActionContext();
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    private void handleOptionsAction() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    // This is just like view. Its not a menuitem. Just a menu. 
+        private void handleOptionsAction() {
 
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+    // See comment above -Luke
+        
     private void handleAutoWordWrapAction() {
+        AutoWordWrapActionContext context = new AutoWordWrapActionContext();
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     private void handleAutoIndentAction() {
+        AutoIndentActionContext context = new AutoIndentActionContext();
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    private void handleSyntaxHighlightAction() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
+    // We don't need this feature, probably wont get implemented
+        private void handleSyntaxHighlightAction() {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+    // See above comment -Luke
+        
     private void handleIndentCurrentLineAction() {
         IndentCurrentLineActionContext context = new IndentCurrentLineActionContext();
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -472,67 +485,81 @@ public class FSViewManager extends JFrame implements ActionListener {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    private void handleInsertAction() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
+    // What the heck does this even do. We already have inserts (like header, h1, h2, etc) - Luke
+        private void handleInsertAction() {
+            //InsertActionContext context = new InsertActionContext();
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+    //
     private void handleHeaderAction() {
+        InsertHTMLActionContext context = new InsertHTMLActionContext();
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     private void handleH1Action() {
+        InsertHTMLActionContext context = new InsertHTMLActionContext();
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     private void handleH2Action() {
+        InsertHTMLActionContext context = new InsertHTMLActionContext();
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     private void handleH3Action() {
+        InsertHTMLActionContext context = new InsertHTMLActionContext();
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     private void handleH4Action() {
+        InsertHTMLActionContext context = new InsertHTMLActionContext();
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     private void handleH5Action() {
+        InsertHTMLActionContext context = new InsertHTMLActionContext();
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     private void handleH6Action() {
+        InsertHTMLActionContext context = new InsertHTMLActionContext();
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     private void handleTableAction() {
+        InsertHTMLActionContext context = new InsertHTMLActionContext();
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     private void handleListAction() {
+        InsertHTMLActionContext context = new InsertHTMLActionContext();
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    private void handleFontEmphasisAction() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    // How should these be handled? More contexts? Theyre deff necessary either way
+        private void handleFontEmphasisAction() {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
 
-    private void handleBoldAction() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+        private void handleBoldAction() {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
 
-    private void handleItalicAction() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+        private void handleItalicAction() {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
 
-    private void handleUnderlineAction() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
+        private void handleUnderlineAction() {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+    // See comment above -Luke
     private void handleParagraphAction() {
+        InsertHTMLActionContext context = new InsertHTMLActionContext();
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     private void handlePictureAction() {
+        InsertHTMLActionContext context = new InsertHTMLActionContext();
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -547,10 +574,12 @@ public class FSViewManager extends JFrame implements ActionListener {
     }
 
     private void handleCloseAction() {
+        CloseTabActionContext context = new CloseTabActionContext();
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 	
     private void handleValidateAction() {
+        ValidateActionContext context = new ValidateActionContext();
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
