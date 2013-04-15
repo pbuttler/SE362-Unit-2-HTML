@@ -58,6 +58,7 @@ public class FSMenuBar extends JMenuBar {
         private JMenu SourceMenu;
         private JMenuItem // Options menu items
             ValidateMenuItem,
+            OutlineViewMenuItem,
             AutoWordWrapMenuCheckBox,
             AutoIndentMenuCheckBox,
             SyntaxHighlightingMenuCheckbox,
@@ -256,6 +257,10 @@ public class FSMenuBar extends JMenuBar {
             /**
              *
              */
+            OUTLINE_OPTION = "Outline",
+            /**
+             *
+             */
             EDIT_OPTION = "Edit",
             /**
              *
@@ -344,6 +349,7 @@ public class FSMenuBar extends JMenuBar {
             SourceMenu = new JMenu();
             
             ValidateMenuItem = new JMenuItem();
+            OutlineViewMenuItem = new JMenuItem();
             AutoWordWrapMenuCheckBox = new JCheckBoxMenuItem();
             AutoIndentMenuCheckBox = new JCheckBoxMenuItem();
             SyntaxHighlightingMenuCheckbox = new JCheckBoxMenuItem();
@@ -464,6 +470,7 @@ public class FSMenuBar extends JMenuBar {
             PictureMenuItem.addActionListener(parent);
 
             ValidateMenuItem.addActionListener(parent);
+            OutlineViewMenuItem.addActionListener(parent);
             
             CloseMenuItem.addActionListener(parent);
             
@@ -519,6 +526,7 @@ public class FSMenuBar extends JMenuBar {
             ParagraphMenuItem.setText(PARAGRAPH_OPTION);
             PictureMenuItem.setText(PICTURE_OPTION);
             ValidateMenuItem.setText(VALIDATE_OPTION);
+            OutlineViewMenuItem.setText(OUTLINE_OPTION);
             
             WindowMenu.setText(WINDOW_MENU);
             CloseMenuItem.setText(CLOSE_OPTION);
