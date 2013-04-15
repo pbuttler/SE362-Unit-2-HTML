@@ -31,7 +31,7 @@ public class FSTab extends JPanel {
         
         JScrollPane scrollPane = new JScrollPane();
         scrollPane.setViewportView(_editorPane);
-        _editorPane.setContentType("text/XML");
+        _editorPane.setContentType("text/xml");
         this.add(scrollPane);
         
     
