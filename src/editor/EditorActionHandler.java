@@ -82,10 +82,14 @@ public interface EditorActionHandler {
      
      void handleDocumentUpdateAction(DocumentUpdateActionContext context);
      
+
     void handleZoomToFiftyAction(ZoomActionContext context);
 
     void handleZoomToHundredAction(ZoomActionContext context);
 
     void handleZoomToTwoHundredAction(ZoomActionContext context);
+
+     void handleValidateAction(ValidateActionContext context);
+
 
 }

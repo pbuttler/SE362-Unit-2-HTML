@@ -25,6 +25,8 @@ public class EditorController extends GeneralController implements EditorActionH
 
     Tidy tidy = new Tidy();
 
+   
+
     
 
     /**
@@ -40,10 +42,13 @@ public class EditorController extends GeneralController implements EditorActionH
         handleNewFileAction(new NewFileActionContext());
     }
 
+    
     /**
-     * It takes the given context, and send it to a specific action - Luke
-     *
-     */
+     * It takes the given context, and send it to a specific action 
+     * We don't have them all here, I figure we can do them as we go.
+     * - Luke
+     **/
+
     public void respondToInput(GeneralActionContext context) {
         if (context instanceof NewFileActionContext) {
 
@@ -136,6 +141,7 @@ public class EditorController extends GeneralController implements EditorActionH
     
             ZoomActionContext zoomContext = (ZoomActionContext) context;
             
+
             switch (zoomContext.getPercentZoom()) {
                 case 50:
                     this.handleZoomToFiftyAction(zoomContext);
@@ -149,6 +155,13 @@ public class EditorController extends GeneralController implements EditorActionH
                     this.handleZoomToTwoHundredAction(zoomContext);
                     break;
             }
+
+            this.handleDocumentUpdateAction((DocumentUpdateActionContext) context);
+            
+        } else if (context instanceof ValidateActionContext) {
+            
+            handleViewAsWebpageAction(null);
+
         }
 
     }
@@ -164,7 +177,13 @@ public class EditorController extends GeneralController implements EditorActionH
 
         this.view.displayOutput(context);
     }
-
+    
+    @Override
+    public void handleValidateAction(ValidateActionContext context) {
+        
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
     public void handleOpenFileAction(OpenFileActionContext context) {
         try {
             File file = context.getFile();
@@ -186,11 +205,7 @@ public class EditorController extends GeneralController implements EditorActionH
     }
 
     public void handleSaveAction(SaveFileActionContext context) {
-        /*  try{
-         //stuff
-         } catch (IOException ex) {
-            
-         } */
+
     }
 
     public void handleSaveAsAction(SaveFileAsActionContext context) {

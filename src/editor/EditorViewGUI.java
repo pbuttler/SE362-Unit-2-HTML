@@ -442,4 +442,12 @@ public class EditorViewGUI extends EditorView implements GeneralViewGUI, Documen
     public void handleDocumentUpdateAction(DocumentUpdateActionContext context) {
 //        System.out.println(context.getContent());
     }
+
+
+    @Override
+    public void handleValidateAction(ValidateActionContext context) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+
 }
