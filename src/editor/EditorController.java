@@ -62,6 +62,9 @@ public class EditorController extends GeneralController implements EditorActionH
         } else if (context instanceof SaveFileActionContext) {
 
             this.handleSaveAction((SaveFileActionContext) context);
+            
+        } else if (context instanceof OutlineViewActionContext) {
+            this.handleOutlineViewAction((OutlineViewActionContext)context);
 
         } else if (context instanceof NewFileActionContext) {
             handleNewFileAction((NewFileActionContext) context);
@@ -260,6 +263,10 @@ public class EditorController extends GeneralController implements EditorActionH
 
         this.view.displayOutput(context);
 
+    }
+    
+    public void handleOutlineViewAction(OutlineViewActionContext context) {
+        this.view.displayOutput(context);
     }
 
     /**

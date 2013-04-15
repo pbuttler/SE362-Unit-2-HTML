@@ -702,9 +702,9 @@ public class FSViewManager extends JFrame implements ActionListener {
     }
     
     private void handleOutlineAction(){
-     
-        //insert code
-        
+        OutlineViewActionContext context = new OutlineViewActionContext();
+        GeneralView currentView = (GeneralView) this.getTopView();
+        currentView.getController().respondToInput(context);        
     }
 
     private void handleZoomToFiftyAction() {

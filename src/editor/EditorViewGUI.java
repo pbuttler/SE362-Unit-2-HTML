@@ -7,6 +7,7 @@ package editor;
 import editor.gui.FSTab;
 import editor.gui.FSTabbedPane;
 import actioncontext.GeneralActionContext;
+import articles.outlineView.OutlineView;
 import editor.actioncontext.*;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
@@ -98,7 +99,9 @@ public class EditorViewGUI extends EditorView implements GeneralViewGUI, Documen
         } else if (context instanceof SaveFileActionContext) {
 
             this.handleSaveAction((SaveFileActionContext) context);
-
+            
+        } else if (context instanceof OutlineViewActionContext) {
+            this.handleOutlineViewAction((OutlineViewActionContext)context);
         } else if (context instanceof NewFileActionContext) {
             handleNewFileAction((NewFileActionContext) context);
         } else if (context instanceof OpenFileActionContext) {
@@ -378,6 +381,11 @@ public class EditorViewGUI extends EditorView implements GeneralViewGUI, Documen
     @Override
     public void handleViewAsWebpageAction(ViewAsWebpageActionContext context) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    public void handleOutlineViewAction(OutlineViewActionContext context) {
+        OutlineView v = new OutlineView(this.getCurrentTab().getContent());
+        v.setVisible(true);
     }
 
     /**
