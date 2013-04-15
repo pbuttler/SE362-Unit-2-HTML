@@ -580,6 +580,7 @@ public class FSViewManager extends JFrame implements ActionListener {
 	
     private void handleValidateAction() {
         ValidateActionContext context = new ValidateActionContext();
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        GeneralView currentView = (GeneralView) this.getTopView();
+        currentView.getController().respondToInput(context);
     }
 }

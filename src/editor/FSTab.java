@@ -11,6 +11,7 @@ import javax.swing.JEditorPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.event.DocumentListener;
+import jsyntaxpane.DefaultSyntaxKit;
 
 
 /**
@@ -23,14 +24,14 @@ public class FSTab extends JPanel {
     private String _title;
     
     public FSTab() {
-        
+        DefaultSyntaxKit.initKit();
         _editorPane = new JEditorPane();
         
         this.setLayout(new GridLayout(1,1));
         
         JScrollPane scrollPane = new JScrollPane();
         scrollPane.setViewportView(_editorPane);
-        
+        _editorPane.setContentType("text/XML");
         this.add(scrollPane);
         
     

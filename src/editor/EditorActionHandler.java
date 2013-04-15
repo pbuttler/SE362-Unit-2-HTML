@@ -81,5 +81,7 @@ public interface EditorActionHandler {
      void handlePictureAction(InsertHTMLActionContext context);
      
      void handleDocumentUpdateAction(DocumentUpdateActionContext context);
+     
+     void handleValidateAction(ValidateActionContext context);
 
 }
