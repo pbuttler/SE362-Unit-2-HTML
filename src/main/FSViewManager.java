@@ -343,6 +343,9 @@ public class FSViewManager extends JFrame implements ActionListener {
             case FSMenuBar.H6_OPTION:
                 handleH6Action();
                 break;
+            case FSMenuBar.AHREF_OPTION:
+                handleAHrefAction();
+                break;
             case FSMenuBar.TABLE_OPTION:
                 handleTableAction();
                 break;
@@ -565,6 +568,20 @@ public class FSViewManager extends JFrame implements ActionListener {
         InsertHTMLActionContext context = new InsertHTMLActionContext();
         context.setTag(InsertHTMLActionContext.H6);
 
+        GeneralView currentView = (GeneralView) this.getTopView();
+
+        currentView.getController().respondToInput(context);
+    }
+    
+    private void handleAHrefAction(){
+        String url = JOptionPane.showInputDialog(this,
+                "What is the URL of the picture?", null);
+        System.out.println(url);
+        InsertHTMLActionContext context = new InsertHTMLActionContext();
+
+        context.addData(InsertHTMLActionContext.URL, url);
+
+        context.setTag(InsertHTMLActionContext.AHREF);
         GeneralView currentView = (GeneralView) this.getTopView();
 
         currentView.getController().respondToInput(context);

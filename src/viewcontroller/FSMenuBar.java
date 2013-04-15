@@ -84,7 +84,8 @@ public class FSMenuBar extends JMenuBar {
             ItalicMenuItem,
             UnderlineMenuItem,
             ParagraphMenuItem,
-            PictureMenuItem;
+            PictureMenuItem,
+            AHrefMenuItem;
         
         private JMenu  
             WindowMenu;
@@ -218,6 +219,10 @@ public class FSMenuBar extends JMenuBar {
              *
              */
             H6_OPTION = "H6",
+            /**
+             *
+             */
+            AHREF_OPTION = "A HREF",
             /**
              *
              */
@@ -395,9 +400,12 @@ public class FSMenuBar extends JMenuBar {
             TableMenuItem = new JMenuItem();
             ListMenuItem = new JMenuItem();
             
+            AHrefMenuItem = new JMenuItem();
+            
             InsertMenu.add(TableMenuItem);
             InsertMenu.add(ListMenuItem);
-            
+            InsertMenu.add(AHrefMenuItem);
+                    
             BoldMenuItem = new JMenuItem();
             ItalicMenuItem = new JMenuItem();
             UnderlineMenuItem = new JMenuItem();
@@ -469,6 +477,7 @@ public class FSMenuBar extends JMenuBar {
             UnderlineMenuItem.addActionListener(parent);
             ParagraphMenuItem.addActionListener(parent);
             PictureMenuItem.addActionListener(parent);
+            AHrefMenuItem.addActionListener(parent);
 
             ValidateMenuItem.addActionListener(parent);
             OutlineViewMenuItem.addActionListener(parent);
@@ -518,6 +527,7 @@ public class FSMenuBar extends JMenuBar {
             h4HeaderMenuItem.setText(H4_OPTION);
             h5HeaderMenuItem.setText(H5_OPTION);
             h6HeaderMenuItem.setText(H6_OPTION);
+            AHrefMenuItem.setText(AHREF_OPTION);
             TableMenuItem.setText(TABLE_OPTION);
             ListMenuItem.setText(LIST_OPTION);
             FontEmphasisMenu.setText(FONTEMPHASIS_OPTION);

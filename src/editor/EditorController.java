@@ -112,6 +112,9 @@ public class EditorController extends GeneralController implements EditorActionH
                 case InsertHTMLActionContext.H6:
                     handleH6Action(htmlActionContext);
                     break;
+                case InsertHTMLActionContext.AHREF:
+                    handleAHREFAction(htmlActionContext);
+                    break;
                 case InsertHTMLActionContext.TABLE:
                     handleTableAction(htmlActionContext);
                     break;
@@ -383,6 +386,16 @@ public class EditorController extends GeneralController implements EditorActionH
         view.displayOutput(context);
     }
 
+    
+     /**
+     *
+     * @param context
+     */
+    public void handleAHREFAction(InsertHTMLActionContext context) {
+        view.displayOutput(context);
+    }
+    
+    
     /**
      *
      * @param context
