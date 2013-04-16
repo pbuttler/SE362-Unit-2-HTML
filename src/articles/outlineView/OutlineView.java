@@ -6,6 +6,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.*;
 import java.io.IOException;
+import javax.swing.event.HyperlinkEvent;
+import javax.swing.event.HyperlinkListener;
 
 // Makes a new window with the string given to contructor in outline view
 // So just pass string of jeditorpanes value, then set this object to visible
@@ -17,7 +19,7 @@ public class OutlineView extends JFrame {
     
     public OutlineView(String editorPaneHTML) {
         super("Outline View");
-        edit.setEditorKit(new XMLEditorKit());        
+        edit.setEditorKit(new XMLEditorKit()); 
         edit.setText(editorPaneHTML);
         if (edit.getText().trim().equals("")) {
             noError = false;
@@ -25,7 +27,6 @@ public class OutlineView extends JFrame {
         this.getContentPane().add(new JScrollPane(edit));
         this.setSize(620, 450);
         this.setLocationRelativeTo(null);
-
     }
 
     /**

@@ -32,13 +32,20 @@ import org.xml.sax.SAXException;
  */
 public class EditorChecker  {
     
+    JEditorPane edit = new JEditorPane();
     /**
-     *
      * @param currentBuffer
      * @return
      */
     public boolean validator(String editorPaneHTML) {
-        return true;
+        edit.setEditorKit(new XMLEditorKit());        
+        edit.setText(editorPaneHTML);
+        if (edit.getText().trim().equals("")) {
+            return false;
+        } else {
+            return true;
+        }
+        
     }
         
 }
