@@ -574,6 +574,24 @@ public class FSViewManager extends JFrame implements ActionListener {
     }
     
     private void handleAHrefAction(){
+        
+        Object[] options = {"Local Disk",
+                    "Online"};
+        int n = JOptionPane.showOptionDialog(this,
+            "Where is the image located?",
+            "Insert URL",
+            JOptionPane.YES_NO_OPTION,
+            JOptionPane.QUESTION_MESSAGE,
+            null,
+            options,
+            options[1]);
+        System.out.println(n);
+        if (n==0){//then it is on local disk
+            
+        }
+        else if (n==1){//then it is on the internet
+            
+        }
         String url = JOptionPane.showInputDialog(this,
                 "What is the URL?", null);
         System.out.println(url);
