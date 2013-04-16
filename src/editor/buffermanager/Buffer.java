@@ -41,8 +41,9 @@ public class Buffer {
             
             this._contentsString = Utilities.readFileToString(file);
         }
-        else 
+        else {
             this._contentsString = "";
+        }
     
     }
     
@@ -114,6 +115,7 @@ public class Buffer {
     public void update(String contents) {
         
         _history.add(contents);
+        
         _contentsString = contents;
         
     }
@@ -137,6 +139,10 @@ public class Buffer {
 
     public String getContents() {
         return _contentsString;
+    }
+
+    public void dropTail() {
+        _history.dropTail();
     }
         
 }

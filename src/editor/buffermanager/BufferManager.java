@@ -8,82 +8,91 @@ import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 
-
 /**
  *
  * @author Peter and Isioma
  */
 public class BufferManager {
-    
+
     private HashMap<Integer, Buffer> _db;
-    
+    private static BufferManager _bufferManager;
+
     /**
-     * 
+     *
      */
-    public BufferManager(){
-        
+    private BufferManager() {
+
         _db = new HashMap<>();
-        
+
     }
+
+    public static void initializeBufferManager() {
+        _bufferManager = new BufferManager();
+    }
+
     /**
-     * 
+     *
      * @param file
-     * @return 
+     * @return
      */
-    public Buffer addBuffer(File file) throws IOException {
-        
+    public static Buffer addBuffer(File file) throws IOException {
+
         Buffer buffer = new Buffer(file);
-        _db.put(buffer.getId(), buffer);
+        _bufferManager.getDb().put(buffer.getId(), buffer);
         return buffer;
     }
-    
-    public Buffer addBuffer(Buffer buffer) {
-        _db.put(buffer.getId(), buffer);
+
+    public static Buffer addBuffer(Buffer buffer) {
+        _bufferManager.getDb().put(buffer.getId(), buffer);
         return buffer;
     }
+
     /**
-     * 
+     *
      * @param id
-     * @return 
+     * @return
      */
-    public boolean removeBuffer(int id) {
-        if ( _db.containsKey(id)) {
-            _db.remove(id);
+    public static boolean removeBuffer(int id) {
+        if (_bufferManager.getDb().containsKey(id)) {
+            _bufferManager.getDb().remove(id);
             return true;
         }
         return false;
     }
-    
+
     /**
-     * 
+     *
      * @param id
-     * @return 
+     * @return
      */
-    public Buffer getBuffer(int id) {
-        if ( _db.containsKey(id)) {
-            Buffer buffer = _db.get(id);
+    public static Buffer getBuffer(int id) {
+        if (_bufferManager.getDb().containsKey(id)) {
+            Buffer buffer = _bufferManager.getDb().get(id);
             return buffer;
         }
         return null;
     }
 
-    public Buffer addBuffer() throws IOException {
+    public static Buffer addBuffer() throws IOException {
         Buffer buffer = new Buffer();
-        _db.put(buffer.getId(), buffer);
+        _bufferManager.getDb().put(buffer.getId(), buffer);
         return buffer;
     }
 
-    public Buffer duplicateBuffer(int id, File newFile) throws IOException {
-        
+    public static Buffer duplicateBuffer(int id, File newFile) throws IOException {
+
         Buffer originalBuffer = getBuffer(id);
         Buffer newBuffer = new Buffer(newFile);
-        
+
         newBuffer.update(originalBuffer.getContents());
-        
+
         addBuffer(newBuffer);
-        
+
         return newBuffer;
-        
+
     }
-    
+
+    private HashMap<Integer, Buffer> getDb() {
+        return _db;
+    }
 }

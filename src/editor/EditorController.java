@@ -25,10 +25,10 @@ import utils.Utilities;
  */
 public class EditorController extends GeneralController implements EditorActionHandler {
 
-    private BufferManager _manager;
+    
 
     public EditorController() {
-       _manager = new BufferManager(); 
+       
     }
 
     /**
@@ -195,7 +195,7 @@ public class EditorController extends GeneralController implements EditorActionH
         Buffer newBuffer;
         try {
             
-            newBuffer = _manager.addBuffer();
+            newBuffer = BufferManager.addBuffer();
             
             OpenFileActionContext oContext = new OpenFileActionContext();
             oContext.setFile(context.getFile());
@@ -231,7 +231,7 @@ public class EditorController extends GeneralController implements EditorActionH
 
         Buffer newBuffer;
         try {
-            newBuffer = _manager.addBuffer(file);
+            newBuffer = BufferManager.addBuffer(file);
             context.setBufferId(newBuffer.getId());
             context.setBufferName(newBuffer.getName());
             context.setContents(newBuffer.getContents());
@@ -250,7 +250,7 @@ public class EditorController extends GeneralController implements EditorActionH
 
         int id = (int) view.getInfo("currentTab");
         
-        Buffer currentBuffer = _manager.getBuffer(id);
+        Buffer currentBuffer = BufferManager.getBuffer(id);
         
         if ( null == currentBuffer ) return;
         
@@ -272,7 +272,7 @@ public class EditorController extends GeneralController implements EditorActionH
         
         int id = (int) view.getInfo("currentTab");
         
-        Buffer currentBuffer = _manager.getBuffer(id);
+        Buffer currentBuffer = BufferManager.getBuffer(id);
         if ( null == currentBuffer ) return;
         
         try {
@@ -548,11 +548,14 @@ public class EditorController extends GeneralController implements EditorActionH
 //        System.out.println("Controller: Current text area contents: " + context.getContent());
         
         int id = (int) view.getInfo("currentTab");
-        Buffer currentBuffer = _manager.getBuffer(id);
+        Buffer currentBuffer = BufferManager.getBuffer(id);
         
         if ( null == currentBuffer ) return;
         
+        currentBuffer.dropTail();
         currentBuffer.update(context.getContent());
+        
+        
     }
 
     /**
@@ -564,7 +567,7 @@ public class EditorController extends GeneralController implements EditorActionH
         System.out.println("Controller: Rolling forward changes");
         
         int id = (int) view.getInfo("currentTab");
-        Buffer currentBuffer = _manager.getBuffer(id);
+        Buffer currentBuffer = BufferManager.getBuffer(id);
         
         currentBuffer.redo();
         
@@ -586,7 +589,7 @@ public class EditorController extends GeneralController implements EditorActionH
     public void handleUndoAction(UndoActionContext context) {
         
         int id = (int) view.getInfo("currentTab");
-        Buffer currentBuffer = _manager.getBuffer(id);
+        Buffer currentBuffer = BufferManager.getBuffer(id);
         
         currentBuffer.undo();
         

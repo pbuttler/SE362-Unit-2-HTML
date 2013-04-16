@@ -23,7 +23,7 @@ public class BufferHistory {
         
         
         
-        if ( bufferTreadmill.size() == 0 ) return null;
+        if ( bufferTreadmill.isEmpty() ) return null;
         
         _index++;
         if ( _index >= bufferTreadmill.size() ) {
@@ -36,7 +36,9 @@ public class BufferHistory {
     
     public String stepBack(){
         
-        if ( bufferTreadmill.size() == 0 ) return null;
+        if ( bufferTreadmill.isEmpty() ) {
+            return null;
+        }
         _index--;
         
         if ( _index <= 0 ) {
@@ -55,10 +57,15 @@ public class BufferHistory {
     }
     
     public void dropTail() {
-        for ( int i = _index;i< bufferTreadmill.size(); i++ ) {
+        for ( int i = _index + 1;i< bufferTreadmill.size(); i++ ) {
             bufferTreadmill.remove(i);
         }
-        _index = bufferTreadmill.size() - 1;
+        
+        if ( bufferTreadmill.isEmpty() ) {
+            _index = 0;
+        } else {
+            _index = bufferTreadmill.size() - 1;
+        }
     }
     
 }

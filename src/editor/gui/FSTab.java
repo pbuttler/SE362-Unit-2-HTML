@@ -39,6 +39,7 @@ public class FSTab extends JPanel {
     private int currentFontSize;
     
     private int _bufferId;
+    private DocumentListener _parent;
     
     /**
      *
@@ -135,6 +136,7 @@ public class FSTab extends JPanel {
      */
     public void addEditorActionListener(DocumentListener lister) {
         
+        _parent = lister;
         _editorPane.getDocument().addDocumentListener(lister);
         
     }
@@ -315,13 +317,15 @@ public class FSTab extends JPanel {
     }
     
     public void replaceText(String replacement) {
-        try {
-            this._editorPane.getDocument().remove(0, this._editorPane.getDocument().getLength());
-            this.insertContent(replacement);
-        } catch (BadLocationException ex) {
-            Logger.getLogger(FSTab.class.getName()).log(Level.SEVERE, null, ex);
-        }
         
+            this._editorPane.getDocument().removeDocumentListener(_parent);
+//            this._editorPane.getDocument().remove(0, this._editorPane.getDocument().getLength());
+            this._editorPane.setText(replacement);
+            
+            this._editorPane.getDocument().addDocumentListener(_parent);
+            
+//            this.insertContent(replacement);
+
     }
 
     

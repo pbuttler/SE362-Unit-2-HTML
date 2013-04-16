@@ -7,6 +7,7 @@ package main;
 import editor.EditorController;
 import editor.EditorView;
 import editor.EditorViewGUI;
+import editor.buffermanager.BufferManager;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import javax.swing.UIManager;
@@ -22,7 +23,7 @@ public class FiveSecondsHtmlEditor implements WindowListener {
      *
      */
     public static void initialize() {
-        
+        BufferManager.initializeBufferManager();
     }
     /**
      * @param args the command line arguments

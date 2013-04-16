@@ -310,6 +310,16 @@ public class EditorViewGUI extends EditorView implements GeneralViewGUI, Documen
      */
     @Override
     public void changedUpdate(DocumentEvent de) {
+        DocumentUpdateActionContext context = new DocumentUpdateActionContext();
+        FSTab currentTab = getCurrentTab();
+
+        String title = currentTab.getTitle();
+        String content = currentTab.getContent();
+
+        context.setTitle(title);
+        context.setContent(content);
+
+        this.controller.respondToInput(context);
     }
 
     /**
@@ -336,7 +346,7 @@ public class EditorViewGUI extends EditorView implements GeneralViewGUI, Documen
      */
     public void handleSaveAction(SaveFileActionContext context) {
 
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 
     }
 
