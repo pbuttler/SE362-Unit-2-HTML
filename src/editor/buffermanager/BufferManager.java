@@ -36,6 +36,11 @@ public class BufferManager {
         _db.put(buffer.getId(), buffer);
         return buffer;
     }
+    
+    public Buffer addBuffer(Buffer buffer) {
+        _db.put(buffer.getId(), buffer);
+        return buffer;
+    }
     /**
      * 
      * @param id
@@ -66,6 +71,19 @@ public class BufferManager {
         Buffer buffer = new Buffer();
         _db.put(buffer.getId(), buffer);
         return buffer;
+    }
+
+    public Buffer duplicateBuffer(int id, File newFile) throws IOException {
+        
+        Buffer originalBuffer = getBuffer(id);
+        Buffer newBuffer = new Buffer(newFile);
+        
+        newBuffer.update(originalBuffer.getContents());
+        
+        addBuffer(newBuffer);
+        
+        return newBuffer;
+        
     }
     
 }

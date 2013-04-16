@@ -106,21 +106,13 @@ public class EditorViewGUI extends EditorView implements GeneralViewGUI, Documen
     public void displayOutput(GeneralActionContext context) {
 
         if (context instanceof NewFileActionContext) {
-
             handleNewFileAction((NewFileActionContext) context);
-
         } else if (context instanceof OpenFileActionContext) {
-
             this.handleOpenFileAction((OpenFileActionContext) context);
-
         } else if (context instanceof SaveFileAsActionContext) {
-
             this.handleSaveAsAction((SaveFileAsActionContext) context);
-
         } else if (context instanceof SaveFileActionContext) {
-
             this.handleSaveAction((SaveFileActionContext) context);
-            
         } else if (context instanceof OutlineViewActionContext) {
             this.handleOutlineViewAction((OutlineViewActionContext)context);
         } else if (context instanceof NewFileActionContext) {
@@ -228,8 +220,6 @@ public class EditorViewGUI extends EditorView implements GeneralViewGUI, Documen
 
         }
 
-
-
     }
 
     private void addBlankTab() {
@@ -240,6 +230,17 @@ public class EditorViewGUI extends EditorView implements GeneralViewGUI, Documen
         this.addTab("New File", contents);
     }
 
+    private void addTab(OpenFileActionContext context) {
+        FSTab newPanel = new FSTab(context.getTitle(), context.getContents());
+        newPanel.setBufferId(context.getBufferId());
+
+        newPanel.addEditorActionListener(this);
+
+        _tabs.add(context.getTitle(), newPanel);
+
+        _tabs.setSelectedIndex(_tabs.getTabCount() - 1);
+    
+    }
     private void addTab(String tabName, String textAreaContents) {
 
         FSTab newPanel = new FSTab(tabName, textAreaContents);
@@ -324,7 +325,7 @@ public class EditorViewGUI extends EditorView implements GeneralViewGUI, Documen
      */
     public void handleOpenFileAction(OpenFileActionContext context) {
 
-        this.addTab(context.getTitle(), context.getContents());
+        this.addTab(context);
 
     }
 
@@ -344,7 +345,9 @@ public class EditorViewGUI extends EditorView implements GeneralViewGUI, Documen
      */
     public void handleSaveAsAction(SaveFileAsActionContext context) {
 
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        FSTab currentTab = getCurrentTab();
+        currentTab.setTitle(context.getNewFile().getName());
+        _tabs.setTitleAt(_tabs.getSelectedIndex(), context.getNewFile().getName());
 
     }
 

@@ -34,8 +34,15 @@ public class Buffer {
         this._file = file;  
         _history = new BufferHistory();
         
-        this._contentsString = Utilities.readFileToString(file);
-        
+        if ( !file.getName().equals("New File") ) {
+            if ( !file.exists()) {
+                file.createNewFile();
+            }
+            
+            this._contentsString = Utilities.readFileToString(file);
+        }
+        else 
+            this._contentsString = "";
     
     }
     

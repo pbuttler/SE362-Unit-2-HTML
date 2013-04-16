@@ -203,7 +203,7 @@ public class EditorController extends GeneralController implements EditorActionH
             oContext.setBufferName(newBuffer.getName());
             oContext.setContents(newBuffer.getContents());
 
-            this.view.displayOutput(context);
+            this.view.displayOutput(oContext);
         } catch (IOException ex) {
             Logger.getLogger(EditorController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -276,13 +276,15 @@ public class EditorController extends GeneralController implements EditorActionH
         if ( null == currentBuffer ) return;
         
         try {
+                
             currentBuffer.setFile(context.getNewFile());
             currentBuffer.save();
+
+            this.view.displayOutput(context);
         } catch (IOException ex) {
             Logger.getLogger(EditorController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        this.view.displayOutput(context);
 
     }
 
@@ -543,7 +545,7 @@ public class EditorController extends GeneralController implements EditorActionH
     @Override
     public void handleDocumentUpdateAction(DocumentUpdateActionContext context) {
 
-        System.out.println("Controller: Current text area contents: " + context.getContent());
+//        System.out.println("Controller: Current text area contents: " + context.getContent());
         
         int id = (int) view.getInfo("currentTab");
         Buffer currentBuffer = _manager.getBuffer(id);

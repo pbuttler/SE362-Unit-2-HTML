@@ -93,6 +93,10 @@ public class FSTab extends JPanel {
         
     }
     
+    public void setTitle(String title) {
+        _title = title;
+    }
+    
     /**
      *
      * @return

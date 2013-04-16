@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class BufferHistory {
     
     private ArrayList<String> bufferTreadmill;
-    private int index;
+    private int _index;
     
     public BufferHistory(){
         bufferTreadmill = new ArrayList<>();
@@ -22,17 +22,18 @@ public class BufferHistory {
     public String stepForward(){
         
         if (bufferTreadmill.size() == 0) {
-            
-            return "";
-            
+            return null;
         }
         
-        index++;
-        if (index == bufferTreadmill.size() - 1) {
-            index = bufferTreadmill.size() - 1;
+        if ( _index >= bufferTreadmill.size() ) {
+            _index = bufferTreadmill.size() -1;
+        }
+        _index++;
+        if (_index == bufferTreadmill.size() - 1) {
+            _index = bufferTreadmill.size() - 1;
         }
         
-        String nextBuffer = bufferTreadmill.get(index);
+        String nextBuffer = bufferTreadmill.get(_index);
         return nextBuffer;
     }
     
@@ -44,25 +45,27 @@ public class BufferHistory {
             
         }
         
-        index--;
-        if (index == 0) {
-            index = 0;
+        _index--;
+        if (_index <= 0) {
+            _index = 0;
         }
         
-        String lastBuffer = bufferTreadmill.get(index);
+        String lastBuffer = bufferTreadmill.get(_index);
         return lastBuffer;
     }
     
     public void add(String contents) {
         
         bufferTreadmill.add(contents);
+        _index++;
         
     }
     
     public void flush() {
-        for ( int i = index;i< bufferTreadmill.size(); i++ ) {
+        for ( int i = _index;i< bufferTreadmill.size(); i++ ) {
             bufferTreadmill.remove(i);
         }
+        _index = bufferTreadmill.size() - 1;
     }
     
 }
