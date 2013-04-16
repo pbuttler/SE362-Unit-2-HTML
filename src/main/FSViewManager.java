@@ -575,7 +575,7 @@ public class FSViewManager extends JFrame implements ActionListener {
     
     private void handleAHrefAction(){
         String url = JOptionPane.showInputDialog(this,
-                "What is the URL of the picture?", null);
+                "What is the URL?", null);
         System.out.println(url);
         InsertHTMLActionContext context = new InsertHTMLActionContext();
 

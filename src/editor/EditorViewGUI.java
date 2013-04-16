@@ -17,6 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import main.FSViewManager;
+import viewcontroller.FSMenuBar;
 import viewcontroller.GeneralView;
 import viewcontroller.GeneralViewGUI;
 
@@ -514,7 +515,7 @@ public class EditorViewGUI extends EditorView implements GeneralViewGUI, Documen
      */
     public void handleAHREFAction(InsertHTMLActionContext context){
         FSTab currentTab = this.getCurrentTab();
-        String url = (String) context.getData().get("url");
+        String url = (String) context.getData().get(InsertHTMLActionContext.URL);
         currentTab.insertContent("<a href=\"" + url + "\">");
         
     }
