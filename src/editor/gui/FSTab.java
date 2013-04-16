@@ -317,6 +317,7 @@ public class FSTab extends JPanel {
     public void replaceText(String replacement) {
         try {
             this._editorPane.getDocument().remove(0, this._editorPane.getDocument().getLength());
+            this.insertContent(replacement);
         } catch (BadLocationException ex) {
             Logger.getLogger(FSTab.class.getName()).log(Level.SEVERE, null, ex);
         }

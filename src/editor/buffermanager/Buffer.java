@@ -93,19 +93,26 @@ public class Buffer {
     
     public void undo() {
         
-        _contentsString = _history.stepBack();
+        String lastVersion = _history.stepBack();
+        
+        if (null != lastVersion)
+            _contentsString = lastVersion;
+        
         
     }
     
     public void redo() {
         
-        _contentsString = _history.stepForward();
+        
+        String lastVersion = _history.stepForward();
+        
+        if (null != lastVersion)
+            _contentsString = lastVersion;
         
     }
     
     public void update(String contents) {
         
-        _history.flush();
         _history.add(contents);
         _contentsString = contents;
         

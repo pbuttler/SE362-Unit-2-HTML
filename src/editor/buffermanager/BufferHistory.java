@@ -21,15 +21,12 @@ public class BufferHistory {
     
     public String stepForward(){
         
-        if (bufferTreadmill.size() == 0) {
-            return null;
-        }
         
-        if ( _index >= bufferTreadmill.size() ) {
-            _index = bufferTreadmill.size() -1;
-        }
+        
+        if ( bufferTreadmill.size() == 0 ) return null;
+        
         _index++;
-        if (_index == bufferTreadmill.size() - 1) {
+        if ( _index >= bufferTreadmill.size() ) {
             _index = bufferTreadmill.size() - 1;
         }
         
@@ -39,14 +36,10 @@ public class BufferHistory {
     
     public String stepBack(){
         
-        if (bufferTreadmill.size() == 0) {
-            
-            return "";
-            
-        }
-        
+        if ( bufferTreadmill.size() == 0 ) return null;
         _index--;
-        if (_index <= 0) {
+        
+        if ( _index <= 0 ) {
             _index = 0;
         }
         
@@ -57,11 +50,11 @@ public class BufferHistory {
     public void add(String contents) {
         
         bufferTreadmill.add(contents);
-        _index++;
+        _index = bufferTreadmill.size() - 1;
         
     }
     
-    public void flush() {
+    public void dropTail() {
         for ( int i = _index;i< bufferTreadmill.size(); i++ ) {
             bufferTreadmill.remove(i);
         }
