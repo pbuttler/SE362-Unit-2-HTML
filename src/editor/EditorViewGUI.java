@@ -516,8 +516,7 @@ public class EditorViewGUI extends EditorView implements GeneralViewGUI, Documen
     public void handleAHREFAction(InsertHTMLActionContext context){
         FSTab currentTab = this.getCurrentTab();
         String url = (String) context.getData().get(InsertHTMLActionContext.URL);
-        currentTab.insertContent("<a href=\"" + url + "\">");
-        
+        currentTab.insertContent("<a href=\"" + url + "\"/>");
     }
 
     /**
