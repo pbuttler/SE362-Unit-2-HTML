@@ -494,7 +494,7 @@ public class FSMenuBar extends JMenuBar {
                 getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
 
         PasteMenuItem.setAccelerator(javax.swing.KeyStroke.
-                getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
+                getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.CTRL_MASK));
 
 
         FiftyPercentZoom.setAccelerator(javax.swing.KeyStroke.
