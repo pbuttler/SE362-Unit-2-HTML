@@ -384,24 +384,25 @@ public class FSMenuBar extends JMenuBar {
 
         TableMenuItem = new JMenuItem();
         ListMenuItem = new JMenuItem();
+        PictureMenuItem = new JMenuItem();
 
         AHrefMenuItem = new JMenuItem();
 
         InsertMenu.add(TableMenuItem);
         InsertMenu.add(ListMenuItem);
+        InsertMenu.add(PictureMenuItem);
         InsertMenu.add(AHrefMenuItem);
 
         BoldMenuItem = new JMenuItem();
         ItalicMenuItem = new JMenuItem();
         UnderlineMenuItem = new JMenuItem();
         ParagraphMenuItem = new JMenuItem();
-        PictureMenuItem = new JMenuItem();
+        
 
         FontEmphasisMenu.add(BoldMenuItem);
         FontEmphasisMenu.add(ItalicMenuItem);
         FontEmphasisMenu.add(UnderlineMenuItem);
         FontEmphasisMenu.add(ParagraphMenuItem);
-        FontEmphasisMenu.add(PictureMenuItem);
 
         this.add(InsertMenu);
 
