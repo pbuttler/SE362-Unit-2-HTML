@@ -122,7 +122,7 @@ public class FSViewManager extends JFrame implements ActionListener {
 
         menubar = new FSMenuBar(_mainWindow);
         menubar.setActionListeners(_mainWindow);
-
+        
 //		// Set the title label.
 //		_componentTitleLabel = new JLabel();
 //		_componentTitleLabel.setFont( new Font( "SansSerif", Font.PLAIN, 30 ) );

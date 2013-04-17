@@ -81,6 +81,8 @@ public class EditorController extends GeneralController implements EditorActionH
             handlePasteAction((PasteActionContext) context);
         } else if (context instanceof ViewAsWebpageActionContext) {
             handleViewAsWebpageAction((ViewAsWebpageActionContext) context);
+        } else if (context instanceof AutoWordWrapActionContext){    
+            handleAutoWordWrapAction((AutoWordWrapActionContext) context);
         } else if (context instanceof IndentCurrentLineActionContext) {
             handleIndentCurrentLineAction((IndentCurrentLineActionContext) context);
         } else if (context instanceof ImageDictionaryActionContext){
@@ -340,6 +342,18 @@ public class EditorController extends GeneralController implements EditorActionH
 
     }
 
+    /**
+     *
+     * @param context
+     */
+    public void handleAutoWordWrapAction(AutoWordWrapActionContext context) {
+        this.view.displayOutput(context);
+        
+        //boolean x = get whether or not the autowordwrapmenu button is checked
+        
+    }
+    
+    
     /**
      *
      * @param context

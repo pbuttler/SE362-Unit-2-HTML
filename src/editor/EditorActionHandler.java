@@ -84,6 +84,12 @@ public interface EditorActionHandler {
      */
     void handleIndentCurrentLineAction(IndentCurrentLineActionContext context);
 
+    /**
+     *
+     * @param context
+     */
+    void handleAutoWordWrapAction(AutoWordWrapActionContext context);
+    
      /**
      *
      * @param context

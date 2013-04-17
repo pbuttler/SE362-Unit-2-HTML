@@ -358,7 +358,7 @@ public class FSMenuBar extends JMenuBar {
         SourceMenu.add(IndentCurrentLineMenuItem);
         SourceMenu.add(IndentSelectedTextMenuItem);
         SourceMenu.add(IndentEntireBufferMenuItem);
-
+        AutoWordWrapMenuCheckBox.setSelected(false);
         this.add(SourceMenu);
 
         InsertMenu = new JMenu();
@@ -449,7 +449,7 @@ public class FSMenuBar extends JMenuBar {
         IndentCurrentLineMenuItem.addActionListener(parent);
         IndentSelectedTextMenuItem.addActionListener(parent);
         IndentEntireBufferMenuItem.addActionListener(parent);
-
+    
         ImageDictionaryMenuItem.addActionListener(parent);
         
         h1HeaderMenuItem.addActionListener(parent);

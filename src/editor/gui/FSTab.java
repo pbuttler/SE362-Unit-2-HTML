@@ -47,7 +47,6 @@ public class FSTab extends JPanel {
     public FSTab() {
         _editorPane = new JEditorPane();
         
-        
         this.setLayout(new GridLayout(1,1));
         
         JScrollPane scrollPane = new JScrollPane();
@@ -308,6 +307,10 @@ public class FSTab extends JPanel {
         setFontSize(newFontSize);
         currentFontSize = newFontSize;
         
+    }
+    
+    public void setLineWrap(boolean x){
+        this.setLineWrap(x);
     }
     
     private void setFontSize(int size) {
