@@ -627,8 +627,8 @@ public class EditorViewGUI extends EditorView implements GeneralViewGUI, Documen
      */
     @Override
     public void handlePictureAction(InsertHTMLActionContext context) {
-        String url = (String) context.getData().get("url");
-        String altText = (String) context.getData().get("altText");
+        String url = (String) context.getData().get(InsertHTMLActionContext.URL);
+        String altText = (String) context.getData().get(InsertHTMLActionContext.ALTTEXT);
         FSTab currentTab = this.getCurrentTab();
         currentTab.insertContent("<img src=\"" + url + "\" alt=\"" + altText + "\">");
     }
