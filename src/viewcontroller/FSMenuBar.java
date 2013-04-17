@@ -45,6 +45,7 @@ public class FSMenuBar extends JMenuBar {
     private JMenuItem // View menu items
             ViewAsWebpageMenuItem,
             FiftyPercentZoom,
+            ImageDictionaryMenuItem,
             OneHundredPercentZoom,
             TwoHundredPercentZoom;
     private JMenu SourceMenu;
@@ -125,6 +126,10 @@ public class FSMenuBar extends JMenuBar {
              *
              */
             VIEWASWEBPAGE_OPTION = "View As Webpage",
+            /**
+             *
+             */
+            IMAGEDIC_OPTION = "Image Dictionary",
             /**
              *
              */
@@ -316,6 +321,7 @@ public class FSMenuBar extends JMenuBar {
         ZoomToMenu = new JMenu();
 
         ViewAsWebpageMenuItem = new JMenuItem();
+        ImageDictionaryMenuItem = new JMenuItem();
         FiftyPercentZoom = new JMenuItem();
         OneHundredPercentZoom = new JMenuItem();
         TwoHundredPercentZoom = new JMenuItem();
@@ -323,6 +329,7 @@ public class FSMenuBar extends JMenuBar {
         ViewMenu.add(ViewAsWebpageMenuItem);
         ViewMenu.add(new JSeparator()); // SEPARATOR
         ViewMenu.add(ZoomToMenu);
+        ViewMenu.add(ImageDictionaryMenuItem);
         ZoomToMenu.add(FiftyPercentZoom);
         ZoomToMenu.add(OneHundredPercentZoom);
         ZoomToMenu.add(TwoHundredPercentZoom);
@@ -588,6 +595,7 @@ public class FSMenuBar extends JMenuBar {
         PasteMenuItem.setText(PASTE_OPTION);
         ViewMenu.setText(VIEW_OPTION);
         ViewAsWebpageMenuItem.setText(VIEWASWEBPAGE_OPTION);
+        ImageDictionaryMenuItem.setText(IMAGEDIC_OPTION);
         ZoomToMenu.setText(ZOOMTO_OPTION);
         FiftyPercentZoom.setText(FIFTY_OPTION);
         OneHundredPercentZoom.setText(HUNDRED_OPTION);

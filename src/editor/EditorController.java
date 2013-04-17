@@ -83,6 +83,8 @@ public class EditorController extends GeneralController implements EditorActionH
             handleViewAsWebpageAction((ViewAsWebpageActionContext) context);
         } else if (context instanceof IndentCurrentLineActionContext) {
             handleIndentCurrentLineAction((IndentCurrentLineActionContext) context);
+        } else if (context instanceof ImageDictionaryActionContext){
+            handleImageDictionaryAction((ImageDictionaryActionContext) context);
         } else if (context instanceof IndentSelectedTextActionContext) {
             handleIndentSelectedTextAction((IndentSelectedTextActionContext) context);
         } else if (context instanceof IndentEntireBufferActionContext) {
@@ -338,6 +340,15 @@ public class EditorController extends GeneralController implements EditorActionH
         this.view.displayOutput(context);
     }
 
+    /**
+     *
+     * @param context
+     */
+    public void handleImageDictionaryAction(ImageDictionaryActionContext context) {
+        System.out.println("Image Dic");
+        this.view.displayOutput(context);
+    }
+    
     /**
      *
      * @param context

@@ -136,6 +136,8 @@ public class EditorViewGUI extends EditorView implements GeneralViewGUI, Documen
             handlePasteAction((PasteActionContext) context);
         } else if (context instanceof ViewAsWebpageActionContext) {
             handleViewAsWebpageAction((ViewAsWebpageActionContext) context);
+        } else if (context instanceof ImageDictionaryActionContext) {
+            handleImageDictionaryAction((ImageDictionaryActionContext) context);
         } else if (context instanceof IndentCurrentLineActionContext) {
             handleIndentCurrentLineAction((IndentCurrentLineActionContext) context);
         } else if (context instanceof IndentSelectedTextActionContext) {
@@ -423,6 +425,16 @@ public class EditorViewGUI extends EditorView implements GeneralViewGUI, Documen
     public void handleViewAsWebpageAction(ViewAsWebpageActionContext context) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+    /**
+     *
+     * @param context
+     */
+    public void handleImageDictionaryAction(ImageDictionaryActionContext context) {
+        System.out.println("Image Dictionary");
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
     
     public void handleOutlineViewAction(OutlineViewActionContext context) {
         OutlineView v = new OutlineView(this.getCurrentTab().getContent());
