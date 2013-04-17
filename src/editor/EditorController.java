@@ -136,43 +136,29 @@ public class EditorController extends GeneralController implements EditorActionH
                     handlePictureAction(htmlActionContext);
                     break;
             }
-
         } else if (context instanceof DocumentUpdateActionContext) {
             handleDocumentUpdateAction((DocumentUpdateActionContext) context);
         } else if (context instanceof ZoomActionContext) {
-
             ZoomActionContext zoomContext = (ZoomActionContext) context;
-
-
             switch (zoomContext.getPercentZoom()) {
                 case 50:
                     this.handleZoomToFiftyAction(zoomContext);
-
                     break;
                 case 100:
                     this.handleZoomToHundredAction(zoomContext);
-
                     break;
                 case 200:
                     this.handleZoomToTwoHundredAction(zoomContext);
                     break;
             }
-
         } else if (context instanceof ValidateActionContext) {
-
             handleViewAsWebpageAction(null);
-
         } else if (context instanceof UndoActionContext) {
             handleUndoAction((UndoActionContext) context);
         } else if (context instanceof RedoActionContext) {
-
             handleRedoAction((RedoActionContext) context);
-
-        
         } else if (context instanceof ExitActionContext) {
-
             handleExitAction((ExitActionContext) context);
-
         }
 
     }
@@ -368,8 +354,8 @@ public class EditorController extends GeneralController implements EditorActionH
      * @param context
      */
     public void handleImageDictionaryAction(ImageDictionaryActionContext context) {
-        System.out.println("Image Dic");
         this.view.displayOutput(context);
+        
     }
     
     /**

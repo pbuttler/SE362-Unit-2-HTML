@@ -450,6 +450,8 @@ public class FSMenuBar extends JMenuBar {
         IndentSelectedTextMenuItem.addActionListener(parent);
         IndentEntireBufferMenuItem.addActionListener(parent);
 
+        ImageDictionaryMenuItem.addActionListener(parent);
+        
         h1HeaderMenuItem.addActionListener(parent);
         h2HeaderMenuItem.addActionListener(parent);
         h3HeaderMenuItem.addActionListener(parent);

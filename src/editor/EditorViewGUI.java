@@ -8,6 +8,7 @@ import editor.gui.FSTab;
 import editor.gui.FSTabbedPane;
 import actioncontext.GeneralActionContext;
 import articles.outlineView.OutlineView;
+import dictionary.ImageDictionary;
 import editor.actioncontext.*;
 import editor.validator.EditorChecker;
 import java.awt.Component;
@@ -502,8 +503,8 @@ public class EditorViewGUI extends EditorView implements GeneralViewGUI, Documen
      * @param context
      */
     public void handleImageDictionaryAction(ImageDictionaryActionContext context) {
-        System.out.println("Image Dictionary");
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ImageDictionary i = new ImageDictionary(this.getCurrentTab().getContent());
+        i.setVisible(true);
     }
     
     

@@ -55,12 +55,11 @@ public class ImageDictionary extends JFrame {
         while (i.hasNext()) {
             Element src = (Element)i.next();
             System.out.println(src+":"+src.attr("src"));
-            content += src.attr("src") + ":" + src + "\n \n";
+            content += "<h1>" + src.attr("src") + " - " + src + "</h1>";
         }
         jep.setText(content);
         JScrollPane jsp = new JScrollPane(jep);
         this.getContentPane().add(jsp);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(620, 450);
         this.setLocationRelativeTo(null);
     }

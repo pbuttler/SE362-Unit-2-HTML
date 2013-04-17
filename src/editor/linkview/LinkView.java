@@ -28,12 +28,14 @@ public class LinkView {
     JEditorPane split1 = new JEditorPane();
     JEditorPane split2 = new JEditorPane();
     
-    public static void main(String[] args) {
+    // For Testing purposes
+    public static void main(String[] args) throws InterruptedException {
         LinkView l = new LinkView();
         String h = "<html xmlns=\'http://www.w3.org/1999/xhtml\' xml:lang=\'en\' lang=\'en\'> <head> <a href='http://Stackoverflow.com'>StackOverflow</a> <meta http-equiv=\'Content-Type\' content=\'text/html; charset=utf-8\' /> <a href='http://google.com'>Google</a><title>XHTML 1.0 Strict Example</title> <script type=\'text/javascript\'> //<![CDATA[ function loadpdf() { document.getElementById(\'pdf-object\').src=\'http://www.w3.org/TR/xhtml1/xhtml1.pdf\'; } //]]> </script> </head> <body onload=\'loadpdf()\'> <p>This is an example of an <abbr title=\'Extensible HyperText Markup Language\'>XHTML</abbr> 1.0 Strict document.<br /> <img id=\'validation-icon\' src=\'http://www.w3.org/Icons/valid-xhtml10\' alt=\'Valid XHTML 1.0 Strict\' /><br /> <object id=\'pdf-object\' name=\'pdf-object\' type=\'application/pdf\' data=\'http://www.w3.org/TR/xhtml1/xhtml1.pdf\' width=\'100%\' height=\'500\'> </object> </p> </body> </html>";
-        l.split1.setText(h);
-        JFrame j = l.getPopupView(h);
+        JFrame j = new JFrame();
+        j.getContentPane().add(l.getSplitView(h));
         j.setVisible(true);
+        
     }
     
     public LinkView() {
@@ -55,7 +57,7 @@ public class LinkView {
 //                });
     }
     
-    // Returns JPanel with LV and JEP. user must give string though
+    // Returns JPanel with LV and JEP. user must give string of JEP HTML
     public JPanel getSplitView(String html) {
         split1.setText(html);
         JPanel panel = new JPanel(new GridLayout(2, 1));
@@ -65,6 +67,14 @@ public class LinkView {
         
         panel.add(new JScrollPane(split2));
         panel.add(new JScrollPane(split1));
+        return panel;
+    }
+    
+    public JPanel removeSplitView() {
+        JEditorPane orig = new JEditorPane();
+        orig.setText(split1.getText());
+        JPanel panel = new JPanel();
+        panel.add(new JScrollPane(orig));
         return panel;
     }
     
@@ -80,7 +90,7 @@ public class LinkView {
         while (i.hasNext()) {
             Element href = (Element)i.next();
             System.out.println(href+":"+href.attr("href"));
-            content += "<h1>" + href.attr("href") + ":" + href + "</h1>";
+            content += "<h1>" + href.attr("href") + "-" + href + "</h1>";
         }
         
         split2.setText(content);

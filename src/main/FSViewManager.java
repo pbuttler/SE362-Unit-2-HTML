@@ -469,8 +469,9 @@ public class FSViewManager extends JFrame implements ActionListener {
     }
     
     private void handleImageDictionaryAction(){
-        //code
-        
+        ImageDictionaryActionContext context = new ImageDictionaryActionContext();
+        GeneralView currentView = (GeneralView) this.getTopView();
+        currentView.getController().respondToInput(context);
     }
 
 
