@@ -702,7 +702,7 @@ public class EditorViewGUI extends EditorView implements GeneralViewGUI, Documen
         String url = (String) context.getData().get(InsertHTMLActionContext.URL);
         String altText = (String) context.getData().get(InsertHTMLActionContext.ALTTEXT);
         FSTab currentTab = this.getCurrentTab();
-        currentTab.insertContent("<img src=\"" + url + "\" alt=\"" + altText + "\">");
+        currentTab.insertContent("<img src=\"" + url + "\" alt=\"" + altText + "\" />");
     }
 
     /**
