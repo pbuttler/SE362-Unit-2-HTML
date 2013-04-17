@@ -593,16 +593,14 @@ public class FSViewManager extends JFrame implements ActionListener {
             null,
             options,
             options[1]);
-        System.out.println(n);
-        if (n==0){//then it is on local disk
-            
-        }
-        else if (n==1){//then it is on the internet
-            
-        }
         String url = JOptionPane.showInputDialog(this,
                 "What is the URL?", null);
-        System.out.println(url);
+        if (n==0){//then it is on local disk
+            url = "FILE:///" + url;
+        }
+        else if (n==1){//then it is on the internet
+            //do nothing to the URL
+        }
         InsertHTMLActionContext context = new InsertHTMLActionContext();
 
         context.addData(InsertHTMLActionContext.URL, url);
