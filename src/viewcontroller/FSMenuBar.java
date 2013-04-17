@@ -45,6 +45,7 @@ public class FSMenuBar extends JMenuBar {
     private JMenuItem // View menu items
             ViewAsWebpageMenuItem,
             FiftyPercentZoom,
+            ImageDictionaryMenuItem,
             OneHundredPercentZoom,
             TwoHundredPercentZoom;
     private JMenu SourceMenu;
@@ -125,6 +126,10 @@ public class FSMenuBar extends JMenuBar {
              *
              */
             VIEWASWEBPAGE_OPTION = "View As Webpage",
+            /**
+             *
+             */
+            IMAGEDIC_OPTION = "Image Dictionary",
             /**
              *
              */
@@ -316,6 +321,7 @@ public class FSMenuBar extends JMenuBar {
         ZoomToMenu = new JMenu();
 
         ViewAsWebpageMenuItem = new JMenuItem();
+        ImageDictionaryMenuItem = new JMenuItem();
         FiftyPercentZoom = new JMenuItem();
         OneHundredPercentZoom = new JMenuItem();
         TwoHundredPercentZoom = new JMenuItem();
@@ -323,6 +329,7 @@ public class FSMenuBar extends JMenuBar {
         ViewMenu.add(ViewAsWebpageMenuItem);
         ViewMenu.add(new JSeparator()); // SEPARATOR
         ViewMenu.add(ZoomToMenu);
+        ViewMenu.add(ImageDictionaryMenuItem);
         ZoomToMenu.add(FiftyPercentZoom);
         ZoomToMenu.add(OneHundredPercentZoom);
         ZoomToMenu.add(TwoHundredPercentZoom);
@@ -377,24 +384,25 @@ public class FSMenuBar extends JMenuBar {
 
         TableMenuItem = new JMenuItem();
         ListMenuItem = new JMenuItem();
+        PictureMenuItem = new JMenuItem();
 
         AHrefMenuItem = new JMenuItem();
 
         InsertMenu.add(TableMenuItem);
         InsertMenu.add(ListMenuItem);
+        InsertMenu.add(PictureMenuItem);
         InsertMenu.add(AHrefMenuItem);
 
         BoldMenuItem = new JMenuItem();
         ItalicMenuItem = new JMenuItem();
         UnderlineMenuItem = new JMenuItem();
         ParagraphMenuItem = new JMenuItem();
-        PictureMenuItem = new JMenuItem();
+        
 
         FontEmphasisMenu.add(BoldMenuItem);
         FontEmphasisMenu.add(ItalicMenuItem);
         FontEmphasisMenu.add(UnderlineMenuItem);
         FontEmphasisMenu.add(ParagraphMenuItem);
-        FontEmphasisMenu.add(PictureMenuItem);
 
         this.add(InsertMenu);
 
@@ -588,6 +596,7 @@ public class FSMenuBar extends JMenuBar {
         PasteMenuItem.setText(PASTE_OPTION);
         ViewMenu.setText(VIEW_OPTION);
         ViewAsWebpageMenuItem.setText(VIEWASWEBPAGE_OPTION);
+        ImageDictionaryMenuItem.setText(IMAGEDIC_OPTION);
         ZoomToMenu.setText(ZOOMTO_OPTION);
         FiftyPercentZoom.setText(FIFTY_OPTION);
         OneHundredPercentZoom.setText(HUNDRED_OPTION);

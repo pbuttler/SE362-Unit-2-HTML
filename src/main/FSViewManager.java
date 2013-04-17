@@ -288,6 +288,9 @@ public class FSViewManager extends JFrame implements ActionListener {
             case FSMenuBar.VIEWASWEBPAGE_OPTION:
                 handleViewAsWebpageAction();
                 break;
+            case FSMenuBar.IMAGEDIC_OPTION:
+                handleImageDictionaryAction();
+                break;
             case FSMenuBar.ZOOMTO_OPTION:
                 handleZoomToAction();
                 break;
@@ -463,6 +466,11 @@ public class FSViewManager extends JFrame implements ActionListener {
     private void handleZoomToAction() {
         ZoomActionContext context = new ZoomActionContext();
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    private void handleImageDictionaryAction(){
+        //code
+        
     }
 
 

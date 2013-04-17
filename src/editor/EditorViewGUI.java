@@ -140,6 +140,8 @@ public class EditorViewGUI extends EditorView implements GeneralViewGUI, Documen
             handlePasteAction((PasteActionContext) context);
         } else if (context instanceof ViewAsWebpageActionContext) {
             handleViewAsWebpageAction((ViewAsWebpageActionContext) context);
+        } else if (context instanceof ImageDictionaryActionContext) {
+            handleImageDictionaryAction((ImageDictionaryActionContext) context);
         } else if (context instanceof IndentCurrentLineActionContext) {
             handleIndentCurrentLineAction((IndentCurrentLineActionContext) context);
         } else if (context instanceof IndentSelectedTextActionContext) {
@@ -494,6 +496,18 @@ public class EditorViewGUI extends EditorView implements GeneralViewGUI, Documen
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    
+    /**
+     *
+     * @param context
+     */
+    public void handleImageDictionaryAction(ImageDictionaryActionContext context) {
+        System.out.println("Image Dictionary");
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    
+
     public void handleOutlineViewAction(OutlineViewActionContext context) {
         OutlineView v = new OutlineView(this.getCurrentTab().getContent());
         if (v.isNoError() == true) {
@@ -685,8 +699,8 @@ public class EditorViewGUI extends EditorView implements GeneralViewGUI, Documen
      */
     @Override
     public void handlePictureAction(InsertHTMLActionContext context) {
-        String url = (String) context.getData().get("url");
-        String altText = (String) context.getData().get("altText");
+        String url = (String) context.getData().get(InsertHTMLActionContext.URL);
+        String altText = (String) context.getData().get(InsertHTMLActionContext.ALTTEXT);
         FSTab currentTab = this.getCurrentTab();
         currentTab.insertContent("<img src=\"" + url + "\" alt=\"" + altText + "\">");
     }
