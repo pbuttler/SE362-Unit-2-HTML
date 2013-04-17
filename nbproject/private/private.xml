@@ -1,4 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/1">
+        <file>file:/C:/Users/Luke/Documents/GitHub/SE362-Unit-2-HTML/src/main/FSViewManager.java</file>
+        <file>file:/C:/Users/Luke/Documents/GitHub/SE362-Unit-2-HTML/src/editor/EditorViewGUI.java</file>
+        <file>file:/C:/Users/Luke/Documents/GitHub/SE362-Unit-2-HTML/src/editor/EditorController.java</file>
+        <file>file:/C:/Users/Luke/Documents/GitHub/SE362-Unit-2-HTML/src/editor/FSTabbedPane.java</file>
+        <file>file:/C:/Users/Luke/Documents/GitHub/SE362-Unit-2-HTML/src/editor/EditorChecker.java</file>
+        <file>file:/C:/Users/Luke/Documents/GitHub/SE362-Unit-2-HTML/src/editor/FSTab.java</file>
+        <file>file:/C:/Users/Luke/Documents/GitHub/SE362-Unit-2-HTML/src/editor/actioncontext/AutoWordWrapActionContext.java</file>
+        <file>file:/C:/Users/Luke/Documents/GitHub/SE362-Unit-2-HTML/src/editor/actioncontext/InsertHTMLActionContext.java</file>
+        <file>file:/C:/Users/Luke/Documents/GitHub/SE362-Unit-2-HTML/src/editor/EditorActionHandler.java</file>
+        <file>file:/C:/Users/Luke/Documents/GitHub/SE362-Unit-2-HTML/src/editor/actioncontext/AutoIndentActionContext.java</file>
+        <file>file:/C:/Users/Luke/Documents/GitHub/SE362-Unit-2-HTML/src/editor/actioncontext/NewFileActionContext.java</file>
+        <file>file:/C:/Users/Luke/Documents/GitHub/SE362-Unit-2-HTML/src/editor/actioncontext/SaveFileActionContext.java</file>
+        <file>file:/C:/Users/Luke/Documents/GitHub/SE362-Unit-2-HTML/src/main/FiveSecondsHtmlEditor.java</file>
+        <file>file:/C:/Users/Luke/Documents/GitHub/SE362-Unit-2-HTML/src/editor/EditorView.java</file>
+        <file>file:/C:/Users/Luke/Documents/GitHub/SE362-Unit-2-HTML/src/editor/actioncontext/ValidateActionContext.java</file>
+    </open-files>
 </project-private>

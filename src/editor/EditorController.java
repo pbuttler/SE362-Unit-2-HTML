@@ -52,24 +52,15 @@ public class EditorController extends GeneralController implements EditorActionH
      */
     public void respondToInput(GeneralActionContext context) {
         if (context instanceof NewFileActionContext) {
-
             handleNewFileAction((NewFileActionContext) context);
-
         } else if (context instanceof OpenFileActionContext) {
-
             this.handleOpenFileAction((OpenFileActionContext) context);
-
         } else if (context instanceof SaveFileAsActionContext) {
-
             this.handleSaveAsAction((SaveFileAsActionContext) context);
-
         } else if (context instanceof SaveFileActionContext) {
-
             this.handleSaveAction((SaveFileActionContext) context);
-            
         } else if (context instanceof OutlineViewActionContext) {
             this.handleOutlineViewAction((OutlineViewActionContext)context);
-
         } else if (context instanceof NewFileActionContext) {
             handleNewFileAction((NewFileActionContext) context);
         } else if (context instanceof OpenFileActionContext) {
@@ -84,6 +75,8 @@ public class EditorController extends GeneralController implements EditorActionH
             handleCutAction((CutActionContext) context);
         } else if (context instanceof CopyActionContext) {
             handleCopyAction((CopyActionContext) context);
+        } else if (context instanceof ValidateActionContext) {
+            handleValidateAction((ValidateActionContext)context);
         } else if (context instanceof PasteActionContext) {
             handlePasteAction((PasteActionContext) context);
         } else if (context instanceof ViewAsWebpageActionContext) {
@@ -217,8 +210,7 @@ public class EditorController extends GeneralController implements EditorActionH
      */
     @Override
     public void handleValidateAction(ValidateActionContext context) {
-
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.view.displayOutput(context);
     }
 
     /**

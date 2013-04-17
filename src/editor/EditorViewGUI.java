@@ -9,16 +9,16 @@ import editor.gui.FSTabbedPane;
 import actioncontext.GeneralActionContext;
 import articles.outlineView.OutlineView;
 import editor.actioncontext.*;
+import editor.validator.EditorChecker;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
-import java.util.ArrayList;
 import javax.swing.GroupLayout;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import main.FSViewManager;
-import viewcontroller.FSMenuBar;
-import viewcontroller.GeneralView;
 import viewcontroller.GeneralViewGUI;
 
 /**
@@ -126,6 +126,8 @@ public class EditorViewGUI extends EditorView implements GeneralViewGUI, Documen
             handleSaveAsAction((SaveFileAsActionContext) context);
         } else if (context instanceof CloseTabActionContext) {
             handleCloseTabAction((CloseTabActionContext) context);
+        } else if (context instanceof ValidateActionContext) {
+            handleValidateAction((ValidateActionContext)context);
         } else if (context instanceof CutActionContext) {
             handleCutAction((CutActionContext) context);
         } else if (context instanceof CopyActionContext) {
@@ -670,7 +672,15 @@ public class EditorViewGUI extends EditorView implements GeneralViewGUI, Documen
      */
     @Override
     public void handleValidateAction(ValidateActionContext context) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        EditorChecker check = new EditorChecker();
+        boolean isValid = check.validator(this.getCurrentTab().getContent());
+        if (isValid) {
+            JFrame frame = new JFrame();
+            JOptionPane.showMessageDialog(frame,
+            "This HTML is correctly formed.",
+            "Valid HTML",
+            JOptionPane.INFORMATION_MESSAGE);
+        }
     }
 
     /**
