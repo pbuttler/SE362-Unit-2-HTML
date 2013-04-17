@@ -52,8 +52,18 @@ public class BufferManager {
      * @param id
      * @return
      */
-    public static boolean removeBuffer(int id) {
+    public static boolean removeBuffer(int id, boolean force) {
+        
+        
         if (_bufferManager.getDb().containsKey(id)) {
+            
+            if (!force) {
+                Buffer buffer = getBuffer(id);
+                if ( buffer.hasChanges() ) {
+                    return false;
+                }
+            }
+            
             _bufferManager.getDb().remove(id);
             return true;
         }

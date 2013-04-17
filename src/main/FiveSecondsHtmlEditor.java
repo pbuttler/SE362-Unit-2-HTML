@@ -7,11 +7,14 @@ package main;
 import editor.EditorController;
 import editor.EditorView;
 import editor.EditorViewGUI;
+import editor.actioncontext.OpenFileActionContext;
 import editor.buffermanager.BufferManager;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.File;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import viewcontroller.GeneralView;
 
 /**
  *
@@ -61,6 +64,19 @@ public class FiveSecondsHtmlEditor implements WindowListener {
         
         // Tell the controller to enter its initial state
         cont.enterInitialState();
+        
+        
+        for (String arg : args) {
+            File file = new File(arg);
+            
+            if (file.exists()) {
+                OpenFileActionContext context = new OpenFileActionContext();
+                context.setFile(file);
+
+                cont.respondToInput(context);
+            }
+           
+        }
     }
 
     

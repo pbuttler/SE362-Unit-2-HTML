@@ -240,16 +240,24 @@ public class EditorController extends GeneralController implements EditorActionH
      */
     public void handleSaveAction(SaveFileActionContext context) {
 
-        int id = (int) view.getInfo("currentTab");
+        int bufferId = (int) view.getInfo("currentTab");
         
-        Buffer currentBuffer = BufferManager.getBuffer(id);
+        Buffer currentBuffer = BufferManager.getBuffer(bufferId);
         
         if ( null == currentBuffer ) return;
         
-        try {
-            currentBuffer.save();
-        } catch (IOException ex) {
-            Logger.getLogger(EditorController.class.getName()).log(Level.SEVERE, null, ex);
+        
+        boolean isNewBuffer = BufferManager.getBuffer(bufferId).isNewBuffer();
+        if (isNewBuffer) {    
+            context.setNewBuffer(true);
+        } else {
+        
+            try {
+                currentBuffer.save();
+            } catch (IOException ex) {
+                Logger.getLogger(EditorController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        
         }
         
         this.view.displayOutput(context);
@@ -289,6 +297,21 @@ public class EditorController extends GeneralController implements EditorActionH
      */
     @Override
     public void handleCloseTabAction(CloseTabActionContext context) {
+        
+        int bufferId = (int) view.getInfo("currentTab");
+        
+        boolean bufferClosed = BufferManager.removeBuffer(bufferId, context.isForceClose());
+        
+        if ( !bufferClosed ) {
+            
+            boolean isNewBuffer = BufferManager.getBuffer(bufferId).isNewBuffer();
+            
+            context.setNewBuffer(isNewBuffer);
+            
+        }
+        
+        context.setForceClose(bufferClosed);
+        
         this.view.displayOutput(context);
     }
 

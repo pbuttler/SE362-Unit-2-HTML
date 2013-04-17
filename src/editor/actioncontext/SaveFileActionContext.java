@@ -18,6 +18,15 @@ public class SaveFileActionContext extends GeneralActionContext{
     private String _title;
     // I dont think we need this if we just pass the currentTab. Not sure..
     private String _contents;
+    private boolean newBuffer;
+
+    public boolean isNewBuffer() {
+        return newBuffer;
+    }
+
+    public void setNewBuffer(boolean newBuffer) {
+        this.newBuffer = newBuffer;
+    }
     
     /**
      *

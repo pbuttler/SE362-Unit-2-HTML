@@ -11,14 +11,18 @@ import articles.outlineView.OutlineView;
 import editor.actioncontext.*;
 import editor.validator.EditorChecker;
 import java.awt.Component;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
+import java.io.File;
 import javax.swing.GroupLayout;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import main.FSViewManager;
+import viewcontroller.GeneralView;
 import viewcontroller.GeneralViewGUI;
 
 /**
@@ -76,34 +80,34 @@ public class EditorViewGUI extends EditorView implements GeneralViewGUI, Documen
      */
     public void actionPerformed(ActionEvent e) {
     }
-    
+
     @Override
     public Object getInfo(String id) {
-        
-        switch(id) {
-            
+
+        switch (id) {
+
             case "currentTab":
                 FSTab currentTab = getCurrentTab();
-                
+
                 int data = currentTab.getBufferId();
-                
+
                 return data;
-                
+
             default:
                 break;
-            
+
         }
-        
+
         return null;
-        
+
     }
 
     /**
      * So display output is given the context in a switch. Follow the method you
      * want - Luke
-    *
-    * @param context 
-    */
+     *
+     * @param context
+     */
     public void displayOutput(GeneralActionContext context) {
 
         if (context instanceof NewFileActionContext) {
@@ -115,7 +119,7 @@ public class EditorViewGUI extends EditorView implements GeneralViewGUI, Documen
         } else if (context instanceof SaveFileActionContext) {
             this.handleSaveAction((SaveFileActionContext) context);
         } else if (context instanceof OutlineViewActionContext) {
-            this.handleOutlineViewAction((OutlineViewActionContext)context);
+            this.handleOutlineViewAction((OutlineViewActionContext) context);
         } else if (context instanceof NewFileActionContext) {
             handleNewFileAction((NewFileActionContext) context);
         } else if (context instanceof OpenFileActionContext) {
@@ -127,7 +131,7 @@ public class EditorViewGUI extends EditorView implements GeneralViewGUI, Documen
         } else if (context instanceof CloseTabActionContext) {
             handleCloseTabAction((CloseTabActionContext) context);
         } else if (context instanceof ValidateActionContext) {
-            handleValidateAction((ValidateActionContext)context);
+            handleValidateAction((ValidateActionContext) context);
         } else if (context instanceof CutActionContext) {
             handleCutAction((CutActionContext) context);
         } else if (context instanceof CopyActionContext) {
@@ -192,19 +196,19 @@ public class EditorViewGUI extends EditorView implements GeneralViewGUI, Documen
 
         } else if (context instanceof DocumentUpdateActionContext) {
             handleDocumentUpdateAction((DocumentUpdateActionContext) context);
-        } else if ( context instanceof ZoomActionContext ) {
-    
+        } else if (context instanceof ZoomActionContext) {
+
             ZoomActionContext zoomContext = (ZoomActionContext) context;
-            
+
             switch (zoomContext.getPercentZoom()) {
                 case 50:
-                    
+
                     this.handleZoomToFiftyAction(zoomContext);
-                    
+
                     break;
                 case 100:
                     this.handleZoomToHundredAction(zoomContext);
-                    
+
                     break;
                 case 200:
                     this.handleZoomToTwoHundredAction(zoomContext);
@@ -216,7 +220,7 @@ public class EditorViewGUI extends EditorView implements GeneralViewGUI, Documen
 
             handleRedoAction((RedoActionContext) context);
 
-        
+
         } else if (context instanceof ExitActionContext) {
 
             handleExitAction((ExitActionContext) context);
@@ -242,8 +246,9 @@ public class EditorViewGUI extends EditorView implements GeneralViewGUI, Documen
         _tabs.add(context.getTitle(), newPanel);
 
         _tabs.setSelectedIndex(_tabs.getTabCount() - 1);
-    
+
     }
+
     private void addTab(String tabName, String textAreaContents) {
 
         FSTab newPanel = new FSTab(tabName, textAreaContents);
@@ -267,8 +272,10 @@ public class EditorViewGUI extends EditorView implements GeneralViewGUI, Documen
      *
      */
     /**
-     * DocumentListener methods *
-     * @param de 
+     * DocumentListener methods
+     *
+     *
+     * @param de
      */
     @Override
     public void insertUpdate(DocumentEvent de) {
@@ -325,8 +332,10 @@ public class EditorViewGUI extends EditorView implements GeneralViewGUI, Documen
     }
 
     /**
-     * Handle GUI Actions *
-     * @param context 
+     * Handle GUI Actions
+     *
+     *
+     * @param context
      */
     public void handleNewFileAction(NewFileActionContext context) {
         this.addBlankTab();
@@ -347,9 +356,24 @@ public class EditorViewGUI extends EditorView implements GeneralViewGUI, Documen
      * @param context
      */
     public void handleSaveAction(SaveFileActionContext context) {
+        if (context.isNewBuffer()) {
+            JFrame frame = new JFrame();
+            JFileChooser fileChooser = new JFileChooser();
+            int returnValue = fileChooser.showSaveDialog(frame);
 
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            if (returnValue == JFileChooser.APPROVE_OPTION) {
 
+                File file = fileChooser.getSelectedFile();
+
+                SaveFileAsActionContext sContext = new SaveFileAsActionContext();
+
+                sContext.setNewFile(file);
+
+
+                controller.respondToInput(sContext);
+
+            }
+        }
     }
 
     /**
@@ -371,14 +395,60 @@ public class EditorViewGUI extends EditorView implements GeneralViewGUI, Documen
     @Override
     public void handleCloseTabAction(CloseTabActionContext context) {
 
-        Component selected = _tabs.getSelectedComponent();
-        if (selected != null) {
+        if (context.isForceClose()) {
+            Component selected = _tabs.getSelectedComponent();
+            if (selected != null) {
 
-            _tabs.remove(selected);
-            
+                _tabs.remove(selected);
+
+            }
+        } else {
+            JFrame frame = new JFrame();
+            Object[] options = {"Yes",
+                "No",
+                "Cancel"};
+
+            int result = JOptionPane.showOptionDialog(frame, "There are unsaved changes, would you like to save them?", "title", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.ERROR_MESSAGE, null, options, options[0]);
+
+            switch (result) {
+                case JOptionPane.YES_OPTION:
+
+                    if (!context.isNewBuffer()) {
+                        SaveFileActionContext sContext = new SaveFileActionContext();
+                        controller.respondToInput(sContext);
+                    } else {
+
+                        JFileChooser fileChooser = new JFileChooser();
+                        int returnValue = fileChooser.showSaveDialog(frame);
+
+                        if (returnValue == JFileChooser.APPROVE_OPTION) {
+
+                            File file = fileChooser.getSelectedFile();
+
+                            SaveFileAsActionContext sContext = new SaveFileAsActionContext();
+
+                            sContext.setNewFile(file);
+
+
+                            controller.respondToInput(sContext);
+
+                        }
+
+                    }
+                    break;
+                case JOptionPane.NO_OPTION:
+
+                    break;
+                case JOptionPane.CANCEL_OPTION:
+
+                    return;
+            }
+
+            context.setForceClose(true);
+            this.controller.respondToInput(context);
+
         }
-        
-        
+
     }
 
     /**
@@ -423,10 +493,10 @@ public class EditorViewGUI extends EditorView implements GeneralViewGUI, Documen
     public void handleViewAsWebpageAction(ViewAsWebpageActionContext context) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
     public void handleOutlineViewAction(OutlineViewActionContext context) {
         OutlineView v = new OutlineView(this.getCurrentTab().getContent());
-        if (v.isNoError()==true) {
+        if (v.isNoError() == true) {
             v.setVisible(true);
         }
     }
@@ -520,12 +590,12 @@ public class EditorViewGUI extends EditorView implements GeneralViewGUI, Documen
         FSTab currentTab = this.getCurrentTab();
         currentTab.inserthxHeaderElement(6);
     }
-      
+
     /**
      *
      * @param context
      */
-    public void handleAHREFAction(InsertHTMLActionContext context){
+    public void handleAHREFAction(InsertHTMLActionContext context) {
         FSTab currentTab = this.getCurrentTab();
         String url = (String) context.getData().get(InsertHTMLActionContext.URL);
         currentTab.insertContent("<a href=\"" + url + "\"/>");
@@ -620,7 +690,7 @@ public class EditorViewGUI extends EditorView implements GeneralViewGUI, Documen
         FSTab currentTab = this.getCurrentTab();
         currentTab.insertContent("<img src=\"" + url + "\" alt=\"" + altText + "\">");
     }
-    
+
     /**
      *
      * @param context
@@ -659,12 +729,11 @@ public class EditorViewGUI extends EditorView implements GeneralViewGUI, Documen
     public void handleDocumentUpdateAction(DocumentUpdateActionContext context) {
 
         FSTab currentTab = this.getCurrentTab();
-        
-        currentTab.replaceText(context.getContent());
-        
-        
-    }
 
+        currentTab.replaceText(context.getContent());
+
+
+    }
 
     /**
      *
@@ -677,9 +746,9 @@ public class EditorViewGUI extends EditorView implements GeneralViewGUI, Documen
         if (isValid) {
             JFrame frame = new JFrame();
             JOptionPane.showMessageDialog(frame,
-            "This HTML is correctly formed.",
-            "Valid HTML",
-            JOptionPane.INFORMATION_MESSAGE);
+                    "This HTML is correctly formed.",
+                    "Valid HTML",
+                    JOptionPane.INFORMATION_MESSAGE);
         }
     }
 
@@ -703,10 +772,8 @@ public class EditorViewGUI extends EditorView implements GeneralViewGUI, Documen
 
     @Override
     public void handleExitAction(ExitActionContext context) {
-        
-        FSViewManager.close();
-       
-    }
-    
 
+        FSViewManager.close();
+
+    }
 }

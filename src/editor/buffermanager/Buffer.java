@@ -60,11 +60,12 @@ public class Buffer {
     }
     
     public String save() throws IOException {
+        
         return save(_file);
     }
     
-    public String save(File file) throws IOException {
-
+    private String save(File file) throws IOException {
+            
             BufferedWriter bufferedWriter = null;
             try {
                 
@@ -75,6 +76,7 @@ public class Buffer {
                 bufferedWriter =  new BufferedWriter(new FileWriter(file));
                 bufferedWriter.write(_contentsString);
                 
+                this._hasChanged = false;
                 return file.getName();
                 
                
@@ -118,6 +120,8 @@ public class Buffer {
         
         _contentsString = contents;
         
+        this._hasChanged = true;
+        
     }
     
     public String getName() {
@@ -143,6 +147,14 @@ public class Buffer {
 
     public void dropTail() {
         _history.dropTail();
+    }
+    
+    public boolean hasChanges() {
+        return _hasChanged;
+    }
+
+    public boolean isNewBuffer() {
+        return _file.getName().equals("New File");
     }
         
 }
