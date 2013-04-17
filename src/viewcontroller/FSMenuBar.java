@@ -353,8 +353,8 @@ public class FSMenuBar extends JMenuBar {
         SourceMenu.add(AutoWordWrapMenuCheckBox);
         SourceMenu.add(AutoIndentMenuCheckBox);
         SourceMenu.add(new JSeparator()); // SEPARATOR
-        SourceMenu.add(SyntaxHighlightingMenuCheckbox);
-        SourceMenu.add(new JSeparator()); // SEPARATOR
+       // SourceMenu.add(SyntaxHighlightingMenuCheckbox);
+       // SourceMenu.add(new JSeparator()); // SEPARATOR
         SourceMenu.add(IndentCurrentLineMenuItem);
         SourceMenu.add(IndentSelectedTextMenuItem);
         SourceMenu.add(IndentEntireBufferMenuItem);
