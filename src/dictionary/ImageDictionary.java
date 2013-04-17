@@ -25,8 +25,10 @@ public class ImageDictionary extends JFrame {
     // Just for testing
     public static void main(String[] args) {
         ImageDictionary id = new ImageDictionary("<html> <head> <img src='smiley.gif' alt='Smiley face' width='42' height='42'> <title>An example HTMLDocument</title> <style type='text/css'> div { background-color: silver; } ul { color: red; } </style> </head> <body> <img src='smiley.gif' alt='Smiley face' width='42' height='42'> <div id='BOX'> <p>Paragraph 1</p> <img src='smiley.gif' alt='Smiley face' width='42' height='42'> <p>Paragraph 2</p> </div> </body> </html>");
+        id.setVisible(true);
     }
     
+    // All you have to do is set visible
     public ImageDictionary(String html) {
         Document doc = Jsoup.parse(html);
         Elements e = doc.select("img[src]");
@@ -61,6 +63,5 @@ public class ImageDictionary extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(620, 450);
         this.setLocationRelativeTo(null);
-        this.setVisible(true);
     }
 }
