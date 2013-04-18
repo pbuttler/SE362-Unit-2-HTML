@@ -14,6 +14,8 @@ import editor.validator.EditorChecker;
 import java.awt.Component;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.File;
 import javax.swing.GroupLayout;
 import javax.swing.JFileChooser;
@@ -143,12 +145,10 @@ public class EditorViewGUI extends EditorView implements GeneralViewGUI, Documen
             handleViewAsWebpageAction((ViewAsWebpageActionContext) context);
         } else if (context instanceof ImageDictionaryActionContext) {
             handleImageDictionaryAction((ImageDictionaryActionContext) context);
-        } else if (context instanceof IndentCurrentLineActionContext) {
-            handleIndentCurrentLineAction((IndentCurrentLineActionContext) context);
+        
         } else if (context instanceof IndentSelectedTextActionContext) {
             handleIndentSelectedTextAction((IndentSelectedTextActionContext) context);
-        } else if (context instanceof IndentEntireBufferActionContext) {
-            handleIndentEntireBufferAction((IndentEntireBufferActionContext) context);
+       
         } else if (context instanceof InsertHTMLActionContext) {
 
             InsertHTMLActionContext htmlActionContext = (InsertHTMLActionContext) context;
@@ -228,6 +228,8 @@ public class EditorViewGUI extends EditorView implements GeneralViewGUI, Documen
 
             handleExitAction((ExitActionContext) context);
 
+        } else if (context instanceof AutoIndentActionContext) {
+            handleAutoIndentAction((AutoIndentActionContext) context);
         }
 
     }
@@ -516,15 +518,6 @@ public class EditorViewGUI extends EditorView implements GeneralViewGUI, Documen
         }
     }
 
-    /**
-     *
-     * @param context
-     */
-    @Override
-    public void handleIndentCurrentLineAction(IndentCurrentLineActionContext context) {
-        FSTab currentTab = this.getCurrentTab();
-        currentTab.indentCurrentLine();
-    }
 
     /**
      *
@@ -534,16 +527,6 @@ public class EditorViewGUI extends EditorView implements GeneralViewGUI, Documen
     public void handleIndentSelectedTextAction(IndentSelectedTextActionContext context) {
         FSTab currentTab = this.getCurrentTab();
         currentTab.indentSelection();
-    }
-
-    /**
-     *
-     * @param context
-     */
-    @Override
-    public void handleIndentEntireBufferAction(IndentEntireBufferActionContext context) {
-        FSTab currentTab = this.getCurrentTab();
-        currentTab.indentAll();
     }
 
     /**
@@ -745,7 +728,7 @@ public class EditorViewGUI extends EditorView implements GeneralViewGUI, Documen
 
         FSTab currentTab = this.getCurrentTab();
 
-        currentTab.replaceText(context.getContent());
+        currentTab.refreshEditorPane(context.getContent());
 
 
     }
@@ -791,4 +774,11 @@ public class EditorViewGUI extends EditorView implements GeneralViewGUI, Documen
         FSViewManager.close();
 
     }
+
+    @Override
+    public void handleAutoIndentAction(AutoIndentActionContext context) {
+        getCurrentTab().toggleAutoIndent();
+    }
+
+    
 }

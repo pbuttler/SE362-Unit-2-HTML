@@ -31,6 +31,8 @@ public class EditorController extends GeneralController implements EditorActionH
        
     }
 
+    
+
     /**
      * The states of this controller.
      */
@@ -81,15 +83,11 @@ public class EditorController extends GeneralController implements EditorActionH
             handlePasteAction((PasteActionContext) context);
         } else if (context instanceof ViewAsWebpageActionContext) {
             handleViewAsWebpageAction((ViewAsWebpageActionContext) context);
-        } else if (context instanceof IndentCurrentLineActionContext) {
-            handleIndentCurrentLineAction((IndentCurrentLineActionContext) context);
-        } else if (context instanceof ImageDictionaryActionContext){
+        }  else if (context instanceof ImageDictionaryActionContext){
             handleImageDictionaryAction((ImageDictionaryActionContext) context);
         } else if (context instanceof IndentSelectedTextActionContext) {
             handleIndentSelectedTextAction((IndentSelectedTextActionContext) context);
-        } else if (context instanceof IndentEntireBufferActionContext) {
-            handleIndentEntireBufferAction((IndentEntireBufferActionContext) context);
-        } else if (context instanceof InsertHTMLActionContext) {
+        }  else if (context instanceof InsertHTMLActionContext) {
 
             InsertHTMLActionContext htmlActionContext = (InsertHTMLActionContext) context;
             switch (htmlActionContext.getTag()) {
@@ -159,6 +157,9 @@ public class EditorController extends GeneralController implements EditorActionH
             handleRedoAction((RedoActionContext) context);
         } else if (context instanceof ExitActionContext) {
             handleExitAction((ExitActionContext) context);
+        
+        } else if (context instanceof AutoIndentActionContext) {
+            handleAutoIndentAction((AutoIndentActionContext) context);
         }
 
     }
@@ -205,6 +206,7 @@ public class EditorController extends GeneralController implements EditorActionH
      *
      * @param context
      */
+    @Override
     public void handleOpenFileAction(OpenFileActionContext context) {
         
         File file = context.getFile();
@@ -358,14 +360,7 @@ public class EditorController extends GeneralController implements EditorActionH
         
     }
     
-    /**
-     *
-     * @param context
-     */
-    @Override
-    public void handleIndentCurrentLineAction(IndentCurrentLineActionContext context) {
-        this.view.displayOutput(context);
-    }
+
 
     /**
      *
@@ -376,15 +371,7 @@ public class EditorController extends GeneralController implements EditorActionH
         this.view.displayOutput(context);
     }
 
-    /**
-     *
-     * @param context
-     */
-    @Override
-    public void handleIndentEntireBufferAction(IndentEntireBufferActionContext context) {
-        this.view.displayOutput(context);
-    }
-
+ 
     /**
      *
      * @param context
@@ -618,6 +605,11 @@ public class EditorController extends GeneralController implements EditorActionH
     @Override
     public void handleExitAction(ExitActionContext context) {
         System.out.println("Controller: Exiting...");
+        view.displayOutput(context);
+    }
+    
+    @Override
+    public void handleAutoIndentAction(AutoIndentActionContext context) {
         view.displayOutput(context);
     }
 }

@@ -342,6 +342,8 @@ public class FSMenuBar extends JMenuBar {
         OutlineViewMenuItem = new JMenuItem();
         AutoWordWrapMenuCheckBox = new JCheckBoxMenuItem();
         AutoIndentMenuCheckBox = new JCheckBoxMenuItem();
+        AutoIndentMenuCheckBox.setSelected(true);
+        
         SyntaxHighlightingMenuCheckbox = new JCheckBoxMenuItem();
         IndentCurrentLineMenuItem = new JMenuItem();
         IndentSelectedTextMenuItem = new JMenuItem();

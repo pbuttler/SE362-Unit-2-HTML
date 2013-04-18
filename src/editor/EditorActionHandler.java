@@ -74,15 +74,11 @@ public interface EditorActionHandler {
 
 //     void handleAutoWordWrapAction(AutoWordWrapActionContext context);
 
-//     void handleAutoIndentAction(AutoIndentActionContext context);
+     void handleAutoIndentAction(AutoIndentActionContext context);
 
 //     void handleSyntaxHighlightAction(SyntaxHighlightActionContext context);
 
-     /**
-     *
-     * @param context
-     */
-    void handleIndentCurrentLineAction(IndentCurrentLineActionContext context);
+    
 
      /**
      *
@@ -90,11 +86,7 @@ public interface EditorActionHandler {
      */
     void handleIndentSelectedTextAction(IndentSelectedTextActionContext context);
 
-     /**
-     *
-     * @param context
-     */
-    void handleIndentEntireBufferAction(IndentEntireBufferActionContext context);
+    
 
 //     void handleInsertAction(InsertHTMLActionContext context);
 
