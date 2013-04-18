@@ -4,6 +4,7 @@
  */
 package editor.gui;
 
+import editor.linkview.LinkView;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -29,13 +30,17 @@ import javax.swing.text.Document;
 import javax.swing.text.Element;
 import javax.swing.text.JTextComponent;
 import javax.swing.text.TextAction;
+import org.jsoup.Jsoup;
+import org.jsoup.select.Elements;
+
 
 /**
  *
  * @author innod_000
  */
 public class FSTab extends JPanel {
-
+    private boolean hasSplit = false;
+    private LinkView linkSplitView;
     private JEditorPane _editorPane;
     private String _title;
     private static final int DEFAULT_FONT_SIZE = 12;
@@ -50,10 +55,7 @@ public class FSTab extends JPanel {
      */
     public FSTab() {
         _editorPane = new JEditorPane();
-
-
-        this.setLayout(new GridLayout(1, 1));
-
+        //_editorPane.setContentType("text/rtf");
         
         this.setLayout(new GridLayout(1,1));
         
@@ -77,6 +79,37 @@ public class FSTab extends JPanel {
         boolean aiEnabled = indentAction.isActive();
         indentAction.setActive(!aiEnabled);
     }
+       
+    // Returns JPanel with LV and JEP. user must give string of JEP HTML
+    public void makeSplitView(String html) {
+        this.removeAll();
+        this.setLayout(new GridLayout(2, 1));
+        linkSplitView = new LinkView(html);
+        
+        this.add(new JScrollPane(linkSplitView));
+        this.add(new JScrollPane(_editorPane));
+        this.repaint();
+        this.revalidate();
+        this.hasSplit = true;
+    }
+    
+    public void returnFromSplitView() {
+        this.removeAll();
+        this.setLayout(new GridLayout(1,1));
+        
+        this.add(new JScrollPane(_editorPane));
+        this.repaint();
+        this.revalidate();
+        this.hasSplit = false;
+    }
+    
+     /**
+     * @return the hasSplit
+     */
+    public boolean isHasSplit() {
+        return hasSplit;
+    }
+
 
     /**
      *
@@ -86,7 +119,7 @@ public class FSTab extends JPanel {
     public FSTab(String tabName, String textAreaContents) {
 
         this();
-
+        //_editorPane.setContentType("text/rtf");
         _title = tabName;
 
         _editorPane.setText(textAreaContents);

@@ -46,6 +46,8 @@ public class FSMenuBar extends JMenuBar {
             ViewAsWebpageMenuItem,
             FiftyPercentZoom,
             ImageDictionaryMenuItem,
+            LinkViewPopUpMenuItem,
+            ToggleLinkViewSplit,
             OneHundredPercentZoom,
             TwoHundredPercentZoom;
     private JMenu SourceMenu;
@@ -130,6 +132,9 @@ public class FSMenuBar extends JMenuBar {
              *
              */
             IMAGEDIC_OPTION = "Image Dictionary",
+            SPLITLINKVIEW_OPTION = "Toggle Link View Split",  
+            LINKVIEW_OPTION = "Link View Popup",
+
             /**
              *
              */
@@ -322,6 +327,9 @@ public class FSMenuBar extends JMenuBar {
 
         ViewAsWebpageMenuItem = new JMenuItem();
         ImageDictionaryMenuItem = new JMenuItem();
+        LinkViewPopUpMenuItem = new JMenuItem();
+        ToggleLinkViewSplit = new JMenuItem();
+
         FiftyPercentZoom = new JMenuItem();
         OneHundredPercentZoom = new JMenuItem();
         TwoHundredPercentZoom = new JMenuItem();
@@ -330,6 +338,9 @@ public class FSMenuBar extends JMenuBar {
         ViewMenu.add(new JSeparator()); // SEPARATOR
         ViewMenu.add(ZoomToMenu);
         ViewMenu.add(ImageDictionaryMenuItem);
+        ViewMenu.add(LinkViewPopUpMenuItem);
+        ViewMenu.add(ToggleLinkViewSplit);
+
         ZoomToMenu.add(FiftyPercentZoom);
         ZoomToMenu.add(OneHundredPercentZoom);
         ZoomToMenu.add(TwoHundredPercentZoom);
@@ -352,14 +363,14 @@ public class FSMenuBar extends JMenuBar {
         SourceMenu.add(ValidateMenuItem);
         SourceMenu.add(OutlineViewMenuItem);
         SourceMenu.add(new JSeparator()); // SEPARATOR
-        SourceMenu.add(AutoWordWrapMenuCheckBox);
+        //SourceMenu.add(AutoWordWrapMenuCheckBox);
         SourceMenu.add(AutoIndentMenuCheckBox);
         SourceMenu.add(new JSeparator()); // SEPARATOR
        // SourceMenu.add(SyntaxHighlightingMenuCheckbox);
        // SourceMenu.add(new JSeparator()); // SEPARATOR
-        SourceMenu.add(IndentCurrentLineMenuItem);
-        SourceMenu.add(IndentSelectedTextMenuItem);
-        SourceMenu.add(IndentEntireBufferMenuItem);
+        //SourceMenu.add(IndentCurrentLineMenuItem);
+        //SourceMenu.add(IndentSelectedTextMenuItem);
+        //SourceMenu.add(IndentEntireBufferMenuItem);
         AutoWordWrapMenuCheckBox.setSelected(false);
         this.add(SourceMenu);
 
@@ -431,6 +442,8 @@ public class FSMenuBar extends JMenuBar {
         SaveAsMenuItem.addActionListener(parent);
         ExitMenuItem.addActionListener(parent);
 
+        LinkViewPopUpMenuItem.addActionListener(parent);
+        ToggleLinkViewSplit.addActionListener(parent);
 
         CutMenuItem.addActionListener(parent);
         CopyMenuItem.addActionListener(parent);
@@ -590,6 +603,8 @@ public class FSMenuBar extends JMenuBar {
         SaveAsMenuItem.setText(SAVEAS_OPTION);
         ExitMenuItem.setText(EXIT_OPTION);
 
+        LinkViewPopUpMenuItem.setText(LINKVIEW_OPTION);
+        ToggleLinkViewSplit.setText(SPLITLINKVIEW_OPTION);
 
         this.UndoMenuItem.setText(UNDO_OPTION);
         this.RedoMenuItem.setText(REDO_OPTION);

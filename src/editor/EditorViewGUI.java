@@ -10,6 +10,7 @@ import actioncontext.GeneralActionContext;
 import articles.outlineView.OutlineView;
 import dictionary.ImageDictionary;
 import editor.actioncontext.*;
+import editor.linkview.LinkView;
 import editor.validator.EditorChecker;
 import java.awt.Component;
 import java.awt.GridLayout;
@@ -148,7 +149,8 @@ public class EditorViewGUI extends EditorView implements GeneralViewGUI, Documen
 
         } else if (context instanceof IndentSelectedTextActionContext) {
             handleIndentSelectedTextAction((IndentSelectedTextActionContext) context);
-       
+       } else if (context instanceof LinkViewActionContext) {
+            handleLinkViewAction((LinkViewActionContext)context);
         } else if (context instanceof InsertHTMLActionContext) {
 
             InsertHTMLActionContext htmlActionContext = (InsertHTMLActionContext) context;
@@ -346,6 +348,21 @@ public class EditorViewGUI extends EditorView implements GeneralViewGUI, Documen
         this.addBlankTab();
     }
 
+    public void handleLinkViewAction(LinkViewActionContext context) {
+        String html = this.getCurrentTab().getContent();
+        LinkView lv = new LinkView(html);
+        if (context.isIsPopup()==true) {
+            JFrame j = lv.returnPopupView(html);
+            j.setVisible(true);
+        } else {
+            if (this.getCurrentTab().isHasSplit()==false) {
+                this.getCurrentTab().makeSplitView(html);
+            } else {
+                this.getCurrentTab().returnFromSplitView();
+            }
+        }
+    }
+    
     /**
      *
      * @param context

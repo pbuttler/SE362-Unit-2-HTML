@@ -83,8 +83,10 @@ public class EditorController extends GeneralController implements EditorActionH
             handlePasteAction((PasteActionContext) context);
         } else if (context instanceof ViewAsWebpageActionContext) {
             handleViewAsWebpageAction((ViewAsWebpageActionContext) context);
-
+        } else if (context instanceof ImageDictionaryActionContext){
             handleImageDictionaryAction((ImageDictionaryActionContext) context);
+        } else if (context instanceof LinkViewActionContext) {
+            handleLinkViewAction((LinkViewActionContext)context);
         } else if (context instanceof IndentSelectedTextActionContext) {
             handleIndentSelectedTextAction((IndentSelectedTextActionContext) context);
         }  else if (context instanceof InsertHTMLActionContext) {
@@ -253,6 +255,13 @@ public class EditorController extends GeneralController implements EditorActionH
         this.view.displayOutput(context);
 
     }
+    
+        
+    public void handleLinkViewAction(LinkViewActionContext context) {
+        view.displayOutput(context);
+    }
+    
+
 
     /**
      *

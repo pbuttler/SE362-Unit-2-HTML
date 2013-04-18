@@ -284,7 +284,12 @@ public class FSViewManager extends JFrame implements ActionListener {
             case FSMenuBar.PASTE_OPTION:
                 handlePasteAction();
                 break;
-
+            case FSMenuBar.LINKVIEW_OPTION:
+                handleLinkViewPopUpAction();
+                break;
+            case FSMenuBar.SPLITLINKVIEW_OPTION:
+                handleSplitLinkViewAction();
+                break;
             case FSMenuBar.VIEWASWEBPAGE_OPTION:
                 handleViewAsWebpageAction();
                 break;
@@ -456,6 +461,13 @@ public class FSViewManager extends JFrame implements ActionListener {
 
         currentView.getController().respondToInput(context);
 
+    }
+    
+    private void handleLinkViewPopUpAction() {
+        LinkViewActionContext context = new LinkViewActionContext();
+        context.setIsPopup(true);
+        GeneralView currentView = (GeneralView)this.getTopView();
+        currentView.getController().respondToInput(context);
     }
     
     private void handleViewAsWebpageAction() {
@@ -730,6 +742,14 @@ public class FSViewManager extends JFrame implements ActionListener {
         GeneralView currentView = (GeneralView) this.getTopView();
         currentView.getController().respondToInput(context);
     }
+    
+    private void handleSplitLinkViewAction() {
+        LinkViewActionContext context = new LinkViewActionContext();
+        context.setIsPopup(false);
+        GeneralView currentView = (GeneralView)this.getTopView();
+        currentView.getController().respondToInput(context);
+    }
+
 
     private void handleSaveAsAction() {
         JFileChooser fileChooser = new JFileChooser();
