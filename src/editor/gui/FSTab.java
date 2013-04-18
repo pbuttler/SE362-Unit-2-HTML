@@ -34,7 +34,7 @@ import javax.swing.text.TextAction;
  *
  * @author innod_000
  */
-public class FSTab extends JPanel implements KeyListener {
+public class FSTab extends JPanel {
 
     private JEditorPane _editorPane;
     private String _title;
@@ -156,7 +156,7 @@ public class FSTab extends JPanel implements KeyListener {
         _parent = listener;
         _editorPane.getDocument().addDocumentListener(_parent);
 
-        _editorPane.addKeyListener(this);
+//        _editorPane.addKeyListener(this);
 
     }
 
@@ -335,82 +335,93 @@ public class FSTab extends JPanel implements KeyListener {
 
     }
 
-    @Override
-    public void keyTyped(KeyEvent e) {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+//    @Override
+//    public void keyTyped(KeyEvent e) {
+////        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//    }
+//
+//    @Override
+//    public void keyPressed(KeyEvent e) {
+//
+//        if (e.getKeyChar() == '\t') {
+//            int startLine, endLine;
+//
+//            System.out.println("HERE!!");
+//
+//            int start = _editorPane.getSelectionStart();
+//            int end = _editorPane.getSelectionEnd();
+//
+//            startLine = _editorPane.getDocument().getDefaultRootElement().getElementIndex(start);
+//            endLine = _editorPane.getDocument().getDefaultRootElement().getElementIndex(end);
+//
+//            int numLines = (endLine - startLine) + 1;
+//            String replacement = "";
+//            if (e.isShiftDown()) {
+//                replacement = this.removeTabs(startLine, numLines);
+//                
+//
+//            } else {
+//                if (numLines != 1) {
+//                    replacement = this.addTabs(startLine, numLines);
+//                }
+//            }
+//            
+////            end = _editorPane.getDocument().getDefaultRootElement().getElement(endLine).getEndOffset();
+////            
+////            _editorPane.setSelectionEnd(end);
+//            _editorPane.replaceSelection(replacement);
+//            
+//            
+//        }
+//
+//    }
+//
+//    @Override
+//    public void keyReleased(KeyEvent e) {
+////        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//    }
+//
+//    private String addTabs(int startLine, int numLines) {
+//        
+//        Document doc = _editorPane.getDocument();
+//        Element rootElement = doc.getDefaultRootElement();
+////        int line = rootElement.getElementIndex(selectionStart);
+//
+//        //  Get the text for this line
+//        String replacement = "";
+//        int i;
+//        for (i = 0; i < numLines; i++ ) {
+//            int line = startLine + i;
+//            int start = rootElement.getElement(line).getStartOffset();
+//            int end = rootElement.getElement(line).getEndOffset();
+//            int length = end - start;
+//        
+//            String text = "";
+//            try {
+//                text = doc.getText(start, length);
+//            } catch (BadLocationException ex) {
+//                Logger.getLogger(FSTab.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//            replacement += "\t" + text;
+//            
+//        }
+//        
+//        while(replacement.endsWith("\n") || replacement.endsWith(" ") || replacement.endsWith("\t")){  
+//             replacement = replacement.substring(0, replacement.length()-1);  
+//          } 
+//        return replacement;
+//
+//    }
 
-    @Override
-    public void keyPressed(KeyEvent e) {
-
-        if (e.getKeyChar() == '\t') {
-            int startLine, endLine;
-
-            System.out.println("HERE!!");
-
-            int start = _editorPane.getSelectionStart();
-            int end = _editorPane.getSelectionEnd();
-
-            startLine = _editorPane.getDocument().getDefaultRootElement().getElementIndex(start);
-            endLine = _editorPane.getDocument().getDefaultRootElement().getElementIndex(end);
-
-            int numLines = (endLine - startLine) + 1;
-            if (e.isShiftDown()) {
-                this.removeTabs(startLine, numLines);
-                
-
-            } else {
-                if (numLines != 1) {
-                    addTabs(startLine, numLines);
-                }
-            }
-        }
-
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    private void addTabs(int startLine, int numLines) {
-        
+    private String removeTabs(int startLine, int numLines) {
         Document doc = _editorPane.getDocument();
         Element rootElement = doc.getDefaultRootElement();
 //        int line = rootElement.getElementIndex(selectionStart);
 
         //  Get the text for this line
         String replacement = "";
-        for (int i = 0; i < numLines; i++ ) {
-            int line = startLine + i;
-            int start = rootElement.getElement(line).getStartOffset();
-            int end = rootElement.getElement(line).getEndOffset();
-            int length = end - start;
-        
-            String text = "";
-            try {
-                text = doc.getText(start, length);
-            } catch (BadLocationException ex) {
-                Logger.getLogger(FSTab.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            replacement += "\t" + text;
-            
-        }
-        
-            
-        _editorPane.replaceSelection(replacement);
-            
-        
-    }
-
-    private void removeTabs(int startLine, int numLines) {
-        Document doc = _editorPane.getDocument();
-        Element rootElement = doc.getDefaultRootElement();
-//        int line = rootElement.getElementIndex(selectionStart);
-
-        //  Get the text for this line
-        String replacement = "";
-        for (int i = 0; i < numLines; i++ ) {
+        int i;
+        for (i = 0; i < numLines; i++ ) {
             int line = startLine + i;
             int start = rootElement.getElement(line).getStartOffset();
             int end = rootElement.getElement(line).getEndOffset();
@@ -431,9 +442,10 @@ public class FSTab extends JPanel implements KeyListener {
             replacement += text;
             
         }
-        
-            
-        _editorPane.replaceSelection(replacement);
+        while(replacement.endsWith("\n") || replacement.endsWith(" ") || replacement.endsWith("\t")){  
+             replacement = replacement.substring(0, replacement.length()-1);  
+          } 
+        return replacement;
     }
 
     // Indent code
