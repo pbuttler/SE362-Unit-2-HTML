@@ -145,7 +145,7 @@ public class EditorViewGUI extends EditorView implements GeneralViewGUI, Documen
             handleViewAsWebpageAction((ViewAsWebpageActionContext) context);
         } else if (context instanceof ImageDictionaryActionContext) {
             handleImageDictionaryAction((ImageDictionaryActionContext) context);
-        
+
         } else if (context instanceof IndentSelectedTextActionContext) {
             handleIndentSelectedTextAction((IndentSelectedTextActionContext) context);
        
@@ -517,6 +517,24 @@ public class EditorViewGUI extends EditorView implements GeneralViewGUI, Documen
             v.setVisible(true);
         }
     }
+
+    /**
+     *
+     * @param context
+     */
+    public void handleAutoWordWrapAction(AutoWordWrapActionContext context) {
+        FSTab currentTab = this.getCurrentTab();
+        boolean boolWrap = context.getAutoWordWrapOptionChecked();
+        if (boolWrap){
+            context.setAutoWordWrapOptionChecked(true);
+            System.out.println("autowordwrap true");
+        }
+        else{
+            context.setAutoWordWrapOptionChecked(false);
+            System.out.println("autowordwrap false");
+        }
+    }
+    
 
 
     /**

@@ -54,6 +54,9 @@ public class FSTab extends JPanel implements KeyListener {
 
         this.setLayout(new GridLayout(1, 1));
 
+        
+        this.setLayout(new GridLayout(1,1));
+        
         JScrollPane scrollPane = new JScrollPane();
         scrollPane.setViewportView(_editorPane);
         this.add(scrollPane);
@@ -309,6 +312,11 @@ public class FSTab extends JPanel implements KeyListener {
 
     }
 
+    
+    public void setLineWrap(boolean x){
+        this.setLineWrap(x);
+    }
+    
     private void setFontSize(int size) {
         int f = this.getFont().getStyle();
         Font newFont = new Font("monospaced", f, size);

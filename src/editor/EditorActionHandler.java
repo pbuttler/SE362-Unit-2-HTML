@@ -80,6 +80,12 @@ public interface EditorActionHandler {
 
     
 
+    /**
+     *
+     * @param context
+     */
+    void handleAutoWordWrapAction(AutoWordWrapActionContext context);
+    
      /**
      *
      * @param context

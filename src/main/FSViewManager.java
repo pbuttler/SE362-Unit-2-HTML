@@ -122,7 +122,7 @@ public class FSViewManager extends JFrame implements ActionListener {
 
         menubar = new FSMenuBar(_mainWindow);
         menubar.setActionListeners(_mainWindow);
-
+        
 //		// Set the title label.
 //		_componentTitleLabel = new JLabel();
 //		_componentTitleLabel.setFont( new Font( "SansSerif", Font.PLAIN, 30 ) );
@@ -600,7 +600,9 @@ public class FSViewManager extends JFrame implements ActionListener {
             url = "FILE:///" + url;
         }
         else if (n==1){//then it is on the internet
-            //do nothing to the URL
+            if (!url.contains("http")){
+                url = "http://" + url;
+            }
         }
         InsertHTMLActionContext context = new InsertHTMLActionContext();
 
@@ -688,8 +690,26 @@ public class FSViewManager extends JFrame implements ActionListener {
 
     private void handlePictureAction() {
 
+        Object[] options = {"Local Disk",
+                    "Online"};
+        int n = JOptionPane.showOptionDialog(this,
+            "Where is the image located?",
+            "Insert URL",
+            JOptionPane.YES_NO_OPTION,
+            JOptionPane.QUESTION_MESSAGE,
+            null,
+            options,
+            options[1]);
         String url = JOptionPane.showInputDialog(this,
                 "What is the URL of the picture?", null);
+        if (n==0){//then it is on local disk
+            url = "FILE:///" + url;
+        }
+        else if (n==1){//then it is on the internet
+            if (!url.contains("http")){
+                url = "http://" + url;
+            }
+        }
         String altText = JOptionPane.showInputDialog(this,
                 "What is the alternate text for this picture?", null);
 
